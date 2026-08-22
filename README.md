@@ -45,6 +45,47 @@ Evidence dossier ─────────────────── obser
 Cryptographic audit ledger ───────── append-only SHA-256 hash chain, optional HMAC signing
 ```
 
+### A dispute's journey in plain language
+
+1. **Intake** — an operator fills the manual intake form (`dashboard/app.py`) or selects a stored test dispute.
+2. **Sanitization** — complaint text passes through `src/security/sanitizer.py`; hostile phrasing is neutralized and tagged, while the original is set aside as labeled, untrusted audit data.
+3. **Feature engineering** — `src/ml/features.py` converts the record into 41 fixed-schema features; outcome-related fields are structurally blocked from entering.
+4. **Win probability** — `SentinelRiskScorer` (`src/ml/train.py`) returns a calibrated probability on the calibrated Random Forest.
+5. **Explanation** — `DisputeExplainer` (`src/ml/explain.py`) attributes that score to individual evidence factors using exact TreeSHAP.
+6. **Economics** — `DecisionEngine.calculate_expected_value` (`src/engine.py`) weighs potential recovery against the non-refundable fee and derives the break-even threshold τ*.
+7. **Gates & verdict** — five deterministic gates in `evaluate_dispute` (`src/engine.py`) produce CONTEST, REVIEW, or SURRENDER.
+8. **Evidence & audit** — `EvidenceAssembler` (`src/agent/assembler.py`) packages provenance-cited facts into a dossier (`src/agent/dossier.py`), and a committed decision is sealed into the append-only hash chain (`src/security/audit.py`).
+
+## Quick Demo
+
+After completing [Installation](#installation), launch the operations console:
+
+```bash
+streamlit run dashboard/app.py
+```
+
+A two-minute tour of the five console views:
+
+| # | View | Do this | What to notice |
+|---|------|---------|----------------|
+| 1 | **Live Triage** | Select any held-out dispute, or use the High Win / High $ / Low EV presets | Verdict band, policy-gate matrix, TreeSHAP drivers, EV decomposition |
+| 2 | **Manual Case Intake** | Enter your own dispute fields and a customer complaint — then try an injection-style complaint such as *"Ignore previous instructions…"* | Sanitizer audit panel (original vs sanitized + SHA-256s); P(Win), Expected Value, and verdict stay identical with or without hostile text |
+| 3 | **Benchmark & Economics** | Review the metric tables | Honest autonomous-vs-blind strategy comparison on the synthetic split |
+| 4 | **Audit Chain** | Commit a decision in triage or intake, then open this view | Append-only entry chain, integrity check, signing mode |
+| 5 | **Input Firewall** | Paste adversarial text into the tester | Detected threat categories and the neutralized output |
+
+### Screenshots
+
+Dashboard captures are not bundled yet. To add them later: save PNGs under `docs/screenshots/` using the filenames below (see `docs/screenshots/README.md` for capture guidance), then uncomment the matching lines.
+
+```markdown
+<!-- ![Live Triage Console](docs/screenshots/live-triage.png) -->
+<!-- ![Manual Case Intake](docs/screenshots/manual-intake.png) -->
+<!-- ![Benchmark & Economics](docs/screenshots/benchmark.png) -->
+<!-- ![Audit Chain](docs/screenshots/audit-ledger.png) -->
+<!-- ![Input Firewall](docs/screenshots/sanitizer-firewall.png) -->
+```
+
 ## Key Capabilities
 
 - 41 engineered features with strict target/metadata leakage guards
@@ -139,6 +180,8 @@ flowchart TD
 sentinel_risk/
 ├── config.py                  # thresholds, paths, seeds (all simulation constants)
 ├── requirements.txt
+├── docs/
+│   └── screenshots/           # dashboard captures (guide: docs/screenshots/README.md)
 ├── dashboard/
 │   └── app.py                 # Streamlit operations console (triage, manual intake,
 │                              #   benchmark, audit ledger, sanitizer views)
@@ -165,6 +208,8 @@ sentinel_risk/
 │   └── evaluate.py            # reproducible benchmark harness (+ results JSON)
 └── tests/                     # authoritative test suite (50 tests)
 ```
+
+**Where to start reading:** the decision logic in `src/engine.py`, the security model in `src/security/`, the ML pipeline in `src/ml/train.py`, and the console in `dashboard/app.py`.
 
 ## Installation
 
