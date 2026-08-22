@@ -1,0 +1,117 @@
+{
+  "benchmark_metadata": {
+    "dataset": "data/test.csv",
+    "test_split_size": 180,
+    "split_type": "Chronological Hold-Out",
+    "random_seed": 42
+  },
+  "ml_performance": {
+    "sample_size": 180,
+    "actual_win_rate": 0.4889,
+    "roc_auc": 0.8597,
+    "pr_auc": 0.8347,
+    "raw_brier_score": 0.1556,
+    "calibrated_brier_score": 0.1506,
+    "brier_improvement_pct": 3.18,
+    "classification_at_tau_0_50": {
+      "threshold": 0.5,
+      "precision": 0.8272,
+      "recall": 0.7614,
+      "f1_score": 0.7929,
+      "true_negatives": 78,
+      "false_positives": 14,
+      "false_negatives": 21,
+      "true_positives": 67
+    },
+    "calibration_bins": [
+      {
+        "predicted_bin_mean": 0.1568,
+        "empirical_true_fraction": 0.1111
+      },
+      {
+        "predicted_bin_mean": 0.2762,
+        "empirical_true_fraction": 0.2308
+      },
+      {
+        "predicted_bin_mean": 0.4994,
+        "empirical_true_fraction": 0.6364
+      },
+      {
+        "predicted_bin_mean": 0.7245,
+        "empirical_true_fraction": 0.7391
+      },
+      {
+        "predicted_bin_mean": 0.8526,
+        "empirical_true_fraction": 0.8723
+      }
+    ]
+  },
+  "decision_engine_performance": {
+    "verdict_distribution": {
+      "CONTEST": 51,
+      "REVIEW": 85,
+      "SURRENDER": 44,
+      "CONTEST_pct": 28.33,
+      "REVIEW_pct": 47.22,
+      "SURRENDER_pct": 24.44
+    },
+    "evidence_quality": {
+      "mean_readiness_score": 50.11,
+      "median_readiness_score": 50.0,
+      "min_readiness_score": 0,
+      "max_readiness_score": 100,
+      "missing_evidence_frequency": {
+        "Courier delivery incomplete (Status: RETURNED)": 17,
+        "Proof of Delivery (POD) signature missing": 92,
+        "3D Secure incomplete (Status: N_NOT_ENROLLED)": 42,
+        "Checkout IP does not match delivery destination": 39,
+        "3D Secure incomplete (Status: U_UNAVAILABLE)": 41,
+        "3D Secure incomplete (Status: A_ATTEMPTED)": 50,
+        "Courier delivery incomplete (Status: IN_TRANSIT)": 24,
+        "Courier delivery incomplete (Status: UNKNOWN)": 21
+      }
+    },
+    "financial_simulation": {
+      "total_disputed_gmv_inr": 685818.84,
+      "total_winnable_gmv_inr": 289546.64,
+      "arbitration_fee_parameter_inr": 500.0,
+      "baselines": {
+        "strategy_a_passive_surrender_net_inr": -289546.64,
+        "strategy_b_blind_contest_all_net_inr": 243546.64
+      },
+      "autonomous_direct_return": {
+        "total_auto_contested_cases": 51,
+        "recovered_gmv_inr": 145652.97,
+        "false_positive_fees_incurred_inr": 3500.0,
+        "net_autonomous_return_inr": 142152.97,
+        "true_negative_fees_avoided_inr": 17500.0,
+        "false_negative_missed_recovery_inr": 6238.41
+      },
+      "review_queue_metrics": {
+        "total_review_cases": 85,
+        "review_disputed_gmv_inr": 460528.91,
+        "review_winnable_gmv_inr": 137655.26,
+        "review_winnable_cases_count": 35,
+        "review_unwinnable_cases_count": 50
+      },
+      "hitl_sensitivity_analysis": {
+        "human_accuracy_70pct": {
+          "assumed_human_accuracy_pct": 70.0,
+          "total_net_financial_outcome_inr": 231011.65,
+          "advantage_over_blind_contesting_inr": -12534.99
+        },
+        "human_accuracy_85pct": {
+          "assumed_human_accuracy_pct": 85.0,
+          "total_net_financial_outcome_inr": 255409.94,
+          "advantage_over_blind_contesting_inr": 11863.3
+        },
+        "human_accuracy_100pct_oracle": {
+          "assumed_human_accuracy_pct": 100.0,
+          "total_net_financial_outcome_inr": 279808.23,
+          "advantage_over_blind_contesting_inr": 36261.59,
+          "note": "Theoretical upper bound / oracle assumption (assumes 100% human review precision)"
+        }
+      }
+    }
+  }
+}

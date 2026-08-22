@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Distribution
+*.egg-info/
+dist/
+build/
+
+# Environment & secrets
+.env
+.env.local
+*.key
+
+# Database files (regenerated locally)
+*.db
+
+# Model artifact policy:
+# models/sentinel_model.joblib is INTENTIONALLY TRACKED (~4.8 MB) so the
+# Streamlit dashboard runs from a fresh clone. Only ad-hoc pickle dumps are ignored.
+models/*.pkl
+
+# Runtime audit ledgers (append-only, environment-local - never commit)
+data/audit_ledger.jsonl
+data/demo_audit_ledger.jsonl
+data/test_audit_ledger.jsonl
+
+# Temporary / scratch / logs
+*.log
+*.tmp
+tmp/
+scratch/
+
+# Superseded build-phase verification scripts (authoritative suite: tests/, 50 tests).
+# verify_phase1.py remains tracked (read-only dataset sanity check).
+verify_phase2.py
+verify_phase3.py
+verify_phase4.py
+verify_phase5.py
+verify_phase6.py
+verify_phase7.py
+verify_phase9.py
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+htmlcov/
+.coverage

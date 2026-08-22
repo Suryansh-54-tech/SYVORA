@@ -1,0 +1,30 @@
+# SentinelRisk — AI Risk Manager & Dispute Defense Engine
+# Core ML & Data
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+lightgbm>=4.3.0
+shap>=0.45.0
+
+# Schema Validation
+pydantic>=2.6.0
+
+# API & Backend
+fastapi>=0.110.0
+uvicorn>=0.29.0
+
+# Database
+# SQLite is built into Python stdlib — no extra dependency needed
+
+# Dashboard
+streamlit>=1.33.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Testing
+pytest>=8.1.0
+
+# Utilities
+python-dotenv>=1.0.1

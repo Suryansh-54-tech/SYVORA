@@ -1,0 +1,18 @@
+{
+  "test_size": 180,
+  "decision_threshold": 0.5,
+  "roc_auc": 0.8596837944664032,
+  "pr_auc": 0.8347416803514,
+  "raw_brier_score": 0.15555688995601397,
+  "calibrated_brier_score": 0.15061317666078103,
+  "accuracy": 0.8055555555555556,
+  "precision": 0.8271604938271605,
+  "recall": 0.7613636363636364,
+  "f1_score": 0.7928994082840237,
+  "confusion_matrix": {
+    "true_negatives": 78,
+    "false_positives": 14,
+    "false_negatives": 21,
+    "true_positives": 67
+  }
+}
