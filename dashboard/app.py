@@ -1249,10 +1249,12 @@ elif app_mode == "📝 Manual Case Intake":
         if ana.policy_gate_triggers:
             st.warning(f"**Human Review Triggers:** {'; '.join(ana.policy_gate_triggers)}")
 
-        # 4. Sanitized Customer Complaint Block (if present)
+        # 4. Sanitized Customer Complaint & Advisory Claim Understanding (if present)
         if obs.customer_claim:
             claim_ev = obs.customer_claim
-            st.markdown("### Customer Complaint (Defensive Sanitizer Audit)")
+            claim_pkg = dossier.advisory_claim_understanding
+
+            st.markdown("### Customer Dispute Remarks & Defensive Sanitizer Audit")
             claim_c1, claim_c2 = st.columns(2)
             with claim_c1:
                 st.markdown("**Original Untrusted Input:**")
@@ -1266,6 +1268,52 @@ elif app_mode == "📝 Manual Case Intake":
                 st.error(f"🚨 **Adversarial Threats Neutralized:** {', '.join(claim_ev.threats_detected)}")
             else:
                 st.success("✅ Clean text. No prompt injection signatures detected.")
+
+            # Advisory Claim Understanding Card
+            if claim_pkg is not None and claim_pkg.has_structured_claim:
+                conf_display = (
+                    f"{claim_pkg.signals[0].confidence_score:.1%}"
+                    if claim_pkg.signals
+                    else "N/A"
+                )
+                secondary_display = (
+                    ", ".join([s.value for s in claim_pkg.secondary_intents])
+                    if claim_pkg.secondary_intents
+                    else "None"
+                )
+                st.markdown(f"""
+                <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 14px 18px; margin-top: 10px; margin-bottom: 6px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #38BDF8; letter-spacing: 0.05em;">
+                            ⚡ Customer Claim Understanding (Advisory Only)
+                        </span>
+                        <span style="font-size: 0.7rem; color: #38BDF8; background: rgba(56, 189, 248, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25); font-weight: 600;">
+                            Decision Influence: NONE
+                        </span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 10px;">
+                        <div>
+                            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Primary Claim</div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: #F8FAFC;">{claim_pkg.primary_intent.value}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Secondary Claim(s)</div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #CBD5E1;">{secondary_display}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Rule-Matching Confidence</div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: #34D399;">{conf_display}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Advisory Only</div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: #38BDF8;">TRUE</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: #94A3B8; border-top: 1px solid rgba(148, 163, 184, 0.15); padding-top: 8px; font-family: 'JetBrains Mono', monospace;">
+                        Source Sanitized SHA-256: {claim_pkg.source_sanitized_sha256}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
 
         st.markdown("---")
 

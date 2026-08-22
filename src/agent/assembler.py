@@ -288,12 +288,20 @@ class EvidenceAssembler:
         #    component can interpret it.
         customer_claim_evidence = self.sanitize_customer_claim(customer_claim_text)
 
+        # 0b. Deterministic Advisory Claim Extraction (Advisory Only, Zero Decision Influence)
+        from src.nlp.claim_extractor import DeterministicClaimExtractor
+        claim_understanding = (
+            DeterministicClaimExtractor.extract_signals(customer_claim_evidence)
+            if customer_claim_evidence is not None
+            else None
+        )
+
         # 1. Observed facts
         observed = self.assemble_observed_evidence(clean_data)
         if customer_claim_evidence is not None:
             observed = observed.model_copy(update={"customer_claim": customer_claim_evidence})
 
-        # 2. Decision engine evaluation
+        # 2. Decision engine evaluation (Strictly tabular features, zero claim influence)
         evaluation = self.decision_engine.evaluate_dispute(clean_data, include_shap=True)
 
         # 3. Analytical facts
@@ -301,7 +309,11 @@ class EvidenceAssembler:
 
         # 4. Generate structured rebuttal markdown
         formatter = DossierFormatter()
-        rebuttal_md = formatter.generate_rebuttal_markdown(observed, analytical)
+        rebuttal_md = formatter.generate_rebuttal_markdown(
+            observed,
+            analytical,
+            claim_understanding=claim_understanding
+        )
 
         dossier_id = f"dos_{hashlib.md5(f'{observed.dispute_id}_{observed.dispute_date}'.encode()).hexdigest()[:10]}"
         is_ready = (analytical.decision_verdict == "CONTEST")
@@ -314,4 +326,5 @@ class EvidenceAssembler:
             analytical_evidence=analytical,
             rebuttal_narrative_markdown=rebuttal_md,
             is_ready_for_submission=is_ready,
+            advisory_claim_understanding=claim_understanding,
         )

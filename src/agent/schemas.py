@@ -12,7 +12,7 @@ Enforces:
 """
 
 from enum import Enum
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Literal
 from pydantic import BaseModel, Field
 
 
@@ -142,6 +142,47 @@ class CustomerClaimEvidence(BaseModel):
     threats_detected: List[str]
 
 
+class ClaimIntent(str, Enum):
+    """
+    Standardized customer claim dispute intents.
+    """
+    NON_DELIVERY = "NON_DELIVERY"
+    UNAUTHORIZED_TRANSACTION = "UNAUTHORIZED_TRANSACTION"
+    DUPLICATE_CHARGE = "DUPLICATE_CHARGE"
+    WRONG_AMOUNT = "WRONG_AMOUNT"
+    REFUND_NOT_RECEIVED = "REFUND_NOT_RECEIVED"
+    CANCELLATION = "CANCELLATION"
+    OTHER = "OTHER"
+
+
+class ClaimSignal(BaseModel):
+    """
+    Deterministic advisory signal extracted from customer dispute remarks.
+    """
+    intent: ClaimIntent
+    confidence_score: float = Field(
+        ...,
+        description="Deterministic heuristic matching score (0.0-1.0). NOT an ML calibrated probability."
+    )
+    matched_keywords: List[str] = Field(default_factory=list)
+    matched_phrases: List[str] = Field(default_factory=list)
+    is_negated: bool = False
+    context_snippet: str = ""
+    advisory_only: Literal[True] = True
+
+
+class ClaimSignalPackage(BaseModel):
+    """
+    Advisory container aggregating all extracted claim signals from sanitized text.
+    """
+    primary_intent: ClaimIntent
+    secondary_intents: List[ClaimIntent] = Field(default_factory=list)
+    signals: List[ClaimSignal] = Field(default_factory=list)
+    source_sanitized_sha256: str
+    has_structured_claim: bool
+    advisory_only: Literal[True] = True
+
+
 class ObservedEvidencePackage(BaseModel):
     dispute_id: str
     transaction_id: str
@@ -191,3 +232,4 @@ class DisputeDefenseDossier(BaseModel):
     analytical_evidence: AnalyticalEvidencePackage
     rebuttal_narrative_markdown: str
     is_ready_for_submission: bool
+    advisory_claim_understanding: Optional[ClaimSignalPackage] = None

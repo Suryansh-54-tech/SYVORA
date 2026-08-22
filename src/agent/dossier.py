@@ -10,7 +10,7 @@ Strictly deterministic — formats only observed and analytical facts with full 
 import os
 import sys
 import json
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -18,6 +18,7 @@ from src.agent.schemas import (
     ObservedEvidencePackage,
     AnalyticalEvidencePackage,
     DisputeDefenseDossier,
+    ClaimSignalPackage,
 )
 
 
@@ -30,7 +31,8 @@ class DossierFormatter:
     @staticmethod
     def generate_rebuttal_markdown(
         observed: ObservedEvidencePackage,
-        analytical: AnalyticalEvidencePackage
+        analytical: AnalyticalEvidencePackage,
+        claim_understanding: Optional[ClaimSignalPackage] = None
     ) -> str:
         """
         Generates a formal, structured Markdown defense document with explicit
@@ -145,6 +147,24 @@ class DossierFormatter:
             lines.append("```")
             lines.append("")
             lines.append("*This attachment is retained for human reviewer context only. The original raw text is preserved exclusively in the structured JSON record for audit purposes.*")
+            lines.append("")
+
+        # Section 8: Customer Claim Understanding (Advisory Only)
+        if claim_understanding is not None and claim_understanding.has_structured_claim:
+            lines.append("## 8. Customer Claim Understanding — Advisory Only")
+            lines.append("")
+            lines.append("> **Advisory Only:** `TRUE` | **Decision Influence:** `NONE` | **Provenance Source:** `Sanitized Customer Text`")
+            lines.append("")
+            lines.append(f"- **Primary Claim Classification:** `{claim_understanding.primary_intent.value}`")
+            secondary_str = ", ".join([s.value for s in claim_understanding.secondary_intents]) if claim_understanding.secondary_intents else "None"
+            lines.append(f"- **Secondary Claim Classifications:** `{secondary_str}`")
+            lines.append(f"- **Source Sanitized SHA-256:** `{claim_understanding.source_sanitized_sha256}`")
+            lines.append("- **Extracted Advisory Signals:**")
+            for sig in claim_understanding.signals:
+                kw_str = ", ".join(sig.matched_keywords) if sig.matched_keywords else "N/A"
+                lines.append(f"  - `[{sig.intent.value}]` Rule-Matching Confidence: `{sig.confidence_score:.0%}` | Matched Patterns: `{kw_str}`")
+            lines.append("")
+            lines.append("*Note: Customer claim understanding signals are deterministic heuristic extractions provided for operator advisory context only. They do not constitute observed evidentiary records and have zero mathematical weight in P(Win), Expected Value, or autonomous defense verdicts.*")
             lines.append("")
 
         # Footer Certification
