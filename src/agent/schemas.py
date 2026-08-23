@@ -282,3 +282,115 @@ class DisputeDefenseDossier(BaseModel):
     is_ready_for_submission: bool
     advisory_claim_understanding: Optional[ClaimSignalPackage] = None
     advisory_consistency_evaluation: Optional[ConsistencyEvaluation] = None
+
+
+# =============================================================================
+# Stage 4: Multi-Exhibit Evidence Models & Simulated Defense Packet Schemas
+# =============================================================================
+
+class ExhibitItem(BaseModel):
+    """
+    A single verified factual attribute included within an evidentiary exhibit.
+    Zero fabricated data — references strictly authentic observed evidence fields.
+    """
+    field_name: str
+    value_display: str
+    is_available: bool = True
+    source_system: str
+    source_record_id: str
+    status_tag: str = "VERIFIED"
+
+
+class ExhibitA_Authentication(BaseModel):
+    """Exhibit A: Payment Gateway & 3D Secure Authentication Telemetry."""
+    title: str = "Exhibit A — Authentication Evidence"
+    is_authenticated: bool
+    three_ds_status: str
+    protocol_version: str = "EMV 3DS 2.2.0 (Simulated)"
+    source_system: str
+    source_record_id: str
+    timestamp: str
+    items: List[ExhibitItem] = Field(default_factory=list)
+    missing_evidence: List[str] = Field(default_factory=list)
+
+
+class ExhibitB_CarrierFulfillment(BaseModel):
+    """Exhibit B: 3PL Carrier Delivery & Proof of Delivery (POD) Records."""
+    title: str = "Exhibit B — Carrier Fulfillment Evidence"
+    courier_status: str
+    carrier_name: str
+    has_signed_pod: bool
+    is_delivered: bool
+    tracking_number: str
+    source_system: str
+    source_record_id: str
+    timestamp: str
+    items: List[ExhibitItem] = Field(default_factory=list)
+    missing_evidence: List[str] = Field(default_factory=list)
+
+
+class ExhibitC_MerchantTransaction(BaseModel):
+    """Exhibit C: Merchant Order, Billing, and Historical Dispute Records."""
+    title: str = "Exhibit C — Merchant Transaction Evidence"
+    amount_inr: float
+    merchant_category: str
+    card_network: str
+    issuing_bank: str
+    dispute_date: str
+    prior_undisputed_txns: int
+    customer_past_dispute_count: int
+    source_system: str
+    source_record_id: str
+    items: List[ExhibitItem] = Field(default_factory=list)
+
+
+class ExhibitD_SessionTelemetry(BaseModel):
+    """Exhibit D: Checkout Session, Device Fingerprint, and Geolocation Telemetry."""
+    title: str = "Exhibit D — Session & Telemetry Evidence"
+    ip_geo_match: bool
+    device_fingerprint_match: bool
+    billing_shipping_match: bool
+    source_system: str
+    source_record_id: str
+    timestamp: str
+    items: List[ExhibitItem] = Field(default_factory=list)
+    missing_evidence: List[str] = Field(default_factory=list)
+
+
+class ExhibitE_AdvisoryClaimConsistency(BaseModel):
+    """Exhibit E: Sanitized Customer Dispute Remarks & Consistency Cross-Reference."""
+    title: str = "Exhibit E — Advisory Claim & Consistency Assessment"
+    has_claim: bool
+    sanitized_claim_text: str
+    primary_intent: str
+    secondary_intents: List[str] = Field(default_factory=list)
+    rule_matching_confidence: str
+    consistency_status: str
+    source_sanitized_sha256: str
+    advisory_explanation: str
+    advisory_only: Literal[True] = True
+    decision_influence: Literal[False] = False
+
+
+class ExhibitPackage(BaseModel):
+    """Container aggregating all 5 structured evidentiary exhibits."""
+    exhibit_a: ExhibitA_Authentication
+    exhibit_b: ExhibitB_CarrierFulfillment
+    exhibit_c: ExhibitC_MerchantTransaction
+    exhibit_d: ExhibitD_SessionTelemetry
+    exhibit_e: ExhibitE_AdvisoryClaimConsistency
+
+
+class SimulatedDefensePacket(BaseModel):
+    """
+    Complete structured representation of a SYVORA Demonstration Defense Packet.
+    Export output only — strictly downstream of the core decision engine.
+    """
+    packet_id: str
+    dispute_id: str
+    generated_at: str
+    exhibits: ExhibitPackage
+    rebuttal_markdown: str
+    audit_hash: str
+    signing_status: str = "UNSIGNED_DEMO"
+    disclaimer: str = "SIMULATED DISPUTE DEFENSE PACKET — FOR DEMONSTRATION ONLY"

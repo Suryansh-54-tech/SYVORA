@@ -210,3 +210,27 @@ class DossierFormatter:
     def to_json(dossier: DisputeDefenseDossier, indent: int = 2) -> str:
         """Serializes dossier to formatted JSON string."""
         return json.dumps(dossier.model_dump(), indent=indent)
+
+    @staticmethod
+    def to_defense_packet(
+        dossier: DisputeDefenseDossier,
+        audit_hash: Optional[str] = None,
+        signing_status: str = "UNSIGNED_DEMO",
+    ):
+        """Compiles structured SimulatedDefensePacket from dossier."""
+        from src.agent.packet_compiler import MultiExhibitCompiler
+        return MultiExhibitCompiler.compile_packet(
+            dossier, audit_hash=audit_hash, signing_status=signing_status
+        )
+
+    @staticmethod
+    def to_packet_html(
+        dossier: DisputeDefenseDossier,
+        audit_hash: Optional[str] = None,
+        signing_status: str = "UNSIGNED_DEMO",
+    ) -> str:
+        """Renders standalone, print-optimized defense packet HTML."""
+        from src.agent.packet_formatter import BankPacketFormatter
+        return BankPacketFormatter.generate_html(
+            dossier, audit_hash=audit_hash, signing_status=signing_status
+        )

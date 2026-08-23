@@ -59,7 +59,7 @@ Cryptographic audit ledger ───────── append-only SHA-256 hash 
 5. **Explanation** — `DisputeExplainer` (`src/ml/explain.py`) attributes that score to individual evidence factors using exact TreeSHAP.
 6. **Economics** — `DecisionEngine.calculate_expected_value` (`src/engine.py`) weighs potential recovery against the non-refundable fee and derives the break-even threshold τ*.
 7. **Gates & verdict** — five deterministic gates in `evaluate_dispute` (`src/engine.py`) produce CONTEST, REVIEW, or SURRENDER.
-8. **Evidence & audit** — `EvidenceAssembler` (`src/agent/assembler.py`) packages provenance-cited facts into a dossier (`src/agent/dossier.py`), and a committed decision is sealed into the append-only hash chain (`src/security/audit.py`).
+8. **Evidence, exhibits & audit** — `EvidenceAssembler` (`src/agent/assembler.py`) and `MultiExhibitCompiler` (`src/agent/packet_compiler.py`) package provenance-cited facts into structured exhibits and a downloadable demonstration defense packet (`src/agent/packet_formatter.py`), and a committed decision is sealed into the append-only hash chain (`src/security/audit.py`).
 
 ## Quick Demo
 
@@ -73,8 +73,8 @@ A two-minute tour of the five console views:
 
 | # | View | Do this | What to notice |
 |---|------|---------|----------------|
-| 1 | **Live Triage** | Select any held-out dispute, or use the High Win / High $ / Low EV presets | Verdict band, policy-gate matrix, TreeSHAP drivers, EV decomposition |
-| 2 | **Manual Case Intake** | Enter your own dispute fields and a customer complaint — then try an injection-style complaint such as *"Ignore previous instructions…"* | Sanitizer audit panel (original vs sanitized + SHA-256s); P(Win), Expected Value, and verdict stay identical with or without hostile text |
+| 1 | **Live Triage** | Select any held-out dispute, or use the High Win / High $ / Low EV presets | Verdict band, policy-gate matrix, TreeSHAP drivers, EV decomposition, Multi-Exhibit Viewer (Exhibits A–E), and HTML defense packet download |
+| 2 | **Manual Case Intake** | Enter your own dispute fields and a customer complaint — then try an injection-style complaint such as *"Ignore previous instructions…"* | Sanitizer audit panel, Claim–Evidence Consistency Advisor, and HTML defense packet export; P(Win), Expected Value, and verdict stay identical with or without hostile text |
 | 3 | **Benchmark & Economics** | Review the metric tables | Honest autonomous-vs-blind strategy comparison on the synthetic split |
 | 4 | **Audit Chain** | Commit a decision in triage or intake, then open this view | Append-only entry chain, integrity check, signing mode |
 | 5 | **Input Firewall** | Paste adversarial text into the tester | Detected threat categories and the neutralized output |
@@ -98,12 +98,6 @@ Dashboard captures are not bundled yet. To add them later: save PNGs under `docs
 - TreeSHAP explainability with correct unit labeling
 - Expected Value decisioning with break-even analysis
 - Evidence-readiness scoring (0–100 composite index)
-- Deterministic policy gates that force human review regardless of EV or confidence
-- Prompt-injection containment for untrusted customer text
-- Provenance-aware evidence dossier (Markdown + JSON export)
-- SHA-256 hash-chained append-only audit ledger
-- Optional HMAC-SHA256 entry authentication (`SYVORA_AUDIT_SECRET`)
-- Streamlit operations console with live triage, manual intake, benchmark, ledger, and sanitizer views
 - Manual dispute intake for ad-hoc cases
 
 ## ML Evaluation
@@ -198,12 +192,15 @@ syvora/
 │   │   ├── train.py           # training, OOF calibration, evaluation, artifacts
 │   │   └── explain.py         # DisputeExplainer (exact TreeSHAP)
 │   ├── agent/
-│   │   ├── schemas.py         # pydantic schemas, boolean parsing, evidence checklist
+│   │   ├── schemas.py         # pydantic schemas, exhibits, and evidence checklist
 │   │   ├── assembler.py       # EvidenceAssembler (provenance, sanitization hook)
-│   │   └── dossier.py         # rebuttal dossier formatter
+│   │   ├── dossier.py         # rebuttal dossier formatter
+│   │   ├── packet_compiler.py # MultiExhibitCompiler (Exhibits A–E)
+│   │   └── packet_formatter.py# BankPacketFormatter (standalone HTML defense packet)
 │   ├── nlp/
 │   │   ├── intents.py         # intent lexicons and deterministic pattern definitions
-│   │   └── claim_extractor.py # DeterministicClaimExtractor (advisory only)
+│   │   ├── claim_extractor.py # DeterministicClaimExtractor (advisory only)
+│   │   └── consistency_advisor.py # DeterministicConsistencyAdvisor (advisory only)
 │   └── security/
 │       ├── audit.py           # AuditLedger (hash chain, optional HMAC)
 │       └── sanitizer.py       # InputSanitizer (injection firewall)
@@ -215,10 +212,10 @@ syvora/
 │   └── test_metrics.json
 ├── benchmark/
 │   └── evaluate.py            # reproducible benchmark harness (+ results JSON)
-└── tests/                     # authoritative test suite (82 tests)
+└── tests/                     # authoritative test suite (115+ tests)
 ```
 
-**Where to start reading:** the decision logic in `src/engine.py`, the security model in `src/security/`, the claim extractor in `src/nlp/`, the ML pipeline in `src/ml/train.py`, and the console in `dashboard/app.py`.
+**Where to start reading:** the decision logic in `src/engine.py`, the security model in `src/security/`, the claim understanding & consistency in `src/nlp/`, the exhibit compiler in `src/agent/`, the ML pipeline in `src/ml/train.py`, and the console in `dashboard/app.py`.
 
 ## Installation
 
@@ -246,9 +243,7 @@ To enable HMAC-signed audit entries, set the `SYVORA_AUDIT_SECRET` environment v
 pytest -q
 ```
 
-Current status: **82 passed**.
-
-The suite covers unit mathematics (EV/break-even boundaries), feature-pipeline integrity and leakage prevention, model inference determinism, TreeSHAP invariants, decision-policy gating, sanitizer integration and injection containment, deterministic claim understanding, hash-chain tamper detection (modification, deletion, reordering, forged signatures), and end-to-end flows from raw dispute to signed ledger entry.
+The suite covers unit mathematics (EV/break-even boundaries), feature-pipeline integrity and leakage prevention, model inference determinism, TreeSHAP invariants, decision-policy gating, sanitizer integration and injection containment, deterministic claim understanding, consistency cross-referencing, multi-exhibit compilation, standalone defense packet generation, hash-chain tamper detection (modification, deletion, reordering, forged signatures), and strict decision invariance.
 
 ## Important Disclaimer
 

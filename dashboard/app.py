@@ -913,13 +913,61 @@ if app_mode == "⚡ Live Dispute Triage & Forensics":
 
     # 6. Rebuttal Dossier & Compact Action Bar
     st.markdown("### Rebuttal Dossier & Operations Action Bar")
-    st.caption("Standardized defense packet aligned with global card brand (Visa/Mastercard) evidence criteria.")
+    st.caption("Demonstration rebuttal packet with structured evidentiary exhibits. Export output only — zero decision influence.")
 
-    with st.expander("View Formatted Markdown Rebuttal Dossier", expanded=False):
-        st.markdown(dossier.rebuttal_narrative_markdown)
+    with st.expander("📑 View Simulated Defense Packet & Exhibits", expanded=False):
+        from src.agent.packet_compiler import MultiExhibitCompiler
+        ex_pkg = MultiExhibitCompiler.compile_exhibits(dossier)
+        t_cover, t_a, t_b, t_c, t_d, t_e = st.tabs([
+            "📋 Cover & Rebuttal",
+            "Exhibit A (3DS)",
+            "Exhibit B (Carrier/POD)",
+            "Exhibit C (Transaction)",
+            "Exhibit D (Telemetry)",
+            "Exhibit E (Claim & Consistency)"
+        ])
+        with t_cover:
+            st.info("SIMULATED DISPUTE DEFENSE PACKET — FOR DEMONSTRATION ONLY")
+            st.markdown(dossier.rebuttal_narrative_markdown)
+        with t_a:
+            st.markdown(f"**{ex_pkg.exhibit_a.title}**")
+            st.caption(f"Source System: `{ex_pkg.exhibit_a.source_system}` | Record: `{ex_pkg.exhibit_a.source_record_id}`")
+            for item in ex_pkg.exhibit_a.items:
+                st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+            if ex_pkg.exhibit_a.missing_evidence:
+                for m in ex_pkg.exhibit_a.missing_evidence:
+                    st.error(f"● [MISSING EVIDENCE] {m}")
+        with t_b:
+            st.markdown(f"**{ex_pkg.exhibit_b.title}**")
+            st.caption(f"Source System: `{ex_pkg.exhibit_b.source_system}` | Record: `{ex_pkg.exhibit_b.source_record_id}`")
+            for item in ex_pkg.exhibit_b.items:
+                st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+            if ex_pkg.exhibit_b.missing_evidence:
+                for m in ex_pkg.exhibit_b.missing_evidence:
+                    st.error(f"● [MISSING EVIDENCE] {m}")
+        with t_c:
+            st.markdown(f"**{ex_pkg.exhibit_c.title}**")
+            st.caption(f"Source System: `{ex_pkg.exhibit_c.source_system}` | Record: `{ex_pkg.exhibit_c.source_record_id}`")
+            for item in ex_pkg.exhibit_c.items:
+                st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+        with t_d:
+            st.markdown(f"**{ex_pkg.exhibit_d.title}**")
+            st.caption(f"Source System: `{ex_pkg.exhibit_d.source_system}` | Record: `{ex_pkg.exhibit_d.source_record_id}`")
+            for item in ex_pkg.exhibit_d.items:
+                st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+            if ex_pkg.exhibit_d.missing_evidence:
+                for m in ex_pkg.exhibit_d.missing_evidence:
+                    st.error(f"● [MISSING EVIDENCE] {m}")
+        with t_e:
+            st.markdown(f"**{ex_pkg.exhibit_e.title}**")
+            st.caption("Advisory claim cross-reference. Zero mathematical decision influence.")
+            st.markdown(f"• **Primary Claim:** `{ex_pkg.exhibit_e.primary_intent}`")
+            st.markdown(f"• **Consistency Status:** `{ex_pkg.exhibit_e.consistency_status}`")
+            st.markdown(f"• **Remarks:** *\"{ex_pkg.exhibit_e.sanitized_claim_text}\"*")
+            st.markdown(f"• **Explanation:** {ex_pkg.exhibit_e.advisory_explanation}")
 
     # Compact Unified Action Bar
-    act_col_1, act_col_2, act_col_3 = st.columns([1.5, 1, 1])
+    act_col_1, act_col_2, act_col_3, act_col_4 = st.columns([1.3, 0.9, 0.9, 1.1])
     
     with act_col_1:
         if st.button("🔒 Commit Decision to Audit Ledger", type="primary", use_container_width=True):
@@ -958,6 +1006,16 @@ if app_mode == "⚡ Live Dispute Triage & Forensics":
             data=dossier.rebuttal_narrative_markdown,
             file_name=f"rebuttal_{dossier.dispute_id}.md",
             mime="text/markdown",
+            use_container_width=True
+        )
+
+    with act_col_4:
+        packet_html = DossierFormatter.to_packet_html(dossier)
+        st.download_button(
+            label="📥 Download Packet (HTML)",
+            data=packet_html,
+            file_name=f"defense_packet_{dossier.dispute_id}.html",
+            mime="text/html",
             use_container_width=True
         )
 
@@ -1594,10 +1652,60 @@ elif app_mode == "📝 Manual Case Intake":
 
         # 6. Dossier & Action Bar
         st.markdown("### Generated Rebuttal Dossier & Operations Actions")
-        with st.expander("View Formatted Markdown Rebuttal Dossier", expanded=False):
-            st.markdown(dossier.rebuttal_narrative_markdown)
+        st.caption("Demonstration rebuttal packet with structured evidentiary exhibits. Export output only — zero decision influence.")
 
-        act_col_1, act_col_2, act_col_3 = st.columns([1.5, 1, 1])
+        with st.expander("📑 View Simulated Defense Packet & Exhibits", expanded=False):
+            from src.agent.packet_compiler import MultiExhibitCompiler
+            ex_pkg = MultiExhibitCompiler.compile_exhibits(dossier)
+            t_cover, t_a, t_b, t_c, t_d, t_e = st.tabs([
+                "📋 Cover & Rebuttal",
+                "Exhibit A (3DS)",
+                "Exhibit B (Carrier/POD)",
+                "Exhibit C (Transaction)",
+                "Exhibit D (Telemetry)",
+                "Exhibit E (Claim & Consistency)"
+            ])
+            with t_cover:
+                st.info("SIMULATED DISPUTE DEFENSE PACKET — FOR DEMONSTRATION ONLY")
+                st.markdown(dossier.rebuttal_narrative_markdown)
+            with t_a:
+                st.markdown(f"**{ex_pkg.exhibit_a.title}**")
+                st.caption(f"Source System: `{ex_pkg.exhibit_a.source_system}` | Record: `{ex_pkg.exhibit_a.source_record_id}`")
+                for item in ex_pkg.exhibit_a.items:
+                    st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+                if ex_pkg.exhibit_a.missing_evidence:
+                    for m in ex_pkg.exhibit_a.missing_evidence:
+                        st.error(f"● [MISSING EVIDENCE] {m}")
+            with t_b:
+                st.markdown(f"**{ex_pkg.exhibit_b.title}**")
+                st.caption(f"Source System: `{ex_pkg.exhibit_b.source_system}` | Record: `{ex_pkg.exhibit_b.source_record_id}`")
+                for item in ex_pkg.exhibit_b.items:
+                    st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+                if ex_pkg.exhibit_b.missing_evidence:
+                    for m in ex_pkg.exhibit_b.missing_evidence:
+                        st.error(f"● [MISSING EVIDENCE] {m}")
+            with t_c:
+                st.markdown(f"**{ex_pkg.exhibit_c.title}**")
+                st.caption(f"Source System: `{ex_pkg.exhibit_c.source_system}` | Record: `{ex_pkg.exhibit_c.source_record_id}`")
+                for item in ex_pkg.exhibit_c.items:
+                    st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+            with t_d:
+                st.markdown(f"**{ex_pkg.exhibit_d.title}**")
+                st.caption(f"Source System: `{ex_pkg.exhibit_d.source_system}` | Record: `{ex_pkg.exhibit_d.source_record_id}`")
+                for item in ex_pkg.exhibit_d.items:
+                    st.markdown(f"• `{item.field_name}`: **{item.value_display}** (`{item.status_tag}`)")
+                if ex_pkg.exhibit_d.missing_evidence:
+                    for m in ex_pkg.exhibit_d.missing_evidence:
+                        st.error(f"● [MISSING EVIDENCE] {m}")
+            with t_e:
+                st.markdown(f"**{ex_pkg.exhibit_e.title}**")
+                st.caption("Advisory claim cross-reference. Zero mathematical decision influence.")
+                st.markdown(f"• **Primary Claim:** `{ex_pkg.exhibit_e.primary_intent}`")
+                st.markdown(f"• **Consistency Status:** `{ex_pkg.exhibit_e.consistency_status}`")
+                st.markdown(f"• **Remarks:** *\"{ex_pkg.exhibit_e.sanitized_claim_text}\"*")
+                st.markdown(f"• **Explanation:** {ex_pkg.exhibit_e.advisory_explanation}")
+
+        act_col_1, act_col_2, act_col_3, act_col_4 = st.columns([1.3, 0.9, 0.9, 1.1])
         with act_col_1:
             if st.button("🔒 Commit Manual Decision to Audit Ledger", type="primary", use_container_width=True, key="commit_manual"):
                 entry = audit_ledger.append_event(
@@ -1647,6 +1755,17 @@ elif app_mode == "📝 Manual Case Intake":
                 mime="text/markdown",
                 use_container_width=True,
                 key="dl_md_manual"
+            )
+
+        with act_col_4:
+            packet_html = DossierFormatter.to_packet_html(dossier)
+            st.download_button(
+                label="📥 Download Packet (HTML)",
+                data=packet_html,
+                file_name=f"defense_packet_{dossier.dispute_id}.html",
+                mime="text/html",
+                use_container_width=True,
+                key="dl_html_manual"
             )
 
 
