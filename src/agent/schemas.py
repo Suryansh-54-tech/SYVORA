@@ -183,6 +183,54 @@ class ClaimSignalPackage(BaseModel):
     advisory_only: Literal[True] = True
 
 
+class ConsistencyStatus(str, Enum):
+    """
+    Observational relationship between customer dispute remarks and verified evidence.
+    Strictly observational — NEVER implies verified guilt, innocence, or legal outcome.
+    """
+    CONSISTENT_WITH_EVIDENCE = "CONSISTENT_WITH_EVIDENCE"
+    CONTRADICTED_BY_EVIDENCE = "CONTRADICTED_BY_EVIDENCE"
+    MIXED_EVIDENCE = "MIXED_EVIDENCE"
+    INSUFFICIENT_EVIDENCE = "INSUFFICIENT_EVIDENCE"
+    NO_ASSESSMENT = "NO_ASSESSMENT"
+
+
+class EvidenceSignalConsidered(BaseModel):
+    """
+    A single verified evidence fact referenced in a consistency evaluation.
+    Cites authentic source systems and records — zero fabricated evidence.
+    """
+    field_name: str
+    value: Any
+    source_system: str
+    source_record_id: str
+    is_verified: bool = True
+
+
+class ConsistencyFinding(BaseModel):
+    """
+    Advisory consistency finding for an individual claim intent.
+    """
+    intent: ClaimIntent
+    status: ConsistencyStatus
+    rule_matching_confidence: float
+    evidence_signals: List[EvidenceSignalConsidered] = Field(default_factory=list)
+    explanation: str
+    advisory_only: Literal[True] = True
+
+
+class ConsistencyEvaluation(BaseModel):
+    """
+    Aggregated advisory evaluation comparing customer claim intents against verified evidence.
+    """
+    primary_finding: Optional[ConsistencyFinding] = None
+    secondary_findings: List[ConsistencyFinding] = Field(default_factory=list)
+    overall_status: ConsistencyStatus
+    source_sanitized_sha256: str
+    summary_text: str
+    advisory_only: Literal[True] = True
+
+
 class ObservedEvidencePackage(BaseModel):
     dispute_id: str
     transaction_id: str
@@ -233,3 +281,4 @@ class DisputeDefenseDossier(BaseModel):
     rebuttal_narrative_markdown: str
     is_ready_for_submission: bool
     advisory_claim_understanding: Optional[ClaimSignalPackage] = None
+    advisory_consistency_evaluation: Optional[ConsistencyEvaluation] = None

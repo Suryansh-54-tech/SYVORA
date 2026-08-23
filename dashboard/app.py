@@ -1316,6 +1316,63 @@ elif app_mode == "📝 Manual Case Intake":
                 </div>
                 """, unsafe_allow_html=True)
 
+            # Advisory Claim–Evidence Consistency Advisor Card
+            cons_eval = dossier.advisory_consistency_evaluation
+            if cons_eval is not None and cons_eval.overall_status.value != "NO_ASSESSMENT":
+                status_val = cons_eval.overall_status.value
+                if status_val == "CONTRADICTED_BY_EVIDENCE":
+                    status_badge = '<span style="color: #F87171; background: rgba(248, 113, 113, 0.15); border: 1px solid rgba(248, 113, 113, 0.3); padding: 3px 8px; border-radius: 4px; font-weight: 700; font-family: monospace;">CONTRADICTED_BY_EVIDENCE</span>'
+                elif status_val == "CONSISTENT_WITH_EVIDENCE":
+                    status_badge = '<span style="color: #34D399; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); padding: 3px 8px; border-radius: 4px; font-weight: 700; font-family: monospace;">CONSISTENT_WITH_EVIDENCE</span>'
+                elif status_val == "MIXED_EVIDENCE":
+                    status_badge = '<span style="color: #FBBF24; background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.3); padding: 3px 8px; border-radius: 4px; font-weight: 700; font-family: monospace;">MIXED_EVIDENCE</span>'
+                else:
+                    status_badge = f'<span style="color: #94A3B8; background: rgba(148, 163, 184, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); padding: 3px 8px; border-radius: 4px; font-weight: 700; font-family: monospace;">{status_val}</span>'
+
+                evidence_items_html = ""
+                if cons_eval.primary_finding and cons_eval.primary_finding.evidence_signals:
+                    items = [f"<code>{es.field_name} = {es.value}</code> ({es.source_system})" for es in cons_eval.primary_finding.evidence_signals]
+                    evidence_items_html = " &bull; ".join(items)
+                else:
+                    evidence_items_html = "None referenced"
+
+                primary_intent_name = cons_eval.primary_finding.intent.value if cons_eval.primary_finding else "N/A"
+                explanation_text = cons_eval.primary_finding.explanation if cons_eval.primary_finding else cons_eval.summary_text
+
+                st.markdown(f"""
+                <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 8px; padding: 14px 18px; margin-top: 10px; margin-bottom: 6px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #CBD5E1; letter-spacing: 0.05em;">
+                            ⚖ Claim–Evidence Consistency Advisor
+                        </span>
+                        <span style="font-size: 0.7rem; color: #94A3B8; background: rgba(148, 163, 184, 0.1); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(148, 163, 184, 0.2); font-weight: 600;">
+                            Advisory Only: TRUE &bull; Decision Influence: NONE
+                        </span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px;">
+                        <div>
+                            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Primary Claim Evaluated</div>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: #F8FAFC; margin-top: 2px;">{primary_intent_name}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase; margin-bottom: 4px;">Consistency Status</div>
+                            <div>{status_badge}</div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Evidence Signals Considered</div>
+                        <div style="font-size: 0.8rem; color: #E2E8F0; margin-top: 2px;">{evidence_items_html}</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Advisory Explanation</div>
+                        <div style="font-size: 0.8rem; color: #CBD5E1; margin-top: 2px;">{explanation_text}</div>
+                    </div>
+                    <div style="font-size: 0.75rem; color: #64748B; border-top: 1px solid rgba(148, 163, 184, 0.12); padding-top: 8px; margin-top: 10px;">
+                        Advisory cross-reference only. Does not constitute proof of fraud and has zero mathematical weight in P(Win), Expected Value, policy gates, or autonomous defense verdicts.
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
         st.markdown("---")
 
         # 5. Forensic Evidence Grid & SHAP/Economics

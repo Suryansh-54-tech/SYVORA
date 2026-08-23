@@ -301,6 +301,14 @@ class EvidenceAssembler:
         if customer_claim_evidence is not None:
             observed = observed.model_copy(update={"customer_claim": customer_claim_evidence})
 
+        # 1b. Deterministic Claim–Evidence Consistency Evaluation (Advisory Only, Zero Decision Influence)
+        from src.nlp.consistency_advisor import DeterministicConsistencyAdvisor
+        consistency_eval = None
+        if claim_understanding is not None and claim_understanding.has_structured_claim:
+            consistency_eval = DeterministicConsistencyAdvisor.evaluate_consistency(
+                claim_understanding, observed
+            )
+
         # 2. Decision engine evaluation (Strictly tabular features, zero claim influence)
         evaluation = self.decision_engine.evaluate_dispute(clean_data, include_shap=True)
 
@@ -312,7 +320,8 @@ class EvidenceAssembler:
         rebuttal_md = formatter.generate_rebuttal_markdown(
             observed,
             analytical,
-            claim_understanding=claim_understanding
+            claim_understanding=claim_understanding,
+            consistency_eval=consistency_eval,
         )
 
         dossier_id = f"dos_{hashlib.md5(f'{observed.dispute_id}_{observed.dispute_date}'.encode()).hexdigest()[:10]}"
@@ -327,4 +336,5 @@ class EvidenceAssembler:
             rebuttal_narrative_markdown=rebuttal_md,
             is_ready_for_submission=is_ready,
             advisory_claim_understanding=claim_understanding,
+            advisory_consistency_evaluation=consistency_eval,
         )

@@ -19,6 +19,7 @@ from src.agent.schemas import (
     AnalyticalEvidencePackage,
     DisputeDefenseDossier,
     ClaimSignalPackage,
+    ConsistencyEvaluation,
 )
 
 
@@ -32,7 +33,8 @@ class DossierFormatter:
     def generate_rebuttal_markdown(
         observed: ObservedEvidencePackage,
         analytical: AnalyticalEvidencePackage,
-        claim_understanding: Optional[ClaimSignalPackage] = None
+        claim_understanding: Optional[ClaimSignalPackage] = None,
+        consistency_eval: Optional[ConsistencyEvaluation] = None,
     ) -> str:
         """
         Generates a formal, structured Markdown defense document with explicit
@@ -165,6 +167,32 @@ class DossierFormatter:
                 lines.append(f"  - `[{sig.intent.value}]` Rule-Matching Confidence: `{sig.confidence_score:.0%}` | Matched Patterns: `{kw_str}`")
             lines.append("")
             lines.append("*Note: Customer claim understanding signals are deterministic heuristic extractions provided for operator advisory context only. They do not constitute observed evidentiary records and have zero mathematical weight in P(Win), Expected Value, or autonomous defense verdicts.*")
+            lines.append("")
+
+        # Section 9: Customer Claim–Evidence Consistency (Advisory Only)
+        if consistency_eval is not None and consistency_eval.overall_status.value != "NO_ASSESSMENT":
+            lines.append("## 9. Customer Claim–Evidence Consistency — Advisory Only")
+            lines.append("")
+            lines.append("> **Advisory Only:** `TRUE` | **Decision Influence:** `NONE` | **Consistency Status:** `" + consistency_eval.overall_status.value + "`")
+            lines.append("")
+            lines.append(f"**Consistency Analysis Summary:** {consistency_eval.summary_text}")
+            lines.append("")
+            if consistency_eval.primary_finding is not None:
+                pf = consistency_eval.primary_finding
+                lines.append(f"**Primary Claim Finding (`{pf.intent.value}`):**")
+                lines.append(f"- **Evaluated Status:** `{pf.status.value}`")
+                lines.append(f"- **Rationale:** {pf.explanation}")
+                if pf.evidence_signals:
+                    lines.append("- **Verified Evidence Fields Considered:**")
+                    for es in pf.evidence_signals:
+                        lines.append(f"  - `{es.field_name} = {es.value}` ({es.source_system} · `{es.source_record_id}`)")
+                lines.append("")
+            if consistency_eval.secondary_findings:
+                lines.append("**Secondary Claim Findings:**")
+                for sf in consistency_eval.secondary_findings:
+                    lines.append(f"- `[{sf.intent.value}]` Status: `{sf.status.value}` — {sf.explanation}")
+                lines.append("")
+            lines.append("*Note: Consistency evaluation provides deterministic cross-referencing between customer assertions and verified system records for human reviewer convenience. It does not constitute legal adjudication, proof of fraud, or autonomous evidence rejection.*")
             lines.append("")
 
         # Footer Certification
