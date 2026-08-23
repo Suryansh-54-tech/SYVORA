@@ -1,6 +1,6 @@
 """
-SentinelRisk — Deterministic Evidence Assembler
-================================================
+SYVORA — Deterministic Evidence Assembler
+==========================================
 Assembles observed digital evidence with verifiable provenance (source IDs,
 timestamps, source systems) and pairs it with derived decision-theoretic analytics.
 

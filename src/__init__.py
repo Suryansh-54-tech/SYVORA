@@ -1,1 +1,1 @@
-# SentinelRisk — AI Risk Manager & Dispute Defense Engine
+# SYVORA — Payment Dispute Intelligence

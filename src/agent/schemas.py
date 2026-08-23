@@ -1,6 +1,6 @@
 """
-SentinelRisk — Evidence & Dossier Pydantic Schemas
-==================================================
+SYVORA — Evidence & Dossier Pydantic Schemas
+============================================
 Strictly typed data schemas for observed digital evidence, derived analytical
 metrics, and structured dispute defense dossiers.
 

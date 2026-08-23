@@ -1,8 +1,9 @@
 """
-SentinelRisk — Interactive Operations Console & Risk Dashboard
-==============================================================
-Production-grade demonstration dashboard for post-payment dispute triage,
-TreeSHAP explainability, Bayesian Expected Value gating, and cryptographic auditability.
+SYVORA — Interactive Operations Console & Risk Dashboard
+=========================================================
+Operator-centric command center providing real-time dispute triage,
+decision-theoretic expected value analysis, TreeSHAP explainability,
+and cryptographically chained audit logging.
 
 DISCLAIMER:
 All data, metrics, and simulations are based on synthetic simulation records.
@@ -33,7 +34,7 @@ from src.security.sanitizer import InputSanitizer
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
-    page_title="SentinelRisk — AI Risk Manager",
+    page_title="SYVORA — Payment Dispute Intelligence",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -441,8 +442,8 @@ test_df, all_df, benchmark_data = load_datasets()
 
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/shield.png", width=56)
-    st.title("SentinelRisk")
-    st.markdown("**AI Risk & Dispute Defense Console**")
+    st.title("SYVORA")
+    st.markdown("**Payment Dispute Intelligence**")
     st.caption("Razorpay Buildathon — Track 2")
     
     st.markdown("---")
@@ -477,8 +478,8 @@ if app_mode == "⚡ Live Dispute Triage & Forensics":
     st.markdown("""
     <div class="soc-header">
         <div class="soc-title-group">
-            <div class="soc-brand">SENTINELRISK</div>
-            <div class="soc-subbrand">Risk Operations Console &bull; Real-Time Dispute Triage</div>
+            <div class="soc-brand">SYVORA</div>
+            <div class="soc-subbrand">Payment Dispute Intelligence &bull; Real-Time Dispute Triage</div>
         </div>
         <div class="soc-status-strip">
             <div class="soc-pill pill-online"><span class="status-dot dot-green"></span> SYSTEM ONLINE</div>
@@ -970,8 +971,8 @@ elif app_mode == "📝 Manual Case Intake":
     st.markdown("""
     <div class="soc-header">
         <div class="soc-title-group">
-            <div class="soc-brand">SENTINELRISK</div>
-            <div class="soc-subbrand">Manual Case Intake &bull; Ad-Hoc Dispute Evaluation</div>
+            <div class="soc-brand">SYVORA</div>
+            <div class="soc-subbrand">Payment Dispute Intelligence &bull; Manual Case Intake</div>
         </div>
         <div class="soc-status-strip">
             <div class="soc-pill pill-online"><span class="status-dot dot-green"></span> SYSTEM ONLINE</div>
@@ -1648,10 +1649,10 @@ elif app_mode == "📊 Executive & Benchmark Metrics":
                 "Triage Strategy": [
                     "Strategy A: Passive (Surrender All)",
                     "Strategy B: Blind Contest All",
-                    "Strategy C1: SentinelRisk Autonomous (0 Human Assumptions)",
-                    "Strategy C2: SentinelRisk + 70% Human Precision",
-                    "Strategy C3: SentinelRisk + 85% Human Precision",
-                    "Strategy C4: SentinelRisk + 100% Oracle Precision (Upper Bound)"
+                    "Strategy C1: SYVORA Autonomous (0 Human Assumptions)",
+                    "Strategy C2: SYVORA + 70% Human Precision",
+                    "Strategy C3: SYVORA + 85% Human Precision",
+                    "Strategy C4: SYVORA + 100% Oracle Precision (Upper Bound)"
                 ],
                 "Net Financial Outcome": [
                     f"INR {base['strategy_a_passive_surrender_net_inr']:,.2f}",
@@ -1698,7 +1699,7 @@ elif app_mode == "🔒 Cryptographic Audit Ledger":
         if meta["is_signed_mode"]:
             st.info("🔐 **Security Mode:** `HMAC-SHA256 Signed`\n\n(Application secret key active)")
         else:
-            st.warning("ℹ️ **Security Mode:** `UNSIGNED_DEMO`\n\n(Structural hash-chain only — set `SENTINEL_AUDIT_SECRET` for HMAC signing)")
+            st.warning("ℹ️ **Security Mode:** `UNSIGNED_DEMO`\n\n(Structural hash-chain only — set `SYVORA_AUDIT_SECRET` for HMAC signing)")
 
     st.markdown("---")
 

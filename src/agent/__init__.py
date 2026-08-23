@@ -1,1 +1,1 @@
-# SentinelRisk Agent Module
+# SYVORA Agent Module

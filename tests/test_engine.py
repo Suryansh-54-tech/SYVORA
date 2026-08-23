@@ -1,6 +1,6 @@
 """
-SentinelRisk — End-to-End Engine & Integration Unit Tests
-=========================================================
+SYVORA — End-to-End Engine & Integration Unit Tests
+===================================================
 Verifies:
 - Feature engineering schema consistency and leak prevention
 - Calibrated ML model artifact loading and inference determinism

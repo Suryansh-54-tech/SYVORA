@@ -1,6 +1,6 @@
 """
-SentinelRisk — Stage 2 Claim Understanding Integration & Safety Tests
-=====================================================================
+SYVORA — Stage 2 Claim Understanding Integration & Safety Tests
+===============================================================
 Verifies end-to-end integration of deterministic claim understanding into
 the dossier assembly and manual intake pipeline with strict decision invariance.
 """

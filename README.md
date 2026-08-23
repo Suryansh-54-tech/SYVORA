@@ -1,6 +1,8 @@
-# SentinelRisk
+# SYVORA
 
-SentinelRisk is a decision-support system for post-payment chargeback triage: an operator enters a dispute manually, and the system sanitizes any customer complaint text, engineers a deterministic feature set, produces a calibrated win probability with a Random Forest classifier, explains that score with exact TreeSHAP attributions, weighs the economics of contesting against a non-refundable arbitration fee, applies deterministic policy gates, and returns one of three verdicts — **CONTEST**, **REVIEW**, or **SURRENDER** — together with a provenance-aware evidence dossier and an append-only cryptographic audit trail. Everything runs locally on synthetic data through a Streamlit operations console.
+## Payment Dispute Intelligence
+
+SYVORA is a decision-support system for post-payment chargeback triage: an operator enters a dispute manually, and the system sanitizes any customer complaint text, extracts deterministic advisory claim signals, engineers a deterministic feature set, produces a calibrated win probability with a Random Forest classifier, explains that score with exact TreeSHAP attributions, weighs the economics of contesting against a non-refundable arbitration fee, applies deterministic policy gates, and returns one of three verdicts — **CONTEST**, **REVIEW**, or **SURRENDER** — together with a provenance-aware evidence dossier and an append-only cryptographic audit trail. Everything runs locally on synthetic data through a Streamlit operations console.
 
 > [!IMPORTANT]
 > **This is a synthetic simulation / technical demonstration — not production software.**
@@ -20,6 +22,9 @@ Manual dispute input (Streamlit intake form)
    ▼
 Customer complaint sanitization ──── prompt-injection firewall;
    │                                 original preserved as labeled untrusted audit data
+   ▼
+Advisory claim understanding ─────── deterministic intent extractor (advisory only, zero ML influence)
+   │
    ▼
 Deterministic feature engineering ── 41 fixed-schema features, leakage-guarded
    │
@@ -48,9 +53,9 @@ Cryptographic audit ledger ───────── append-only SHA-256 hash 
 ### A dispute's journey in plain language
 
 1. **Intake** — an operator fills the manual intake form (`dashboard/app.py`) or selects a stored test dispute.
-2. **Sanitization** — complaint text passes through `src/security/sanitizer.py`; hostile phrasing is neutralized and tagged, while the original is set aside as labeled, untrusted audit data.
+2. **Sanitization & claim understanding** — complaint text passes through `src/security/sanitizer.py`; hostile phrasing is neutralized, and `src/nlp/claim_extractor.py` extracts advisory claim signals with zero ML influence.
 3. **Feature engineering** — `src/ml/features.py` converts the record into 41 fixed-schema features; outcome-related fields are structurally blocked from entering.
-4. **Win probability** — `SentinelRiskScorer` (`src/ml/train.py`) returns a calibrated probability on the calibrated Random Forest.
+4. **Win probability** — `SyvoraScorer` (`src/ml/train.py`) returns a calibrated probability on the calibrated Random Forest.
 5. **Explanation** — `DisputeExplainer` (`src/ml/explain.py`) attributes that score to individual evidence factors using exact TreeSHAP.
 6. **Economics** — `DecisionEngine.calculate_expected_value` (`src/engine.py`) weighs potential recovery against the non-refundable fee and derives the break-even threshold τ*.
 7. **Gates & verdict** — five deterministic gates in `evaluate_dispute` (`src/engine.py`) produce CONTEST, REVIEW, or SURRENDER.
@@ -97,7 +102,7 @@ Dashboard captures are not bundled yet. To add them later: save PNGs under `docs
 - Prompt-injection containment for untrusted customer text
 - Provenance-aware evidence dossier (Markdown + JSON export)
 - SHA-256 hash-chained append-only audit ledger
-- Optional HMAC-SHA256 entry authentication (`SENTINEL_AUDIT_SECRET`)
+- Optional HMAC-SHA256 entry authentication (`SYVORA_AUDIT_SECRET`)
 - Streamlit operations console with live triage, manual intake, benchmark, ledger, and sanitizer views
 - Manual dispute intake for ad-hoc cases
 
@@ -143,7 +148,7 @@ Policy gates can force REVIEW even when Expected Value is positive. Current gate
 - Original complaint text is preserved **only** inside an explicitly labeled `UNTRUSTED / SANITIZED` audit field; display surfaces use the neutralized copy.
 - Customer text cannot influence ML features, win probability, expected value, verdicts, or evidence provenance — enforced structurally and covered by regression tests.
 - Audit ledger: canonical-JSON SHA-256 payload hashing plus chained entry hashing (`prev_hash ‖ payload_hash ‖ timestamp ‖ id ‖ type`).
-- Optional HMAC-SHA256 entry authentication: set `SENTINEL_AUDIT_SECRET` to sign every new entry; verification fails closed on unsigned entries when the key is configured.
+- Optional HMAC-SHA256 entry authentication: set `SYVORA_AUDIT_SECRET` (or `SENTINEL_AUDIT_SECRET`) to sign every new entry; verification fails closed on unsigned entries when the key is configured.
 - Demo ledger (`data/demo_audit_ledger.jsonl`) is separated from the runtime ledger path (`data/audit_ledger.jsonl`); both are environment-local and never committed.
 
 This is a demonstration of security-engineering patterns, not a production-bank secure system.
@@ -153,6 +158,7 @@ This is a demonstration of security-engineering patterns, not a production-bank 
 ```mermaid
 flowchart TD
     A[Manual Case Intake<br/>Streamlit form] --> B[Input Sanitizer<br/>prompt-injection firewall]
+    B --> B2[Advisory Claim Extractor<br/>deterministic intent rules]
     B --> C[Feature Pipeline<br/>41 engineered features]
     C --> D[Random Forest + Calibration<br/>P win]
     D --> E[TreeSHAP Explainer]
@@ -177,7 +183,7 @@ flowchart TD
 ## Project Structure
 
 ```
-sentinel_risk/
+syvora/
 ├── config.py                  # thresholds, paths, seeds (all simulation constants)
 ├── requirements.txt
 ├── docs/
@@ -195,6 +201,9 @@ sentinel_risk/
 │   │   ├── schemas.py         # pydantic schemas, boolean parsing, evidence checklist
 │   │   ├── assembler.py       # EvidenceAssembler (provenance, sanitization hook)
 │   │   └── dossier.py         # rebuttal dossier formatter
+│   ├── nlp/
+│   │   ├── intents.py         # intent lexicons and deterministic pattern definitions
+│   │   └── claim_extractor.py # DeterministicClaimExtractor (advisory only)
 │   └── security/
 │       ├── audit.py           # AuditLedger (hash chain, optional HMAC)
 │       └── sanitizer.py       # InputSanitizer (injection firewall)
@@ -206,10 +215,10 @@ sentinel_risk/
 │   └── test_metrics.json
 ├── benchmark/
 │   └── evaluate.py            # reproducible benchmark harness (+ results JSON)
-└── tests/                     # authoritative test suite (50 tests)
+└── tests/                     # authoritative test suite (82 tests)
 ```
 
-**Where to start reading:** the decision logic in `src/engine.py`, the security model in `src/security/`, the ML pipeline in `src/ml/train.py`, and the console in `dashboard/app.py`.
+**Where to start reading:** the decision logic in `src/engine.py`, the security model in `src/security/`, the claim extractor in `src/nlp/`, the ML pipeline in `src/ml/train.py`, and the console in `dashboard/app.py`.
 
 ## Installation
 
@@ -229,7 +238,7 @@ python src/ml/train.py
 python benchmark/evaluate.py
 ```
 
-To enable HMAC-signed audit entries, set the `SENTINEL_AUDIT_SECRET` environment variable before launching the app.
+To enable HMAC-signed audit entries, set the `SYVORA_AUDIT_SECRET` environment variable before launching the app.
 
 ## Testing
 
@@ -237,13 +246,13 @@ To enable HMAC-signed audit entries, set the `SENTINEL_AUDIT_SECRET` environment
 pytest -q
 ```
 
-Current status: **50 passed**.
+Current status: **82 passed**.
 
-The suite covers unit mathematics (EV/break-even boundaries), feature-pipeline integrity and leakage prevention, model inference determinism, TreeSHAP invariants, decision-policy gating, sanitizer integration and injection containment, hash-chain tamper detection (modification, deletion, reordering, forged signatures), and end-to-end flows from raw dispute to signed ledger entry.
+The suite covers unit mathematics (EV/break-even boundaries), feature-pipeline integrity and leakage prevention, model inference determinism, TreeSHAP invariants, decision-policy gating, sanitizer integration and injection containment, deterministic claim understanding, hash-chain tamper detection (modification, deletion, reordering, forged signatures), and end-to-end flows from raw dispute to signed ledger entry.
 
 ## Important Disclaimer
 
-**SentinelRisk v1.0 is a synthetic simulation and technical demonstration.**
+**SYVORA is a synthetic simulation and technical demonstration.**
 
 - It does not connect to any bank, card issuer, card network, carrier, or payment gateway.
 - The datasets, telemetry, and provenance record IDs are synthetic.

@@ -1,6 +1,6 @@
 """
-SentinelRisk — Comprehensive Benchmark Evaluation Suite
-========================================================
+SYVORA — Comprehensive Benchmark Evaluation Suite
+=================================================
 Reproducible evaluation harness executing on the untouched held-out test split (N=180).
 
 Evaluates:
@@ -8,7 +8,7 @@ Evaluates:
 2. Probability Calibration Quality (Raw vs. Calibrated Brier Score, Reliability Bins)
 3. Decision-Engine Financial Simulation vs. Ground Truth (Expected Value, Net Rupees Saved, False-Positive Costs)
 4. Evidentiary Completeness & Readiness Index Distributions
-5. Strategy Comparison: SentinelRisk Triage vs. Blind Contesting vs. Passive Surrender
+5. Strategy Comparison: SYVORA Triage vs. Blind Contesting vs. Passive Surrender
 
 Outputs:
 - Machine-readable benchmark report: benchmark/benchmark_results.json
@@ -259,7 +259,7 @@ class BenchmarkRunner:
     def run_all_benchmarks(self) -> Dict[str, Any]:
         """Executes full benchmark suite and saves machine-readable report."""
         print("=" * 65)
-        print("  SentinelRisk -- Comprehensive Benchmark Evaluation Suite")
+        print("  SYVORA -- Comprehensive Benchmark Evaluation Suite")
         print("=" * 65)
 
         # 1. Feature processing
@@ -306,7 +306,7 @@ class BenchmarkRunner:
         fin = dec["financial_simulation"]
 
         print("\n" + "=" * 65)
-        print("  SENTINELRISK BENCHMARK SUMMARY (HELD-OUT TEST SET, N=180)")
+        print("  SYVORA BENCHMARK SUMMARY (HELD-OUT TEST SET, N=180)")
         print("=" * 65)
 
         print("\n--- 1. MACHINE LEARNING & CALIBRATION METRICS ---")

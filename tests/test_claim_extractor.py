@@ -1,6 +1,6 @@
 """
-SentinelRisk — Comprehensive Unit Test Suite for Deterministic Claim Extractor
-=============================================================================
+SYVORA — Comprehensive Unit Test Suite for Deterministic Claim Extractor
+========================================================================
 Verifies pure deterministic, zero-network, negation-aware claim understanding.
 """
 

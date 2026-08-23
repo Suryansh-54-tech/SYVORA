@@ -1,6 +1,6 @@
 """
-SentinelRisk — Mathematical & Decision Economics Unit Tests
-===========================================================
+SYVORA — Mathematical & Decision Economics Unit Tests
+=====================================================
 Verifies:
 - Bayesian Expected Value formula calculations
 - Break-even probability thresholds (tau*)

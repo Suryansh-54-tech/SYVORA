@@ -1,6 +1,6 @@
 # Dashboard Screenshot Guide
 
-Placeholder directory for SentinelRisk console captures referenced by the
+Placeholder directory for SYVORA console captures referenced by the
 commented image tags in the main `README.md` (Quick Demo → Screenshots).
 
 ## Capture checklist

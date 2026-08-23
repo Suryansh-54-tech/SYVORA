@@ -1,6 +1,6 @@
 """
-SentinelRisk — Decision Engine & Deterministic Policy Gating
-============================================================
+SYVORA — Decision Engine & Deterministic Policy Gating
+======================================================
 Translates calibrated ML win probabilities, financial economics, digital evidence,
 and policy constraints into an actionable, transparent triage decision:
 
@@ -262,7 +262,7 @@ class DecisionEngine:
 
 def run_decision_engine_checks():
     print("=" * 65)
-    print("  SentinelRisk -- Decision Engine & Policy Gating Verification")
+    print("  SYVORA -- Decision Engine & Policy Gating Verification")
     print("=" * 65)
 
     engine = DecisionEngine()

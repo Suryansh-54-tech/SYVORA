@@ -1,6 +1,6 @@
 """
-SentinelRisk — Cryptographic Audit Ledger
-=========================================
+SYVORA — Cryptographic Audit Ledger
+===================================
 Implements an append-only, tamper-evident SHA-256 hash-chained audit ledger
 with optional HMAC-SHA256 cryptographic signing for dispute triage events,
 evidence snapshots, and decision records.

@@ -1,6 +1,6 @@
 """
-SentinelRisk — Security & Cryptographic Audit Ledger Unit Tests
-===============================================================
+SYVORA — Security & Cryptographic Audit Ledger Unit Tests
+=========================================================
 Verifies:
 - SHA-256 hash-chain integrity verification
 - Detection of modified, deleted, reordered, or inserted ledger blocks

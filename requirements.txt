@@ -1,4 +1,4 @@
-# SentinelRisk — AI Risk Manager & Dispute Defense Engine
+# SYVORA — Payment Dispute Intelligence
 # Core ML & Data
 pandas>=2.2.0
 numpy>=1.26.0

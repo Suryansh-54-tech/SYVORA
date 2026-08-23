@@ -1,6 +1,6 @@
 """
-SentinelRisk — Structured Dossier Generator & Rebuttal Formatter
-================================================================
+SYVORA — Structured Dossier Generator & Rebuttal Formatter
+===========================================================
 Formats structured dispute defense dossiers into standardized, network-compliant
 rebuttal documentation suitable for bank adjudication, PDF export, and dashboard display.
 
@@ -169,7 +169,7 @@ class DossierFormatter:
 
         # Footer Certification
         lines.append("---")
-        lines.append("*Compiled deterministically by SentinelRisk Evidence Engine. Simulated audit trace with deterministic provenance IDs modeled on enterprise payment gateway, logistics, and checkout telemetry standards. Zero live network calls executed.*")
+        lines.append("*Compiled deterministically by SYVORA Evidence Engine. Simulated audit trace with deterministic provenance IDs modeled on enterprise payment gateway, logistics, and checkout telemetry standards. Zero live network calls executed.*")
 
         return "\n".join(lines)
 

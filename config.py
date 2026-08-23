@@ -1,6 +1,6 @@
 """
-SentinelRisk Configuration
-==========================
+SYVORA Configuration
+====================
 All financial thresholds, model parameters, and policy constants.
 Values are simulation parameters — not universal real-world constants.
 """
@@ -85,5 +85,5 @@ DEMO_LEDGER_PATH = os.path.join(DATA_DIR, "demo_audit_ledger.jsonl")
 
 # Application secret key for HMAC-SHA256 audit ledger entry signing.
 # Defaults to None (UNSIGNED_DEMO mode) unless provided via environment variable.
-AUDIT_SECRET_KEY: Optional[str] = os.getenv("SENTINEL_AUDIT_SECRET", None)
+AUDIT_SECRET_KEY: Optional[str] = os.getenv("SYVORA_AUDIT_SECRET", os.getenv("SENTINEL_AUDIT_SECRET", None))
 

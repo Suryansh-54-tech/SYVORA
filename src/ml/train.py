@@ -1,6 +1,6 @@
 """
-SentinelRisk — Machine Learning Model Training & Probability Calibration
-========================================================================
+SYVORA — Machine Learning Model Training & Probability Calibration
+==================================================================
 Trains and calibrates tabular ML models for post-payment dispute win prediction.
 
 Protocol:
@@ -357,9 +357,13 @@ class SentinelRiskScorer:
         return self.model.predict_proba(X_aligned)[:, 1]
 
 
+# Canonical branding alias
+SyvoraScorer = SentinelRiskScorer
+
+
 def run_training_pipeline():
     print("=" * 65)
-    print("  SentinelRisk -- ML Model Training & Probability Calibration")
+    print("  SYVORA -- ML Model Training & Probability Calibration")
     print("=" * 65)
 
     trainer = DisputeModelTrainer()

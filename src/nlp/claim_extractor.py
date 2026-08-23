@@ -1,6 +1,6 @@
 """
-SentinelRisk — Deterministic Offline Natural Language Claim Extractor
-======================================================================
+SYVORA — Deterministic Offline Natural Language Claim Extractor
+================================================================
 Extracts structured advisory claim signals from sanitized customer dispute remarks.
 
 Security & Architectural Constraints:

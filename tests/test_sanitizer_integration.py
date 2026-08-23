@@ -1,6 +1,6 @@
 """
-SentinelRisk — Sanitizer Integration Regression Tests (Fix #2)
-===============================================================
+SYVORA — Sanitizer Integration Regression Tests (Fix #2)
+=========================================================
 Proves that untrusted customer claim text entering the ingestion /
 dossier generation path:
 

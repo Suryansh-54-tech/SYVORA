@@ -1,1 +1,1 @@
-# SentinelRisk Security Module
+# SYVORA Security Module
