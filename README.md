@@ -217,12 +217,9 @@ syvora/
 
 **Where to start reading:** the decision logic in `src/engine.py`, the security model in `src/security/`, the claim understanding & consistency in `src/nlp/`, the exhibit compiler in `src/agent/`, the ML pipeline in `src/ml/train.py`, and the console in `dashboard/app.py`.
 
-## Installation
-
-Requires Python 3.10+.
+## Local Run
 
 ```bash
-python -m venv .venv
 pip install -r requirements.txt
 streamlit run dashboard/app.py
 ```
