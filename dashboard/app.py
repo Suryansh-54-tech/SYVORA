@@ -35,17 +35,17 @@ from src.security.audit import AuditLedger
 from src.security.sanitizer import InputSanitizer
 
 # ---------------------------------------------------------------------------
-# Page Configuration & Vibrant Aesthetic Design System
+# Page Configuration & Vibrant Aesthetic Design System (Top 3D Glass Navigation)
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
     page_title="SYVORA — Payment Dispute Intelligence",
     page_icon="🛡️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for Vibrant Modern Aesthetic (No blue tile/grid, rich radiant gradients)
+# Custom CSS for Vibrant Modern Aesthetic (No Left Sidebar, Top 3D Glass Bar)
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap');
@@ -87,6 +87,12 @@ code, pre, .mono, [class*="stCode"] {
     background-attachment: fixed !important;
 }
 
+/* Completely Hide Left Sidebar and Collapsed Control */
+section[data-testid="stSidebar"],
+[data-testid="collapsedControl"] {
+    display: none !important;
+}
+
 /* Safe Streamlit Header & Wide Responsive Layout */
 header[data-testid="stHeader"] {
     background: transparent !important;
@@ -95,75 +101,97 @@ header[data-testid="stHeader"] {
 }
 
 .block-container {
-    padding-top: 4.2rem !important;
+    padding-top: 2.2rem !important;
     padding-bottom: 4rem !important;
     padding-left: clamp(1.5rem, 3.5vw, 3.5rem) !important;
     padding-right: clamp(1.5rem, 3.5vw, 3.5rem) !important;
     max-width: 1560px !important;
 }
 
-/* Sidebar with Vibrant Frosted Glass */
-section[data-testid="stSidebar"] {
-    background: rgba(12, 14, 24, 0.96) !important;
-    backdrop-filter: blur(32px) !important;
-    -webkit-backdrop-filter: blur(32px) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.8) !important;
-}
-
-.sidebar-brand-box {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(244, 63, 94, 0.15) 100%);
+/* Top 3D Glass Command Bar */
+.top-3d-glass-bar {
+    background: linear-gradient(135deg, rgba(28, 23, 46, 0.85) 0%, rgba(18, 22, 36, 0.85) 100%);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
     border: 1px solid rgba(192, 132, 252, 0.35);
-    border-radius: 16px;
-    padding: 18px 14px;
-    margin-bottom: 1.2rem;
-    box-shadow: 0 12px 32px -4px rgba(168, 85, 247, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    text-align: center;
+    border-radius: 20px;
+    padding: 16px 24px;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.75), 0 0 35px rgba(168, 85, 247, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
 }
-.sidebar-brand-box::before {
+.top-3d-glass-bar::before {
     content: '';
     position: absolute;
-    top: 0; left: 10%; right: 10%; height: 2px;
-    background: linear-gradient(90deg, transparent, #C084FC, #FB7185, transparent);
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #A855F7, #EC4899, #F59E0B, #10B981);
 }
-.sidebar-brand-title {
+
+.top-brand-title {
     font-family: 'Syncopate', sans-serif !important;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 700;
     letter-spacing: 0.14em;
-    background: linear-gradient(90deg, #FFFFFF 0%, #E9D5FF 40%, #C084FC 100%);
+    background: linear-gradient(90deg, #FFFFFF 0%, #F5D0FE 40%, #C084FC 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
 }
-.sidebar-brand-sub {
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: #CBD5E1;
-    font-weight: 600;
-    margin-top: 6px;
+
+/* 3D Glass Segmented Radio Navigation Bar */
+div[data-testid="stRadio"] > div {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background: rgba(20, 24, 40, 0.8) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 16px !important;
+    padding: 8px 12px !important;
+    box-shadow: 0 14px 36px -6px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    margin-bottom: 1.5rem !important;
 }
 
-.sidebar-status-pod {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(20, 24, 38, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    padding: 9px 12px;
-    margin-bottom: 6px;
-    font-size: 0.72rem;
-    font-family: 'JetBrains Mono', monospace;
+div[data-testid="stRadio"] label {
+    background: transparent !important;
+    border-radius: 10px !important;
+    padding: 7px 16px !important;
+    border: 1px solid transparent !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+    margin: 0 !important;
 }
-.sidebar-status-pod span:first-child { color: #94A3B8; font-weight: 600; }
-.sidebar-status-online { color: #34D399; font-weight: 700; text-shadow: 0 0 10px rgba(52, 211, 153, 0.5); }
-.sidebar-status-secure { color: #C084FC; font-weight: 700; text-shadow: 0 0 10px rgba(192, 132, 252, 0.5); }
-.sidebar-status-ready  { color: #FB7185; font-weight: 700; text-shadow: 0 0 10px rgba(251, 113, 133, 0.5); }
+
+div[data-testid="stRadio"] label:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(192, 132, 252, 0.35) !important;
+    transform: translateY(-1px) !important;
+}
+
+div[data-testid="stRadio"] label:has(input:checked),
+div[data-testid="stRadio"] label[data-checked="true"] {
+    background: linear-gradient(135deg, #9333EA 0%, #C026D3 50%, #E11D48 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(192, 38, 211, 0.5) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Hide default radio circle */
+div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
+    display: none !important;
+}
+
+div[data-testid="stRadio"] label p {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    letter-spacing: 0.04em !important;
+}
 
 /* Aesthetic Frosted Glass Cards with Gradient Accents */
 .aesthetic-card {
@@ -193,9 +221,9 @@ section[data-testid="stSidebar"] {
     -webkit-backdrop-filter: blur(28px);
     border: 1px solid rgba(192, 132, 252, 0.3);
     border-radius: 18px;
-    padding: 22px 30px;
+    padding: 20px 28px;
     margin-top: 0.25rem;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.5rem;
     box-shadow: 0 18px 45px -8px rgba(0, 0, 0, 0.7), 0 0 35px rgba(168, 85, 247, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.18);
     position: relative;
     overflow: hidden;
@@ -208,7 +236,7 @@ section[data-testid="stSidebar"] {
 }
 .soc-brand {
     font-family: 'Syncopate', sans-serif !important;
-    font-size: 1.65rem;
+    font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     background: linear-gradient(90deg, #FFFFFF 0%, #F5D0FE 40%, #C084FC 100%);
@@ -798,7 +826,6 @@ def render_model_intelligence_panel(ana: Any):
 <div style="color: #94A3B8; font-size: 0.72rem; margin-top: 4px;">Probability Space Impact</div>
 </div>
 <div style="background: rgba(20, 24, 38, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px;">
-<div style="color: #94A3B8; text-transform: uppercase; font-size: 0.68rem;">FEATURE SCHEMA</div>
 <div style="color: #F59E0B; font-weight: 800; font-size: 0.9rem; margin-top: 2px;">41 Fixed Signals</div>
 <div style="color: #94A3B8; font-size: 0.72rem; margin-top: 4px;">Zero Target Leakage</div>
 </div>
@@ -1647,89 +1674,64 @@ Select an archetype dispute scenario to immediately launch into the live triage 
 
 
 # ---------------------------------------------------------------------------
-# Sidebar: System Control Deck & Buildathon Mode Toggle
+# TOP 3D GLASS COMMAND BAR (NO LEFT SIDEBAR)
 # ---------------------------------------------------------------------------
 
 if "app_mode" not in st.session_state:
     st.session_state["app_mode"] = "🌟 Product Overview & Landing"
 
-with st.sidebar:
-    st.markdown("""<div class="sidebar-brand-box">
-<div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(244, 63, 94, 0.3) 100%); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); margin-bottom: 8px;">
+# Top 3D Glass Header Deck
+st.markdown("""<div class="top-3d-glass-bar">
+<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+<div style="display: flex; align-items: center; gap: 14px;">
+<div style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(244, 63, 94, 0.3) 100%); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 14px; box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);">
 🛡️
 </div>
-<div class="sidebar-brand-title">SYVORA</div>
-<div class="sidebar-brand-sub">Payment Dispute Intelligence</div>
-</div>""", unsafe_allow_html=True)
-
-    # Buildathon Mode Toggle
-    buildathon_mode = st.toggle("🏆 BUILDATHON JUDGE MODE", value=True, help="Optimizes UI visual hierarchy for fast presentation judging.")
-
-    # Status Pods
-    st.markdown("""<div class="sidebar-status-pod">
-<span>● CORE ENGINE</span>
-<span class="sidebar-status-online">ONLINE</span>
-</div>
-<div class="sidebar-status-pod">
-<span>● INPUT FIREWALL</span>
-<span class="sidebar-status-secure">SECURED</span>
-</div>
-<div class="sidebar-status-pod">
-<span>● AUDIT LEDGER</span>
-<span class="sidebar-status-ready">READY</span>
-</div>""", unsafe_allow_html=True)
-
-    st.markdown("---")
-
-    nav_options = [
-        "🌟 Product Overview & Landing",
-        "❓ Why SYVORA? (Product Story)",
-        "🚀 60-Second Guided Demo",
-        "⚡ Live Dispute Triage & Forensics",
-        "📝 Manual Case Intake",
-        "📊 Executive & Benchmark Metrics",
-        "🔒 Cryptographic Audit Ledger",
-        "🛡️ Input Sanitization Firewall",
-    ]
-
-    selected_nav = st.radio(
-        "SYSTEM NAVIGATION",
-        nav_options,
-        index=nav_options.index(st.session_state["app_mode"]) if st.session_state["app_mode"] in nav_options else 0
-    )
-    if selected_nav != st.session_state["app_mode"]:
-        st.session_state["app_mode"] = selected_nav
-        st.rerun()
-
-    st.markdown("---")
-
-    # System Parameters Module
-    st.markdown(f"""<div class="aesthetic-card" style="padding: 14px 16px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #C084FC; letter-spacing: 0.08em; margin-bottom: 8px;">
-⚙ SYSTEM PARAMETERS
-</div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;">
 <div>
-<div style="color: #94A3B8; font-size: 0.65rem;">BANK FEE</div>
-<div style="color: #F8FAFC; font-weight: 700;">₹{config.ARBITRATION_FEE_INR:,.0f}</div>
+<div class="top-brand-title">SYVORA</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 600; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.15em;">Payment Dispute Intelligence</div>
 </div>
-<div>
-<div style="color: #94A3B8; font-size: 0.65rem;">HITL LIMIT</div>
-<div style="color: #F8FAFC; font-weight: 700;">₹{config.HITL_AMOUNT_THRESHOLD_INR:,.0f}</div>
 </div>
-<div>
-<div style="color: #94A3B8; font-size: 0.65rem;">MIN CONF</div>
-<div style="color: #34D399; font-weight: 700;">{config.HITL_CONFIDENCE_THRESHOLD:.1%}</div>
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+<div class="soc-pill pill-online">
+<span class="status-dot dot-green"></span>
+<span>CORE ONLINE</span>
 </div>
-<div>
-<div style="color: #94A3B8; font-size: 0.65rem;">MIN SCORE</div>
-<div style="color: #C084FC; font-weight: 700;">{config.MIN_EVIDENCE_READINESS_SCORE} / 100</div>
+<div class="soc-pill pill-demo">
+<span class="status-dot dot-purple"></span>
+<span>FIREWALL SECURED</span>
+</div>
+<div class="soc-pill pill-audit">
+<span class="status-dot dot-rose"></span>
+<span>SHA-256 AUDIT READY</span>
+</div>
 </div>
 </div>
 </div>""", unsafe_allow_html=True)
 
-    st.markdown("---")
-    st.caption("🔬 Deterministic tabular ML, TreeSHAP & SHA-256 audit chaining.")
+# Top 3D Segmented Radio Navigation Bar
+nav_options = [
+    "🌟 Product Overview & Landing",
+    "❓ Why SYVORA? (Product Story)",
+    "🚀 60-Second Guided Demo",
+    "⚡ Live Dispute Triage & Forensics",
+    "📝 Manual Case Intake",
+    "📊 Executive & Benchmark Metrics",
+    "🔒 Cryptographic Audit Ledger",
+    "🛡️ Input Sanitization Firewall",
+]
+
+selected_nav = st.radio(
+    "SYSTEM NAVIGATION",
+    nav_options,
+    index=nav_options.index(st.session_state["app_mode"]) if st.session_state["app_mode"] in nav_options else 0,
+    horizontal=True,
+    label_visibility="collapsed"
+)
+
+if selected_nav != st.session_state["app_mode"]:
+    st.session_state["app_mode"] = selected_nav
+    st.rerun()
 
 
 # ===========================================================================
