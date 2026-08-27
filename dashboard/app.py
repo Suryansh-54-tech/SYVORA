@@ -1162,83 +1162,92 @@ body {
 # ---------------------------------------------------------------------------
 
 def render_cinematic_story_landing():
-    # 1. Radiant Hero Header Deck with Native Interactive Buttons
-    st.markdown("""<div class="aesthetic-card" style="padding: 32px 36px; margin-bottom: 1.5rem; border-color: rgba(192, 132, 252, 0.4); background: linear-gradient(135deg, rgba(28, 23, 46, 0.9) 0%, rgba(18, 22, 36, 0.95) 100%);">
-<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 16px; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
-    <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-family: 'Syncopate', sans-serif; font-size: 1.4rem; font-weight: 700; color: #FFFFFF; letter-spacing: 0.12em;">🛡️ SYVORA</span>
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; color: #C084FC; background: rgba(192, 132, 252, 0.18); border: 1px solid rgba(192, 132, 252, 0.35); padding: 3px 10px; border-radius: 9999px;">v2.4.0 &bull; PRECISION CORE</span>
-    </div>
-    <div style="display: flex; gap: 16px; font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.08em; flex-wrap: wrap;">
-        <span style="color: #C084FC;">41-SIGNAL INTAKE</span>
-        <span style="color: #FB7185;">BAYESIAN ECONOMICS</span>
-        <span style="color: #34D399;">TREESHAP FORENSICS</span>
-        <span style="color: #F59E0B;">5 POLICY GATES</span>
-        <span style="color: #34D399; font-family: monospace;">● 100% LOCAL OFFLINE</span>
-    </div>
+    # 1. Top Radiant Hero Deck
+    st.markdown("""<div class="aesthetic-card" style="padding: 24px 28px; margin-bottom: 1.5rem; border-color: rgba(192, 132, 252, 0.4); background: linear-gradient(135deg, rgba(28, 23, 46, 0.9) 0%, rgba(18, 22, 36, 0.95) 100%);">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 14px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="font-family: 'Syncopate', sans-serif; font-size: 1.35rem; font-weight: 700; color: #FFFFFF; letter-spacing: 0.12em;">🛡️ SYVORA</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; color: #C084FC; background: rgba(192, 132, 252, 0.18); border: 1px solid rgba(192, 132, 252, 0.35); padding: 3px 10px; border-radius: 9999px;">v2.4.0 &bull; PRECISION CORE</span>
 </div>
-
-<div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center;">
-    <div>
-        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; background: rgba(192, 132, 252, 0.15); border: 1px solid rgba(192, 132, 252, 0.35); font-family: monospace; font-size: 0.72rem; font-weight: 700; color: #C084FC; margin-bottom: 12px;">
-            <span style="width: 6px; height: 6px; border-radius: 50%; background: #FB7185;"></span>
-            <span>ENGINEERED DECISION INTELLIGENCE</span>
-        </div>
-        <div style="font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 700; line-height: 1.08; color: #FFFFFF; letter-spacing: -0.02em;">
-            WHEN A DISPUTE<br/>
-            <span style="color: rgba(192, 132, 252, 0.7);">BECOMES A</span><br/>
-            <span style="background: linear-gradient(90deg, #FFFFFF, #F5D0FE, #C084FC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CALIBRATED</span><br/>
-            <span style="color: rgba(251, 113, 133, 0.7);">DECISION.</span>
-        </div>
-        <div style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.6; margin-top: 14px; max-width: 580px;">
-            SYVORA transforms raw chargeback telemetry into calibrated empirical win probabilities, Bayesian expected financial values, and 5-gate deterministic verdicts.
-        </div>
-    </div>
-
-    <!-- Live Telemetry HUD Card -->
-    <div style="background: linear-gradient(135deg, rgba(28, 24, 46, 0.9) 0%, rgba(18, 20, 34, 0.95) 100%); border: 1px solid rgba(192, 132, 252, 0.35); border-radius: 16px; padding: 22px 24px; box-shadow: 0 16px 36px rgba(0,0,0,0.6);">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 14px;">
-            <div style="display: flex; align-items: center; gap: 8px; font-family: monospace; font-size: 0.78rem; font-weight: 800; color: #34D399;">
-                <span style="width: 7px; height: 7px; border-radius: 50%; background: #34D399; box-shadow: 0 0 10px #34D399;"></span>
-                <span>SYSTEM ONLINE</span>
-            </div>
-            <span style="font-family: monospace; font-size: 0.72rem; color: #C084FC; font-weight: 700;">TELEMETRY HUD</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; font-family: monospace; font-size: 0.78rem;">
-            <div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                    <span style="color: #94A3B8;">P(WIN) CALIBRATION</span>
-                    <span style="color: #34D399; font-weight: 800;">88.3% [HIGH]</span>
-                </div>
-                <div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 88.3%; height: 100%; background: linear-gradient(90deg, #A855F7, #34D399);"></div></div>
-            </div>
-            <div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                    <span style="color: #94A3B8;">BAYESIAN RETURN E[EV]</span>
-                    <span style="color: #C084FC; font-weight: 800;">+₹10,985.04</span>
-                </div>
-                <div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 78%; height: 100%; background: linear-gradient(90deg, #C084FC, #818CF8);"></div></div>
-            </div>
-            <div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                    <span style="color: #94A3B8;">EVIDENCE READINESS</span>
-                    <span style="color: #FB7185; font-weight: 800;">100 / 100 [EXHIBITS A–E]</span>
-                </div>
-                <div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 100%; height: 100%; background: linear-gradient(90deg, #FB7185, #F43F5E);"></div></div>
-            </div>
-            <div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                    <span style="color: #94A3B8;">POLICY GATE STACK</span>
-                    <span style="color: #34D399; font-weight: 800;">5 / 5 PASSED [CONTEST]</span>
-                </div>
-                <div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 100%; height: 100%; background: linear-gradient(90deg, #34D399, #10B981);"></div></div>
-            </div>
-        </div>
-    </div>
+<div style="display: flex; gap: 14px; font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700; color: #CBD5E1; text-transform: uppercase; letter-spacing: 0.08em; flex-wrap: wrap;">
+<span style="color: #C084FC;">41-SIGNAL INTAKE</span>
+<span style="color: #FB7185;">BAYESIAN ECONOMICS</span>
+<span style="color: #34D399;">TREESHAP FORENSICS</span>
+<span style="color: #F59E0B;">5 POLICY GATES</span>
+<span style="color: #34D399; font-family: monospace;">● 100% LOCAL OFFLINE</span>
+</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
-    # 2. Hero Interactive Launch Action Buttons (Instant Navigation to Cockpit)
+    # Left & Right Hero Grid using native Streamlit Columns (Zero Markdown parser collision)
+    h_left, h_right = st.columns([1.25, 1])
+
+    with h_left:
+        st.markdown("""<div class="aesthetic-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+<div>
+<div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; background: rgba(192, 132, 252, 0.15); border: 1px solid rgba(192, 132, 252, 0.35); font-family: monospace; font-size: 0.72rem; font-weight: 700; color: #C084FC; margin-bottom: 12px;">
+<span style="width: 6px; height: 6px; border-radius: 50%; background: #FB7185;"></span>
+<span>ENGINEERED DECISION INTELLIGENCE</span>
+</div>
+<div style="font-family: 'Syncopate', sans-serif; font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 700; line-height: 1.08; color: #FFFFFF; letter-spacing: -0.02em;">
+WHEN A DISPUTE<br/>
+<span style="color: rgba(192, 132, 252, 0.7);">BECOMES A</span><br/>
+<span style="background: linear-gradient(90deg, #FFFFFF, #F5D0FE, #C084FC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CALIBRATED</span><br/>
+<span style="color: rgba(251, 113, 133, 0.7);">DECISION.</span>
+</div>
+<div style="font-size: 0.9rem; color: #CBD5E1; line-height: 1.55; margin-top: 14px;">
+SYVORA transforms raw chargeback telemetry into calibrated empirical win probabilities, Bayesian expected financial values, and 5-gate deterministic verdicts.
+</div>
+</div>
+</div>""", unsafe_allow_html=True)
+
+    with h_right:
+        st.markdown("""<div class="aesthetic-card" style="height: 100%; border-color: rgba(192, 132, 252, 0.35); background: linear-gradient(135deg, rgba(28, 24, 46, 0.9) 0%, rgba(18, 20, 34, 0.95) 100%);">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 14px;">
+<div style="display: flex; align-items: center; gap: 8px; font-family: monospace; font-size: 0.78rem; font-weight: 800; color: #34D399;">
+<span style="width: 7px; height: 7px; border-radius: 50%; background: #34D399; box-shadow: 0 0 10px #34D399;"></span>
+<span>SYSTEM ONLINE</span>
+</div>
+<span style="font-family: monospace; font-size: 0.72rem; color: #C084FC; font-weight: 700;">TELEMETRY HUD</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; font-family: monospace; font-size: 0.78rem;">
+<div>
+<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+<span style="color: #94A3B8;">P(WIN) CALIBRATION</span>
+<span style="color: #34D399; font-weight: 800;">88.3% [HIGH]</span>
+</div>
+<div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 88.3%; height: 100%; background: linear-gradient(90deg, #A855F7, #34D399);"></div></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+<span style="color: #94A3B8;">BAYESIAN RETURN E[EV]</span>
+<span style="color: #C084FC; font-weight: 800;">+₹10,985.04</span>
+</div>
+<div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 78%; height: 100%; background: linear-gradient(90deg, #C084FC, #818CF8);"></div></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+<span style="color: #94A3B8;">EVIDENCE READINESS</span>
+<span style="color: #FB7185; font-weight: 800;">100 / 100 [EXHIBITS A–E]</span>
+</div>
+<div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 100%; height: 100%; background: linear-gradient(90deg, #FB7185, #F43F5E);"></div></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+<span style="color: #94A3B8;">POLICY GATE STACK</span>
+<span style="color: #34D399; font-weight: 800;">5 / 5 PASSED [CONTEST]</span>
+</div>
+<div style="height: 6px; background: rgba(15, 20, 32, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 100%; height: 100%; background: linear-gradient(90deg, #34D399, #10B981);"></div></div>
+</div>
+</div>
+<div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; font-family: monospace; font-size: 0.7rem; color: #94A3B8;">
+<span>FIREWALL LATENCY: <strong style="color: #C084FC;">1.2ms</strong></span>
+<span style="color: #34D399; font-weight: 800;">OPTIMAL</span>
+</div>
+</div>""", unsafe_allow_html=True)
+
+    # 2. Hero Interactive Action Launchers (Clicking navigates to views immediately)
+    st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
     h_col1, h_col2, h_col3 = st.columns([1.3, 1.3, 1.1])
     with h_col1:
         if st.button("🚀 EXPLORE TRIAGE COCKPIT ➔", type="primary", use_container_width=True):
@@ -1253,25 +1262,25 @@ def render_cinematic_story_landing():
             st.session_state["app_mode"] = "📝 Manual Case Intake"
             st.rerun()
 
-    # 3. LIVE INTERACTIVE DISPUTE PLAYGROUND (LIVE ON LANDING PAGE)
+    # 3. LIVE REAL-TIME DECISION SANDBOX (ON LANDING PAGE)
     st.markdown("""<div class="aesthetic-card" style="margin-top: 1.8rem; margin-bottom: 1.5rem; border-color: rgba(52, 211, 153, 0.4);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 1.4rem;">⚡</span>
-        <div>
-            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 800; color: #FFFFFF;">
-                LIVE REAL-TIME DECISION SANDBOX
-            </div>
-            <div style="font-size: 0.78rem; color: #94A3B8;">
-                Adjust real-time dispute signals below and watch Bayesian Expected Value &amp; policy gates calculate live on the fly.
-            </div>
-        </div>
-    </div>
-    <span style="font-family: monospace; font-size: 0.72rem; font-weight: 800; color: #34D399; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); padding: 4px 12px; border-radius: 6px;">
-        ● LIVE COMPUTATION ENGINE
-    </span>
+<div style="display: flex; align-items: center; gap: 10px;">
+<span style="font-size: 1.4rem;">⚡</span>
+<div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 800; color: #FFFFFF;">
+LIVE REAL-TIME DECISION SANDBOX
 </div>
-""", unsafe_allow_html=True)
+<div style="font-size: 0.78rem; color: #94A3B8;">
+Adjust real-time dispute signals below and watch Bayesian Expected Value &amp; policy gates calculate live on the fly.
+</div>
+</div>
+</div>
+<span style="font-family: monospace; font-size: 0.72rem; font-weight: 800; color: #34D399; background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); padding: 4px 12px; border-radius: 6px;">
+● LIVE COMPUTATION ENGINE
+</span>
+</div>
+</div>""", unsafe_allow_html=True)
 
     sim_c1, sim_c2, sim_c3, sim_c4 = st.columns([1.2, 1, 1, 1])
     with sim_c1:
@@ -1300,24 +1309,25 @@ def render_cinematic_story_landing():
     live_v_color = "#34D399" if live_ana.decision_verdict == "CONTEST" else ("#FBBF24" if live_ana.decision_verdict == "REVIEW" else "#FB7185")
 
     # Live Results Ribbon
-    st.markdown(f"""<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    st.markdown(f"""<div class="aesthetic-card" style="padding: 16px 20px; margin-bottom: 1.5rem;">
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
 <div style="background: rgba(20, 24, 38, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px;">
-    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Calibrated P(Win)</div>
-    <div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: #34D399; margin-top: 2px;">{live_ana.calibrated_win_probability:.1%}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Calibrated P(Win)</div>
+<div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: #34D399; margin-top: 2px;">{live_ana.calibrated_win_probability:.1%}</div>
 </div>
 <div style="background: rgba(20, 24, 38, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px;">
-    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Expected Financial Return</div>
-    <div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: {'#34D399' if live_ana.expected_value_inr >= 0 else '#FB7185'}; margin-top: 2px;">
-        {'+' if live_ana.expected_value_inr >= 0 else '-'}₹{abs(live_ana.expected_value_inr):,.2f}
-    </div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Expected Financial Return</div>
+<div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: {'#34D399' if live_ana.expected_value_inr >= 0 else '#FB7185'}; margin-top: 2px;">
+{'+' if live_ana.expected_value_inr >= 0 else '-'}₹{abs(live_ana.expected_value_inr):,.2f}
+</div>
 </div>
 <div style="background: rgba(20, 24, 38, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 14px;">
-    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Evidence Readiness</div>
-    <div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: #C084FC; margin-top: 2px;">{live_ana.evidence_readiness_score} / 100</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Evidence Readiness</div>
+<div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: #C084FC; margin-top: 2px;">{live_ana.evidence_readiness_score} / 100</div>
 </div>
 <div style="background: rgba(28, 24, 46, 0.9); border: 1px solid {live_v_color}; border-radius: 10px; padding: 12px 14px; text-align: center;">
-    <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Autonomous Verdict</div>
-    <div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: {live_v_color}; margin-top: 2px;">{live_ana.decision_verdict}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; color: #94A3B8; text-transform: uppercase;">Autonomous Verdict</div>
+<div style="font-family: monospace; font-size: 1.45rem; font-weight: 900; color: {live_v_color}; margin-top: 2px;">{live_ana.decision_verdict}</div>
 </div>
 </div>
 </div>""", unsafe_allow_html=True)
@@ -1578,7 +1588,6 @@ WHY SYVORA?
 </div>""", unsafe_allow_html=True)
 
 
-# ---------------------------------------------------------------------------
 # TOP 3D GLASS COMMAND BAR (NO LEFT SIDEBAR)
 # ---------------------------------------------------------------------------
 
