@@ -1,0 +1,21 @@
+{
+  "project_name": "unnamed-project",
+  "languages": [
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "Rust",
+    "Go"
+  ],
+  "exclude_patterns": [
+    "node_modules",
+    "target",
+    "dist",
+    "build",
+    ".git",
+    ".venv",
+    "__pycache__",
+    ".contextforge"
+  ],
+  "max_file_size_bytes": 2097152
+}
