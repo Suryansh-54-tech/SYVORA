@@ -1,8 +1,11 @@
 """
-SYVORA — Payment Dispute Intelligence Console (Dark 3D Immersive Edition)
-==========================================================================
+SYVORA — Payment Dispute Intelligence Console (Maximal 3D WebGL Spectacle Edition)
+===================================================================================
 Autonomous dispute triage, Bayesian Expected Value analysis,
 TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
+
+Featuring interactive WebGL Three.js scenes, real-time particle data flows,
+and live mathematical invariance proofs.
 
 DISCLAIMER:
 All data, metrics, and simulations are based on synthetic simulation records.
@@ -44,7 +47,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for Dark 3D Immersive Fintech Design System
+# Master CSS with 3D Card Hover Physics, Dynamic Glow, and Glass Panels
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Syncopate:wght@700&display=swap');
@@ -55,7 +58,6 @@ html, body, p, div, h1, h2, h3, h4, h5, h6, label, input, select, textarea {
     letter-spacing: -0.01em;
 }
 
-/* Material Icons Protection */
 [data-testid="stIconMaterial"],
 [data-testid="stSidebarCollapseButton"] span,
 [data-testid="baseButton-headerNoPadding"] span,
@@ -76,17 +78,16 @@ code, pre, .mono, [class*="stCode"] {
 
 /* Deep Obsidian 3D Atmosphere */
 .stApp {
-    background-color: #06080F !important;
+    background-color: #04060B !important;
     background-image:
-        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.18) 0%, transparent 55%),
-        radial-gradient(circle at 10% 25%, rgba(168, 85, 247, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 90% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 50% 100%, rgba(244, 63, 94, 0.08) 0%, transparent 50%) !important;
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.22) 0%, transparent 60%),
+        radial-gradient(circle at 10% 30%, rgba(168, 85, 247, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 90% 65%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(244, 63, 94, 0.1) 0%, transparent 50%) !important;
     background-attachment: fixed !important;
     color: #F8FAFC !important;
 }
 
-/* Completely Suppress Left Sidebar */
 section[data-testid="stSidebar"],
 [data-testid="collapsedControl"] {
     display: none !important;
@@ -99,23 +100,23 @@ header[data-testid="stHeader"] {
 }
 
 .block-container {
-    padding-top: 2rem !important;
+    padding-top: 1.5rem !important;
     padding-bottom: 4.5rem !important;
-    padding-left: clamp(1.2rem, 3.2vw, 3.2rem) !important;
-    padding-right: clamp(1.2rem, 3.2vw, 3.2rem) !important;
-    max-width: 1520px !important;
+    padding-left: clamp(1rem, 3vw, 3rem) !important;
+    padding-right: clamp(1rem, 3vw, 3rem) !important;
+    max-width: 1540px !important;
 }
 
-/* Top 3D Floating Command Deck */
+/* 3D Floating Command Deck */
 .top-command-deck {
-    background: linear-gradient(135deg, rgba(18, 24, 43, 0.92) 0%, rgba(11, 16, 30, 0.94) 100%);
+    background: linear-gradient(135deg, rgba(16, 22, 40, 0.94) 0%, rgba(10, 14, 28, 0.96) 100%);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 18px;
     padding: 16px 26px;
     margin-bottom: 1.25rem;
-    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(99, 102, 241, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.85), 0 0 35px rgba(99, 102, 241, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -127,7 +128,7 @@ header[data-testid="stHeader"] {
 .top-command-deck::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; height: 2.5px;
+    top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899, #10B981);
 }
 
@@ -149,13 +150,13 @@ div[data-testid="stRadio"] > div {
     flex-wrap: wrap !important;
     justify-content: center !important;
     gap: 8px !important;
-    background: rgba(14, 20, 36, 0.88) !important;
+    background: rgba(12, 17, 32, 0.9) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     border-radius: 16px !important;
     padding: 8px 12px !important;
-    box-shadow: 0 14px 36px -6px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 14px 36px -6px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.14) !important;
     margin-bottom: 1.5rem !important;
 }
 
@@ -164,23 +165,23 @@ div[data-testid="stRadio"] label {
     border-radius: 10px !important;
     padding: 7px 16px !important;
     border: 1px solid transparent !important;
-    transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     cursor: pointer !important;
     margin: 0 !important;
 }
 
 div[data-testid="stRadio"] label:hover {
     background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(99, 102, 241, 0.4) !important;
-    transform: translateY(-1px) !important;
+    border-color: rgba(99, 102, 241, 0.45) !important;
+    transform: translateY(-2px) !important;
 }
 
 div[data-testid="stRadio"] label:has(input:checked),
 div[data-testid="stRadio"] label[data-checked="true"] {
     background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
-    transform: translateY(-1px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-2px) !important;
 }
 
 div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
@@ -195,63 +196,47 @@ div[data-testid="stRadio"] label p {
     letter-spacing: 0.03em !important;
 }
 
-/* 3D Elevated Glass Cards with Ambient Rims */
+/* 3D Elevated Glass Cards with Specular Rims */
 .fintech-3d-card {
-    background: linear-gradient(135deg, rgba(20, 27, 48, 0.88) 0%, rgba(13, 18, 33, 0.94) 100%);
+    background: linear-gradient(135deg, rgba(18, 25, 46, 0.9) 0%, rgba(11, 16, 32, 0.95) 100%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.11);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
     padding: 24px 28px;
-    box-shadow: 0 18px 45px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.16);
     transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
 }
 .fintech-3d-card:hover {
-    border-color: rgba(129, 140, 248, 0.45);
-    box-shadow: 0 24px 54px -10px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(129, 140, 248, 0.5);
+    box-shadow: 0 26px 58px -10px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.22);
     transform: translateY(-3px);
 }
 
-/* Active High-Contrast Scenario Card Styling */
+/* Active High-Contrast Selection States */
 .scenario-card-active {
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.32) 0%, rgba(124, 58, 237, 0.24) 100%) !important;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.35) 0%, rgba(124, 58, 237, 0.26) 100%) !important;
     border: 2px solid #818CF8 !important;
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 32px rgba(99, 102, 241, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
     border-radius: 14px;
     padding: 16px 18px;
+    transform: translateY(-2px);
 }
 .scenario-card-inactive {
-    background: rgba(18, 24, 42, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(16, 22, 40, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
     padding: 16px 18px;
     transition: all 0.2s ease;
 }
 .scenario-card-inactive:hover {
-    border-color: rgba(129, 140, 248, 0.35);
-    background: rgba(24, 32, 54, 0.85);
+    border-color: rgba(129, 140, 248, 0.4);
+    background: rgba(22, 30, 52, 0.9);
+    transform: translateY(-2px);
 }
 
-/* Elevated 3D Holographic Security Centerpiece */
-.security-3d-showcase {
-    background: linear-gradient(135deg, #0B0F1E 0%, #0F172A 50%, #15102A 100%);
-    border: 1.5px solid rgba(129, 140, 248, 0.45);
-    border-radius: 20px;
-    padding: 32px 36px;
-    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.85), 0 0 40px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.22);
-    position: relative;
-    overflow: hidden;
-}
-.security-3d-showcase::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
-    pointer-events: none;
-}
-
-/* Status Badges & Pills */
+/* Status Badges */
 .fintech-pill {
     display: inline-flex;
     align-items: center;
@@ -274,7 +259,7 @@ div[data-testid="stRadio"] label p {
 .dot-indigo { background-color: #818CF8; box-shadow: 0 0 10px #818CF8; }
 .dot-rose   { background-color: #FB7185; box-shadow: 0 0 10px #FB7185; }
 
-/* Interactive 3D Action Buttons */
+/* Buttons */
 .stButton>button {
     border-radius: 12px !important;
     font-family: 'Space Grotesk', sans-serif !important;
@@ -283,51 +268,26 @@ div[data-testid="stRadio"] label p {
     text-transform: uppercase !important;
     letter-spacing: 0.06em !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    background: rgba(28, 36, 60, 0.9) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    background: rgba(25, 33, 56, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
     color: #F8FAFC !important;
     padding: 0.65rem 1.4rem !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
 }
 .stButton>button:hover {
     transform: translateY(-2px) !important;
     border-color: #818CF8 !important;
-    box-shadow: 0 10px 26px rgba(99, 102, 241, 0.35) !important;
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.4) !important;
     color: #FFFFFF !important;
 }
 .stButton>button[kind="primary"] {
     background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 26px rgba(79, 70, 229, 0.55) !important;
 }
 .stButton>button[kind="primary"]:hover {
-    box-shadow: 0 12px 32px rgba(79, 70, 229, 0.7) !important;
+    box-shadow: 0 12px 36px rgba(79, 70, 229, 0.75) !important;
     transform: translateY(-2px) scale(1.01) !important;
-}
-
-/* Tabs */
-.stTabs [data-baseweb="tab-list"] {
-    gap: 6px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.stTabs [data-baseweb="tab"] {
-    background: rgba(18, 24, 42, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px 8px 0 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #94A3B8;
-    padding: 8px 16px;
-}
-.stTabs [data-baseweb="tab"]:hover {
-    color: #A5B4FC;
-    border-color: rgba(99, 102, 241, 0.4);
-}
-.stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.3) 0%, rgba(124, 58, 237, 0.2) 100%) !important;
-    border-color: #818CF8 !important;
-    color: #FFFFFF !important;
 }
 
 hr { border-color: rgba(255, 255, 255, 0.09) !important; margin: 2rem 0 !important; }
@@ -766,198 +726,456 @@ def render_defense_dossier_package(dossier: Any, is_manual: bool = False):
 
 
 # ---------------------------------------------------------------------------
-# 3D ORBITAL DECISION CORE VISUALIZATION
+# WEBGL THREE.JS HERO CANVAS COMPONENT (REAL 3D + MOUSE REACTIVITY)
 # ---------------------------------------------------------------------------
 
-def render_3d_orbital_core():
-    core_html = """
+def render_hero_threejs_canvas():
+    hero_webgl_html = """
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    background: transparent;
-    overflow: hidden;
-    font-family: 'Inter', -apple-system, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 350px;
-    color: #F8FAFC;
-}
-
-@keyframes orbitalRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes orbitalRotateReverse {
-    0% { transform: rotate(360deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes corePulse {
-    0% { transform: scale(0.96); filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6)); }
-    50% { transform: scale(1.04); filter: drop-shadow(0 0 45px rgba(139, 92, 246, 0.9)); }
-    100% { transform: scale(0.96); filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6)); }
-}
-
-.core-wrapper {
-    position: relative;
-    width: 760px;
-    height: 340px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.central-nucleus {
-    width: 130px;
-    height: 130px;
-    background: radial-gradient(circle, #312E81 0%, #1E1B4B 60%, #06080F 100%);
-    border: 2px solid #818CF8;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    z-index: 10;
-    animation: corePulse 3.5s ease-in-out infinite;
-    box-shadow: 0 0 35px rgba(99, 102, 241, 0.6), inset 0 0 25px rgba(139, 92, 246, 0.5);
-}
-.nucleus-title {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    color: #FFFFFF;
-    letter-spacing: 0.1em;
-}
-.nucleus-subtitle {
-    font-size: 8px;
-    font-weight: 800;
-    color: #C7D2FE;
-    letter-spacing: 0.14em;
-    font-family: monospace;
-    margin-top: 3px;
-}
-
-.orbit-ring-1 {
-    position: absolute;
-    width: 470px;
-    height: 220px;
-    border: 1.5px dashed rgba(129, 140, 248, 0.45);
-    border-radius: 50%;
-    animation: orbitalRotate 26s linear infinite;
+body { background: transparent; overflow: hidden; height: 380px; width: 100%; }
+#canvas-container { width: 100%; height: 100%; position: relative; }
+.hud-tag {
+    position: absolute; bottom: 12px; left: 16px;
+    font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700;
+    color: #818CF8; letter-spacing: 0.1em; background: rgba(10, 14, 28, 0.7);
+    padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(99, 102, 241, 0.3);
     pointer-events: none;
 }
-.orbit-ring-2 {
-    position: absolute;
-    width: 690px;
-    height: 290px;
-    border: 1px solid rgba(52, 211, 153, 0.35);
-    border-radius: 50%;
-    animation: orbitalRotateReverse 34s linear infinite;
-    pointer-events: none;
-}
-
-.node-card {
-    position: absolute;
-    background: rgba(18, 24, 44, 0.92);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 10px;
-    padding: 8px 14px;
-    text-align: center;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
-    transition: all 0.25s ease;
-    z-index: 5;
-}
-.node-card:hover {
-    transform: scale(1.1);
-    border-color: #818CF8;
-    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
-}
-.node-num {
-    font-size: 9px;
-    font-weight: 800;
-    font-family: monospace;
-}
-.node-text {
-    font-size: 10px;
-    font-weight: 700;
-    color: #F8FAFC;
-    font-family: 'Space Grotesk', sans-serif;
-    margin-top: 1px;
-}
-
-.node-1 { top: 30px; left: 55px; border-color: rgba(129, 140, 248, 0.5); }
-.node-1 .node-num { color: #A5B4FC; }
-
-.node-2 { top: 15px; left: 240px; border-color: rgba(52, 211, 153, 0.5); }
-.node-2 .node-num { color: #34D399; }
-
-.node-3 { top: 15px; right: 240px; border-color: rgba(52, 211, 153, 0.5); }
-.node-3 .node-num { color: #34D399; }
-
-.node-4 { top: 30px; right: 55px; border-color: rgba(244, 63, 94, 0.5); }
-.node-4 .node-num { color: #FB7185; }
-
-.node-5 { bottom: 30px; left: 90px; border-color: rgba(245, 158, 11, 0.5); }
-.node-5 .node-num { color: #F59E0B; }
-
-.node-6 { bottom: 30px; right: 90px; border-color: rgba(99, 102, 241, 0.5); }
-.node-6 .node-num { color: #818CF8; }
-
-.node-7 { bottom: 12px; left: 320px; border-color: rgba(52, 211, 153, 0.8); background: rgba(16, 185, 129, 0.22); }
-.node-7 .node-num { color: #34D399; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
-<div class="core-wrapper">
-    <div class="orbit-ring-1"></div>
-    <div class="orbit-ring-2"></div>
-
-    <div class="central-nucleus">
-        <div class="nucleus-title">SYVORA</div>
-        <div class="nucleus-subtitle">DECISION CORE</div>
-    </div>
-
-    <div class="node-card node-1">
-        <div class="node-num">STAGE 01</div>
-        <div class="node-text">41 FEATURES</div>
-    </div>
-    <div class="node-card node-2">
-        <div class="node-num">STAGE 02</div>
-        <div class="node-text">ML INFERENCE</div>
-    </div>
-    <div class="node-card node-3">
-        <div class="node-num">STAGE 03</div>
-        <div class="node-text">CALIBRATION</div>
-    </div>
-    <div class="node-card node-4">
-        <div class="node-num">STAGE 04</div>
-        <div class="node-text">TREESHAP</div>
-    </div>
-    <div class="node-card node-5">
-        <div class="node-num">STAGE 05</div>
-        <div class="node-text">EXPECTED VALUE</div>
-    </div>
-    <div class="node-card node-6">
-        <div class="node-num">STAGE 06</div>
-        <div class="node-text">5 POLICY GATES</div>
-    </div>
-    <div class="node-card node-7">
-        <div class="node-num">STAGE 07</div>
-        <div class="node-text">CONTEST VERDICT</div>
-    </div>
+<div id="canvas-container">
+    <div class="hud-tag">⚡ THREE.JS 3D WEBGL CORE &bull; MOUSE REACTIVE</div>
 </div>
+
+<script>
+try {
+    const container = document.getElementById('canvas-container');
+    const width = container.clientWidth || window.innerWidth;
+    const height = 380;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.z = 18;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const pointLight1 = new THREE.PointLight(0x6366f1, 2.5, 50);
+    pointLight1.position.set(10, 10, 10);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0x10b981, 2, 50);
+    pointLight2.position.set(-10, -10, 10);
+    scene.add(pointLight2);
+
+    // Central 3D Decision Core Group
+    const coreGroup = new THREE.Group();
+    scene.add(coreGroup);
+
+    // Inner Icosahedron Wireframe
+    const icoGeo = new THREE.IcosahedronGeometry(4.2, 1);
+    const icoMat = new THREE.MeshStandardMaterial({
+        color: 0x4f46e5,
+        wireframe: true,
+        emissive: 0x312e81,
+        emissiveIntensity: 0.8,
+        roughness: 0.2,
+        metalness: 0.9
+    });
+    const icoMesh = new THREE.Mesh(icoGeo, icoMat);
+    coreGroup.add(icoMesh);
+
+    // Solid Inner Glowing Nucleus
+    const nucGeo = new THREE.SphereGeometry(2.0, 32, 32);
+    const nucMat = new THREE.MeshStandardMaterial({
+        color: 0x8b5cf6,
+        emissive: 0x6366f1,
+        emissiveIntensity: 1.2,
+        roughness: 0.1,
+        metalness: 0.5
+    });
+    const nucleus = new THREE.Mesh(nucGeo, nucMat);
+    coreGroup.add(nucleus);
+
+    // Outer Orbit Rings
+    const ring1Geo = new THREE.TorusGeometry(6.5, 0.05, 16, 100);
+    const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x34d399, transparent: true, opacity: 0.6 });
+    const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+    ring1.rotation.x = Math.PI / 3;
+    coreGroup.add(ring1);
+
+    const ring2Geo = new THREE.TorusGeometry(8.0, 0.04, 16, 100);
+    const ring2Mat = new THREE.MeshBasicMaterial({ color: 0x818cf8, transparent: true, opacity: 0.4 });
+    const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+    ring2.rotation.y = Math.PI / 4;
+    coreGroup.add(ring2);
+
+    // Particle Swarm
+    const particleCount = 280;
+    const pGeo = new THREE.BufferGeometry();
+    const pPositions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i += 3) {
+        pPositions[i] = (Math.random() - 0.5) * 30;
+        pPositions[i+1] = (Math.random() - 0.5) * 20;
+        pPositions[i+2] = (Math.random() - 0.5) * 20;
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+    const pMat = new THREE.PointsMaterial({
+        color: 0xa5b4fc,
+        size: 0.18,
+        transparent: true,
+        opacity: 0.75
+    });
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    // Mouse Tracking
+    let targetX = 0, targetY = 0;
+    window.addEventListener('mousemove', (e) => {
+        const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        targetX = mouseX * 0.8;
+        targetY = mouseY * 0.5;
+    });
+
+    // Animation Loop
+    function animate() {
+        requestAnimationFrame(animate);
+        coreGroup.rotation.y += 0.008;
+        coreGroup.rotation.x += 0.004;
+        ring1.rotation.z += 0.012;
+        ring2.rotation.z -= 0.009;
+        particles.rotation.y -= 0.001;
+
+        // Smooth Mouse Follow
+        coreGroup.rotation.y += (targetX - coreGroup.rotation.y) * 0.05;
+        coreGroup.rotation.x += (targetY - coreGroup.rotation.x) * 0.05;
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        const w = container.clientWidth || window.innerWidth;
+        camera.aspect = w / 380;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, 380);
+    });
+} catch (err) {
+    console.error("WebGL initialization fallback:", err);
+}
+</script>
 </body>
 </html>
 """
-    components.html(core_html, height=350, scrolling=False)
+    components.html(hero_webgl_html, height=380, scrolling=False)
+
+
+# ---------------------------------------------------------------------------
+# WEBGL THREE.JS PIPELINE & PARTICLE FLOW COMPONENT (SECTION 3)
+# ---------------------------------------------------------------------------
+
+def render_pipeline_threejs_flow():
+    pipeline_webgl_html = """
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: transparent; overflow: hidden; height: 360px; width: 100%; }
+#pipeline-container { width: 100%; height: 100%; position: relative; }
+.pipeline-overlay {
+    position: absolute; top: 10px; right: 16px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+    color: #34D399; background: rgba(10, 14, 28, 0.85); padding: 4px 12px;
+    border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.35); pointer-events: none;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+<div id="pipeline-container">
+    <div class="pipeline-overlay">⚡ LIVE 3D PARTICLE DATAFLOW &bull; STAGES 01 &rarr; 07</div>
+</div>
+
+<script>
+try {
+    const container = document.getElementById('pipeline-container');
+    const width = container.clientWidth || window.innerWidth;
+    const height = 360;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+    camera.position.set(0, 0, 22);
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambient);
+
+    const stages = [
+        { name: "01 INTAKE", x: -15, color: 0x6366f1 },
+        { name: "02 EVIDENCE", x: -10, color: 0x34d399 },
+        { name: "03 ML MODEL", x: -5, color: 0x8b5cf6 },
+        { name: "04 TREESHAP", x: 0, color: 0xfb7185 },
+        { name: "05 ECONOMICS", x: 5, color: 0xf59e0b },
+        { name: "06 5 GATES", x: 10, color: 0x818cf8 },
+        { name: "07 VERDICT", x: 15, color: 0x34d399 }
+    ];
+
+    const nodeMeshes = [];
+    stages.forEach((stg, idx) => {
+        const geo = new THREE.OctahedronGeometry(1.2, 0);
+        const mat = new THREE.MeshStandardMaterial({
+            color: stg.color,
+            emissive: stg.color,
+            emissiveIntensity: 0.6,
+            roughness: 0.2,
+            metalness: 0.8
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(stg.x, Math.sin(idx * 0.8) * 1.5, 0);
+        scene.add(mesh);
+        nodeMeshes.push(mesh);
+
+        // Halo Ring
+        const haloGeo = new THREE.RingGeometry(1.5, 1.6, 32);
+        const haloMat = new THREE.MeshBasicMaterial({ color: stg.color, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+        const halo = new THREE.Mesh(haloGeo, haloMat);
+        halo.position.copy(mesh.position);
+        scene.add(halo);
+    });
+
+    // Spline Curve Connecting Nodes
+    const curvePoints = nodeMeshes.map(m => m.position);
+    const curve = new THREE.CatmullRomCurve3(curvePoints);
+
+    const tubeGeo = new THREE.TubeGeometry(curve, 80, 0.08, 8, false);
+    const tubeMat = new THREE.MeshBasicMaterial({ color: 0x4f46e5, transparent: true, opacity: 0.35 });
+    const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
+    scene.add(tubeMesh);
+
+    // Flowing Energy Packets (Data Particles)
+    const packetCount = 18;
+    const packetMeshes = [];
+    for (let i = 0; i < packetCount; i++) {
+        const pGeo = new THREE.SphereGeometry(0.28, 16, 16);
+        const pMat = new THREE.MeshBasicMaterial({ color: 0x34d399 });
+        const pMesh = new THREE.Mesh(pGeo, pMat);
+        scene.add(pMesh);
+        packetMeshes.push({ mesh: pMesh, progress: (i / packetCount) });
+    }
+
+    // Animation Loop
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate stage nodes
+        nodeMeshes.forEach((mesh, idx) => {
+            mesh.rotation.y += 0.015;
+            mesh.rotation.x += 0.008;
+            mesh.position.y = Math.sin(Date.now() * 0.002 + idx) * 1.2;
+        });
+
+        // Update particle positions along curve
+        packetMeshes.forEach(p => {
+            p.progress += 0.004;
+            if (p.progress > 1.0) p.progress = 0.0;
+            const pt = curve.getPointAt(p.progress);
+            p.mesh.position.copy(pt);
+        });
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        const w = container.clientWidth || window.innerWidth;
+        camera.aspect = w / 360;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, 360);
+    });
+} catch (e) {
+    console.error("Pipeline WebGL fallback:", e);
+}
+</script>
+</body>
+</html>
+"""
+    components.html(pipeline_webgl_html, height=360, scrolling=False)
+
+
+# ---------------------------------------------------------------------------
+# WEBGL THREE.JS SECURITY EVENT FIREWALL (SECTION 7 STANDOUT CENTERPIECE)
+# ---------------------------------------------------------------------------
+
+def render_security_threejs_event():
+    security_event_html = """
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: transparent; overflow: hidden; height: 340px; width: 100%; font-family: 'Inter', sans-serif; }
+#sec-container { width: 100%; height: 100%; position: relative; }
+.hud-firewall-tag {
+    position: absolute; top: 12px; left: 16px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 800;
+    color: #FB7185; background: rgba(15, 23, 42, 0.85); padding: 5px 12px;
+    border-radius: 6px; border: 1px solid rgba(244, 63, 94, 0.4); pointer-events: none;
+}
+.firewall-status {
+    position: absolute; bottom: 12px; right: 16px;
+    font-family: monospace; font-size: 11px; font-weight: 800;
+    color: #34D399; background: rgba(15, 23, 42, 0.85); padding: 5px 12px;
+    border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.4); pointer-events: none;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+<div id="sec-container">
+    <div class="hud-firewall-tag">🛡️ 3D ADVERSARIAL PAYLOAD INTERCEPTION &bull; REAL-TIME FIREWALL SHIELD</div>
+    <div class="firewall-status">● ZERO ANALYTICAL CONTAMINATION &bull; Δ P(WIN) = 0.0000%</div>
+</div>
+
+<script>
+try {
+    const container = document.getElementById('sec-container');
+    const width = container.clientWidth || window.innerWidth;
+    const height = 340;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.set(0, 0, 20);
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
+
+    // 3D Hexagonal Defensive Shield Barrier
+    const shieldGeo = new THREE.CylinderGeometry(5.5, 5.5, 0.2, 6);
+    const shieldMat = new THREE.MeshStandardMaterial({
+        color: 0x4f46e5,
+        emissive: 0x312e81,
+        emissiveIntensity: 0.8,
+        transparent: true,
+        opacity: 0.5,
+        roughness: 0.1,
+        metalness: 0.9,
+        wireframe: false
+    });
+    const shield = new THREE.Mesh(shieldGeo, shieldMat);
+    shield.rotation.x = Math.PI / 2;
+    shield.position.set(0, 0, 0);
+    scene.add(shield);
+
+    // Wireframe Shield Overlay
+    const shieldWireGeo = new THREE.CylinderGeometry(5.6, 5.6, 0.25, 6);
+    const shieldWireMat = new THREE.MeshBasicMaterial({ color: 0x818cf8, wireframe: true });
+    const shieldWire = new THREE.Mesh(shieldWireGeo, shieldWireMat);
+    shieldWire.rotation.x = Math.PI / 2;
+    scene.add(shieldWire);
+
+    // Protected Core Behind Shield
+    const coreGeo = new THREE.DodecahedronGeometry(2.2, 0);
+    const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x10b981,
+        emissive: 0x059669,
+        emissiveIntensity: 1.0,
+        roughness: 0.2
+    });
+    const safeCore = new THREE.Mesh(coreGeo, coreMat);
+    safeCore.position.set(8, 0, 0);
+    scene.add(safeCore);
+
+    // Hostile Malicious Payload (Approaching & Shattering at Shield)
+    const payloadGeo = new THREE.TetrahedronGeometry(1.0, 0);
+    const payloadMat = new THREE.MeshStandardMaterial({
+        color: 0xf43f5e,
+        emissive: 0xe11d48,
+        emissiveIntensity: 1.4
+    });
+    const payload = new THREE.Mesh(payloadGeo, payloadMat);
+    payload.position.set(-15, 0, 0);
+    scene.add(payload);
+
+    // Interception Particle Debris (Dissipating on Impact)
+    const debrisCount = 120;
+    const dGeo = new THREE.BufferGeometry();
+    const dPositions = new Float32Array(debrisCount * 3);
+    for (let i = 0; i < debrisCount * 3; i += 3) {
+        dPositions[i] = 0;
+        dPositions[i+1] = 0;
+        dPositions[i+2] = 0;
+    }
+    dGeo.setAttribute('position', new THREE.BufferAttribute(dPositions, 3));
+    const dMat = new THREE.PointsMaterial({ color: 0xfb7185, size: 0.25, transparent: true, opacity: 0.9 });
+    const debris = new THREE.Points(dGeo, dMat);
+    scene.add(debris);
+
+    let payloadSpeed = 0.14;
+    let impactOccurred = false;
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        shieldWire.rotation.z += 0.008;
+        safeCore.rotation.y += 0.01;
+        safeCore.rotation.x += 0.006;
+
+        // Payload Attack Flight
+        payload.position.x += payloadSpeed;
+        payload.rotation.x += 0.05;
+        payload.rotation.y += 0.05;
+
+        // Collision Interception at Shield
+        if (payload.position.x >= -0.5) {
+            payload.position.x = -15; // Reset loop
+            shieldMat.emissiveIntensity = 2.0; // Shield flash
+            setTimeout(() => { shieldMat.emissiveIntensity = 0.8; }, 200);
+        }
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        const w = container.clientWidth || window.innerWidth;
+        camera.aspect = w / 340;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, 340);
+    });
+} catch (err) {
+    console.error("Security WebGL fallback:", err);
+}
+</script>
+</body>
+</html>
+"""
+    components.html(security_event_html, height=340, scrolling=False)
 
 
 # ---------------------------------------------------------------------------
@@ -966,10 +1184,10 @@ body {
 
 def render_cinematic_story_landing():
     # -----------------------------------------------------------------------
-    # SECTION 1: HERO
+    # SECTION 1: HERO (WITH REAL THREE.JS WEBGL EMBED)
     # -----------------------------------------------------------------------
-    st.markdown("""<div class="fintech-3d-card" style="padding: 30px 34px; margin-bottom: 1.5rem; border-color: rgba(99, 102, 241, 0.4); background: linear-gradient(135deg, rgba(22, 29, 52, 0.95) 0%, rgba(13, 18, 34, 0.98) 100%);">
-<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; margin-bottom: 22px; flex-wrap: wrap; gap: 10px;">
+    st.markdown("""<div class="fintech-3d-card" style="padding: 26px 30px; margin-bottom: 1.5rem; border-color: rgba(99, 102, 241, 0.4); background: linear-gradient(135deg, rgba(20, 27, 48, 0.95) 0%, rgba(11, 16, 32, 0.98) 100%);">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
 <div style="display: flex; align-items: center; gap: 10px;">
 <span style="font-family: 'Syncopate', sans-serif; font-size: 1.35rem; font-weight: 700; color: #FFFFFF; letter-spacing: 0.12em;">🛡️ SYVORA</span>
 <span style="font-family: monospace; font-size: 0.72rem; font-weight: 700; color: #A5B4FC; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); padding: 3px 10px; border-radius: 9999px;">v2.4.0 &bull; PRECISION CORE</span>
@@ -999,7 +1217,7 @@ Turn payment disputes into decisions you can defend.
 </h1>
 
 <!-- CORE POSITIONING STATEMENT (MANDATORY PROMINENT PLACEMENT) -->
-<div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.22) 0%, rgba(124, 58, 237, 0.12) 100%); border-left: 3.5px solid #818CF8; padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);">
+<div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(124, 58, 237, 0.15) 100%); border-left: 3.5px solid #818CF8; padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);">
 <p style="font-size: 1.02rem; font-weight: 600; color: #F1F5F9; line-height: 1.5; margin: 0;">
 &ldquo;Razorpay helps businesses move money. SYVORA helps businesses decide what to do when that money is disputed.&rdquo;
 </p>
@@ -1012,66 +1230,8 @@ SYVORA transforms raw chargeback telemetry into calibrated empirical win probabi
 </div>""", unsafe_allow_html=True)
 
     with h_right:
-        # Evaluate real scenario A for the live telemetry HUD card
-        live_preview_payload = {
-            "dispute_id": "dsp_live_preview", "transaction_id": "pay_live_preview", "dispute_date": "2026-08-28 00:00:00",
-            "txn_amount_inr": 12499.0, "txn_age_days": 14, "days_to_deadline": 7,
-            "prior_undisputed_txns": 4, "customer_past_dispute_count": 0, "three_ds_status": "Y_AUTHENTICATED",
-            "signed_pod": True, "ip_geo_match": True, "device_fingerprint_match": True,
-            "billing_shipping_match": True, "reason_code": "VISA_13_1_NOT_RECEIVED",
-            "issuing_bank": "HDFC", "card_network": "VISA", "merchant_category": "ECOMM_RETAIL", "courier_status": "DELIVERED"
-        }
-        live_dos = assembler.build_dossier(live_preview_payload)
-        live_ana = live_dos.analytical_evidence
-
-        st.markdown(f"""<div class="fintech-3d-card" style="height: 100%; border-color: rgba(99, 102, 241, 0.4); background: linear-gradient(135deg, rgba(22, 29, 52, 0.95) 0%, rgba(13, 18, 34, 0.98) 100%);">
-<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 14px;">
-<div style="display: flex; align-items: center; gap: 8px; font-family: monospace; font-size: 0.78rem; font-weight: 800; color: #34D399;">
-<span style="width: 7px; height: 7px; border-radius: 50%; background: #34D399; box-shadow: 0 0 10px #34D399;"></span>
-<span>LIVE TELEMETRY HUD</span>
-</div>
-<span style="font-family: monospace; font-size: 0.72rem; color: #A5B4FC; font-weight: 700;">REAL ENGINE COMPUTE</span>
-</div>
-
-<div style="display: flex; flex-direction: column; gap: 12px; font-family: monospace; font-size: 0.78rem;">
-<div>
-<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-<span style="color: #94A3B8;">CALIBRATED P(WIN)</span>
-<span style="color: #34D399; font-weight: 800;">{live_ana.calibrated_win_probability:.1%} [HIGH]</span>
-</div>
-<div style="height: 6px; background: rgba(15, 23, 42, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: {int(live_ana.calibrated_win_probability*100)}%; height: 100%; background: #34D399;"></div></div>
-</div>
-
-<div>
-<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-<span style="color: #94A3B8;">BAYESIAN RETURN E[EV]</span>
-<span style="color: #A5B4FC; font-weight: 800;">+₹{live_ana.expected_value_inr:,.2f}</span>
-</div>
-<div style="height: 6px; background: rgba(15, 23, 42, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 78%; height: 100%; background: #818CF8;"></div></div>
-</div>
-
-<div>
-<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-<span style="color: #94A3B8;">EVIDENCE READINESS</span>
-<span style="color: #FB7185; font-weight: 800;">{live_ana.evidence_readiness_score} / 100 [EXHIBITS A–E]</span>
-</div>
-<div style="height: 6px; background: rgba(15, 23, 42, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: {live_ana.evidence_readiness_score}%; height: 100%; background: #FB7185;"></div></div>
-</div>
-
-<div>
-<div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-<span style="color: #94A3B8;">POLICY GATE STACK</span>
-<span style="color: #34D399; font-weight: 800;">5 / 5 PASSED [{live_ana.decision_verdict}]</span>
-</div>
-<div style="height: 6px; background: rgba(15, 23, 42, 0.8); border-radius: 3px; overflow: hidden;"><div style="width: 100%; height: 100%; background: #34D399;"></div></div>
-</div>
-</div>
-
-<div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; font-family: monospace; font-size: 0.7rem; color: #94A3B8;">
-<span>FIREWALL LATENCY: <strong style="color: #A5B4FC;">1.2ms</strong></span>
-<span style="color: #34D399; font-weight: 800;">OPTIMAL</span>
-</div>
-</div>""", unsafe_allow_html=True)
+        # Real Interactive 3D WebGL Decision Core Canvas
+        render_hero_threejs_canvas()
 
     # Hero Working CTAs
     st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
@@ -1102,31 +1262,31 @@ Traditional chargeback operations trap merchants in three costly, sub-optimal pa
 </p>
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-<div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.5);">
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.5);">
 <div style="font-size: 1.3rem;">💸</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #FB7185; margin-top: 6px;">Blindly Defend</div>
 <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 6px; line-height: 1.5;">Defending unauthenticated disputes risks losing the transaction amount PLUS a non-refundable ₹3,000 bank arbitration fee penalty.</div>
 </div>
-<div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.5);">
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.5);">
 <div style="font-size: 1.3rem;">⏳</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #F59E0B; margin-top: 6px;">Manual Review Overhead</div>
 <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 6px; line-height: 1.5;">Human analyst backlogs lead to missed 7-day network deadlines and inconsistent subjective decisions.</div>
 </div>
-<div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(165, 180, 252, 0.3); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.5);">
+<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(165, 180, 252, 0.35); border-radius: 12px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,0.5);">
 <div style="font-size: 1.3rem;">🏳️</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #A5B4FC; margin-top: 6px;">Passive Surrender</div>
 <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 6px; line-height: 1.5;">Automatically refunding surrenders 100% of revenue even when cryptographic 3DS and signed carrier POD exist.</div>
 </div>
 </div>
 
-<div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(124, 58, 237, 0.12) 100%); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 12px; padding: 18px 24px; margin-top: 20px; text-align: center;">
+<div style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.22) 0%, rgba(124, 58, 237, 0.14) 100%); border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 12px; padding: 18px 24px; margin-top: 20px; text-align: center;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #A5B4FC;">SYVORA's Resolution:</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 800; color: #F8FAFC; margin-top: 4px;">Deterministic, Expected-Value-maximizing dispute triage.</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
     # -----------------------------------------------------------------------
-    # SECTION 3: THE INTELLIGENCE PIPELINE & 3D ORBITAL CORE
+    # SECTION 3: THE INTELLIGENCE PIPELINE (REAL THREE.JS DATAFLOW SCENE)
     # -----------------------------------------------------------------------
     st.markdown("""<div class="fintech-3d-card" style="margin-bottom: 1.5rem;">
 <div style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #A5B4FC; letter-spacing: 0.12em; text-transform: uppercase;">SECTION 03 &bull; THE INTELLIGENCE PIPELINE</div>
@@ -1137,7 +1297,7 @@ From raw telemetry to calibrated verdict.
 A transparent 6-stage pipeline with strict separation of analytical intelligence and qualitative advisory signals:
 </p>
 </div>""", unsafe_allow_html=True)
-    render_3d_orbital_core()
+    render_pipeline_threejs_flow()
 
     # -----------------------------------------------------------------------
     # SECTION 4: DON'T JUST PREDICT. DECIDE.
@@ -1184,13 +1344,13 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 
     c_card1, c_card2, c_card3 = st.columns(3)
     with c_card1:
-        st.markdown(f"""<div style="background: rgba(18, 24, 44, 0.88); border: 1.5px solid #34D399; border-radius: 14px; padding: 22px; height: 100%; box-shadow: 0 10px 30px rgba(52, 211, 153, 0.25);">
+        st.markdown(f"""<div style="background: rgba(18, 25, 46, 0.9); border: 1.5px solid #34D399; border-radius: 14px; padding: 22px; height: 100%; box-shadow: 0 10px 30px rgba(52, 211, 153, 0.25);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
 <span style="font-family: monospace; font-size: 1.25rem; font-weight: 900; color: #34D399;">CONTEST</span>
 <span class="fintech-pill pill-green">AUTO SUBMIT</span>
 </div>
 <div style="font-size: 0.82rem; color: #CBD5E1; margin-bottom: 14px;">Defend high-probability disputes where Expected Financial Return is strictly positive.</div>
-<div style="background: rgba(10, 15, 28, 0.8); padding: 12px 14px; border-radius: 8px; font-family: monospace; font-size: 0.78rem;">
+<div style="background: rgba(10, 15, 28, 0.85); padding: 12px 14px; border-radius: 8px; font-family: monospace; font-size: 0.78rem;">
 <div>P(Win): <strong style="color: #34D399;">{d_a.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>E[EV]: <strong style="color: #34D399;">+₹{d_a.analytical_evidence.expected_value_inr:,.2f}</strong></div>
 <div>Readiness: <strong style="color: #A5B4FC;">{d_a.analytical_evidence.evidence_readiness_score}/100</strong></div>
@@ -1198,13 +1358,13 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 </div>""", unsafe_allow_html=True)
 
     with c_card2:
-        st.markdown(f"""<div style="background: rgba(18, 24, 44, 0.88); border: 1.5px solid #FB7185; border-radius: 14px; padding: 22px; height: 100%; box-shadow: 0 10px 30px rgba(244, 63, 94, 0.25);">
+        st.markdown(f"""<div style="background: rgba(18, 25, 46, 0.9); border: 1.5px solid #FB7185; border-radius: 14px; padding: 22px; height: 100%; box-shadow: 0 10px 30px rgba(244, 63, 94, 0.25);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
 <span style="font-family: monospace; font-size: 1.25rem; font-weight: 900; color: #FB7185;">SURRENDER</span>
 <span class="fintech-pill pill-rose">ACCEPT LOSS</span>
 </div>
 <div style="font-size: 0.82rem; color: #CBD5E1; margin-bottom: 14px;">Accept liability immediately to prevent non-refundable ₹3,000 bank arbitration fee losses.</div>
-<div style="background: rgba(10, 15, 28, 0.8); padding: 12px 14px; border-radius: 8px; font-family: monospace; font-size: 0.78rem;">
+<div style="background: rgba(10, 15, 28, 0.85); padding: 12px 14px; border-radius: 8px; font-family: monospace; font-size: 0.78rem;">
 <div>P(Win): <strong style="color: #FB7185;">{d_b.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>E[EV]: <strong style="color: #FB7185;">₹{d_b.analytical_evidence.expected_value_inr:,.2f}</strong></div>
 <div>Readiness: <strong style="color: #A5B4FC;">{d_b.analytical_evidence.evidence_readiness_score}/100</strong></div>
@@ -1212,13 +1372,13 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 </div>""", unsafe_allow_html=True)
 
     with c_card3:
-        st.markdown(f"""<div style="background: rgba(18, 24, 44, 0.88); border: 1.5px solid #FBBF24; border-radius: 14px; padding: 22px; height: 100%; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25);">
+        st.markdown(f"""<div style="background: rgba(18, 25, 46, 0.9); border: 1.5px solid #FBBF24; border-radius: 14px; padding: 22px; height: 100%; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
 <span style="font-family: monospace; font-size: 1.25rem; font-weight: 900; color: #FBBF24;">REVIEW</span>
 <span class="fintech-pill pill-amber">MANDATORY HITL</span>
 </div>
 <div style="font-size: 0.82rem; color: #CBD5E1; margin-bottom: 14px;">Human-in-the-loop triage triggered for high GMV (>₹25k) or urgent deadlines (≤3d).</div>
-<div style="background: rgba(10, 15, 28, 0.8); padding: 12px 14px; border-radius: 8px; font-family: monospace; font-size: 0.78rem;">
+<div style="background: rgba(10, 15, 28, 0.85); padding: 12px 14px; border-radius: 8px; font-family: monospace; font-size: 0.78rem;">
 <div>P(Win): <strong style="color: #34D399;">{d_d.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>Amount: <strong style="color: #A5B4FC;">₹35,000.00</strong></div>
 <div>Policy Gate: <strong style="color: #FBBF24;">GMV &gt; ₹25,000</strong></div>
@@ -1239,7 +1399,7 @@ The Bayesian Expected Value equation.
 Disputes are only defended when the Expected Financial Return exceeds zero after accounting for bank penalty risks:
 </p>
 
-<div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 12px; padding: 22px; text-align: center; margin-bottom: 18px;">
+<div style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 12px; padding: 22px; text-align: center; margin-bottom: 18px;">
 <div style="font-family: monospace; font-size: clamp(0.95rem, 1.8vw, 1.25rem); font-weight: 800; color: #F8FAFC;">
 E[EV] = ( P(Win) &times; Amount ) &minus; ( (1 &minus; P(Win)) &times; Fee )
 </div>
@@ -1286,23 +1446,23 @@ Every piece of observed telemetry is organized into an irrefutable, bank-ready d
 </p>
 
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; text-align: center;">
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 800; color: #A5B4FC;">EXHIBIT A</div>
 <div style="font-size: 0.78rem; font-weight: 700; color: #F8FAFC; margin-top: 4px;">Authentication</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 800; color: #34D399;">EXHIBIT B</div>
 <div style="font-size: 0.78rem; font-weight: 700; color: #F8FAFC; margin-top: 4px;">Fulfillment (POD)</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 800; color: #94A3B8;">EXHIBIT C</div>
 <div style="font-size: 0.78rem; font-weight: 700; color: #F8FAFC; margin-top: 4px;">Transaction Ledger</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 800; color: #FB7185;">EXHIBIT D</div>
 <div style="font-size: 0.78rem; font-weight: 700; color: #F8FAFC; margin-top: 4px;">Device Telemetry</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px 10px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 800; color: #F59E0B;">EXHIBIT E</div>
 <div style="font-size: 0.78rem; font-weight: 700; color: #F8FAFC; margin-top: 4px;">Customer Claim</div>
 </div>
@@ -1310,7 +1470,7 @@ Every piece of observed telemetry is organized into an irrefutable, bank-ready d
 </div>""", unsafe_allow_html=True)
 
     # -----------------------------------------------------------------------
-    # SECTION 7: SECURITY — THE STANDOUT 3D CENTERPIECE (ELEVATED)
+    # SECTION 7: SECURITY — THE STANDOUT 3D WEBGL CENTERPIECE (ELEVATED)
     # -----------------------------------------------------------------------
     sec_payload = {
         "dispute_id": "dsp_sec_invariance", "transaction_id": "pay_sec_invariance", "dispute_date": "2026-08-28 00:00:00",
@@ -1334,11 +1494,11 @@ Every piece of observed telemetry is organized into an irrefutable, bank-ready d
     p_diff = abs(ana_clean.calibrated_win_probability - ana_injected.calibrated_win_probability)
     ev_diff = abs(ana_clean.expected_value_inr - ana_injected.expected_value_inr)
 
-    st.markdown(f"""<div class="security-3d-showcase" style="margin-bottom: 1.8rem;">
-<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 14px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+    st.markdown("""<div class="fintech-3d-card" style="margin-bottom: 1.8rem; border-color: rgba(129, 140, 248, 0.45); background: linear-gradient(135deg, #0B0F1E 0%, #0F172A 50%, #15102A 100%);">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 14px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
 <div>
 <div style="font-family: monospace; font-size: 0.78rem; font-weight: 800; color: #A5B4FC; letter-spacing: 0.15em; text-transform: uppercase;">
-SECTION 07 &bull; THE 3D CENTERPIECE &bull; ADVERSARIAL HARDENING
+SECTION 07 &bull; THE 3D WEBGL CENTERPIECE &bull; ADVERSARIAL HARDENING
 </div>
 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: #FFFFFF; margin-top: 4px; margin-bottom: 0;">
 Live Mathematical Invariance Proof
@@ -1347,14 +1507,18 @@ Live Mathematical Invariance Proof
 <span class="fintech-pill pill-indigo">ZERO DECISION CONTAMINATION GUARANTEE</span>
 </div>
 
-<p style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.6; margin-bottom: 20px;">
+<p style="font-size: 0.92rem; color: #CBD5E1; line-height: 1.6; margin-bottom: 16px;">
 Customer remarks are treated as untrusted data. When a hostile prompt injection or jailbreak payload attacks the system, the firewall sanitizes and quarantines it in Exhibit E — ensuring that analytical calculations remain <strong>100% mathematically invariant</strong>.
 </p>
+</div>""", unsafe_allow_html=True)
 
-<!-- Live Side-by-Side Invariance Comparison -->
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+    # 3D Interception Event Canvas
+    render_security_threejs_event()
+
+    # Live Side-by-Side Invariance Comparison
+    st.markdown(f"""<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; margin-bottom: 20px;">
 <!-- Clean Run -->
-<div style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 14px; padding: 20px; box-shadow: 0 10px 30px rgba(52, 211, 153, 0.2);">
+<div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 14px; padding: 20px; box-shadow: 0 10px 30px rgba(52, 211, 153, 0.2);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #34D399; font-size: 0.9rem;">1. CLEAN CUSTOMER REMARKS</span>
 <span class="fintech-pill pill-green">BENIGN</span>
@@ -1379,7 +1543,7 @@ Customer remarks are treated as untrusted data. When a hostile prompt injection 
 </div>
 
 <!-- Malicious Run -->
-<div style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(244, 63, 94, 0.5); border-radius: 14px; padding: 20px; box-shadow: 0 10px 30px rgba(244, 63, 94, 0.2);">
+<div style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(244, 63, 94, 0.5); border-radius: 14px; padding: 20px; box-shadow: 0 10px 30px rgba(244, 63, 94, 0.2);">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #FB7185; font-size: 0.9rem;">2. MALICIOUS INJECTION PAYLOAD</span>
 <span class="fintech-pill pill-rose">QUARANTINED</span>
@@ -1405,7 +1569,7 @@ Customer remarks are treated as untrusted data. When a hostile prompt injection 
 </div>
 
 <!-- Mathematical Invariance Proof Summary Banner -->
-<div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(99, 102, 241, 0.18) 100%); border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 12px; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);">
+<div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%); border: 1.5px solid rgba(52, 211, 153, 0.5); border-radius: 12px; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);">
 <div style="display: flex; align-items: center; gap: 10px;">
 <span style="font-size: 1.2rem;">🛡️</span>
 <span style="font-family: monospace; font-size: 0.85rem; font-weight: 800; color: #F8FAFC;">
@@ -1413,34 +1577,33 @@ P(Win) Invariance: {ana_clean.calibrated_win_probability:.1%} &equiv; {ana_injec
 </span>
 </div>
 <span style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #34D399;">● MATHEMATICALLY INVARIANT</span>
-</div>
 </div>""", unsafe_allow_html=True)
 
     # -----------------------------------------------------------------------
     # SECTION 8: WHY SYVORA?
     # -----------------------------------------------------------------------
-    st.markdown("""<div class="fintech-3d-card" style="margin-bottom: 1.5rem;">
+    st.markdown("""<div class="fintech-3d-card" style="margin-top: 1.8rem; margin-bottom: 1.5rem;">
 <div style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #A5B4FC; letter-spacing: 0.12em; text-transform: uppercase;">SECTION 08 &bull; ARCHITECTURAL PILLARS</div>
 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 2.5vw, 2.1rem); font-weight: 800; color: #F8FAFC; margin-top: 4px; margin-bottom: 8px;">
 Why SYVORA?
 </h2>
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px;">
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
 <div style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #A5B4FC;">01 &bull; PILLAR</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800; color: #F8FAFC; margin-top: 6px;">CALIBRATED</div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 4px;">Isotonic regression ensures output scores represent true empirical probabilities.</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
 <div style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #34D399;">02 &bull; PILLAR</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800; color: #F8FAFC; margin-top: 6px;">FINANCIALLY AWARE</div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 4px;">Bayesian Expected Value accounts for bank arbitration fees to maximize net P&amp;L.</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
 <div style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #FB7185;">03 &bull; PILLAR</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800; color: #F8FAFC; margin-top: 6px;">ADVERSARIAL HARDENED</div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 4px;">Defensive input quarantine prevents customer remarks from altering analytical decisions.</div>
 </div>
-<div style="background: rgba(18, 24, 44, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
+<div style="background: rgba(18, 25, 46, 0.88); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px 16px;">
 <div style="font-family: monospace; font-size: 0.75rem; font-weight: 800; color: #F59E0B;">04 &bull; PILLAR</div>
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 800; color: #F8FAFC; margin-top: 6px;">AUDITABLE</div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 4px;">Tamper-evident SHA-256 hash chaining records every evaluation permanently.</div>
@@ -1451,7 +1614,7 @@ Why SYVORA?
     # -----------------------------------------------------------------------
     # SECTION 9: SEE IT IN ACTION
     # -----------------------------------------------------------------------
-    st.markdown("""<div class="fintech-3d-card" style="text-align: center; padding: 36px 30px; margin-bottom: 2rem; border-color: rgba(99, 102, 241, 0.45); background: linear-gradient(135deg, rgba(22, 29, 52, 0.95) 0%, rgba(13, 18, 34, 0.98) 100%);">
+    st.markdown("""<div class="fintech-3d-card" style="text-align: center; padding: 36px 30px; margin-bottom: 2rem; border-color: rgba(99, 102, 241, 0.45); background: linear-gradient(135deg, rgba(20, 27, 48, 0.95) 0%, rgba(11, 16, 32, 0.98) 100%);">
 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: #FFFFFF; margin-bottom: 10px;">
 Ready to explore the live command center?
 </h2>
