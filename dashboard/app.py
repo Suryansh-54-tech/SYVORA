@@ -108,16 +108,34 @@ header[data-testid="stHeader"] {
     max-width: 1540px !important;
 }
 
-/* Top Glossy Command Deck with Specular Rim */
+/* Top Glossy Command Deck with High-Contrast Specular Rim */
+@keyframes statusPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.6); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(79, 70, 229, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+@keyframes greenPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes rosePulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(244, 63, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
 .top-command-deck {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(241, 245, 249, 0.94) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(203, 213, 225, 0.9);
     border-radius: 20px;
     padding: 16px 26px;
     margin-bottom: 1.25rem;
-    box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1.5px 0.5px #FFFFFF;
+    box-shadow: 0 16px 36px -6px rgba(30, 58, 138, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03), inset 0 1.5px 0.5px #FFFFFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -130,34 +148,34 @@ header[data-testid="stHeader"] {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; height: 3.5px;
-    background: linear-gradient(90deg, #4F46E5, #06B6D4, #10B981, #F43F5E, #8B5CF6);
+    background: linear-gradient(90deg, #1D4ED8, #4F46E5, #06B6D4, #10B981, #E11D48);
 }
 
 .top-brand-title {
     font-family: 'Syncopate', sans-serif !important;
-    font-size: 1.4rem;
-    font-weight: 800;
+    font-size: 1.45rem;
+    font-weight: 900;
     letter-spacing: 0.12em;
-    background: linear-gradient(90deg, #1E1B4B 0%, #4338CA 50%, #4F46E5 100%);
+    background: linear-gradient(90deg, #0F172A 0%, #1E40AF 45%, #4338CA 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
 }
 
-/* Glossy Segmented Radio Navigation Dock */
+/* High-Contrast Interactive Segmented Radio Navigation Dock */
 div[data-testid="stRadio"] > div {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
     gap: 8px !important;
-    background: rgba(255, 255, 255, 0.85) !important;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(241, 245, 249, 0.98) 100%) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
-    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    border: 1.5px solid rgba(203, 213, 225, 0.9) !important;
     border-radius: 18px !important;
     padding: 8px 12px !important;
-    box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.1), inset 0 1.5px 0.5px #FFFFFF !important;
+    box-shadow: 0 12px 30px -4px rgba(30, 58, 138, 0.08), inset 0 1.5px 0.5px #FFFFFF !important;
     margin-bottom: 1.5rem !important;
 }
 
@@ -165,23 +183,28 @@ div[data-testid="stRadio"] label {
     background: transparent !important;
     border-radius: 12px !important;
     padding: 8px 18px !important;
-    border: 1px solid transparent !important;
+    border: 1.5px solid transparent !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     cursor: pointer !important;
     margin: 0 !important;
 }
 
 div[data-testid="stRadio"] label:hover {
-    background: rgba(241, 245, 249, 0.9) !important;
-    border-color: rgba(99, 102, 241, 0.3) !important;
+    background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%) !important;
+    border-color: #818CF8 !important;
     transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.15) !important;
+}
+
+div[data-testid="stRadio"] label:hover p {
+    color: #1E1B4B !important;
 }
 
 div[data-testid="stRadio"] label:has(input:checked),
 div[data-testid="stRadio"] label[data-checked="true"] {
-    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.6) !important;
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35), inset 0 1.5px 0.5px rgba(255, 255, 255, 0.4) !important;
+    background: linear-gradient(135deg, #1E40AF 0%, #3730A3 50%, #4F46E5 100%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.35), inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
     transform: translateY(-2px) !important;
 }
 
@@ -191,16 +214,46 @@ div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
 
 div[data-testid="stRadio"] label p {
     font-family: 'Space Grotesk', sans-serif !important;
-    font-size: 0.82rem !important;
-    font-weight: 700 !important;
-    color: #334155 !important;
+    font-size: 0.83rem !important;
+    font-weight: 800 !important;
+    color: #1E293B !important;
     letter-spacing: 0.03em !important;
+    transition: color 0.2s ease !important;
 }
 
 div[data-testid="stRadio"] label:has(input:checked) p,
 div[data-testid="stRadio"] label[data-checked="true"] p {
     color: #FFFFFF !important;
 }
+
+/* High-Contrast Vivid Enamel Status Badges */
+.fintech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.22s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+.fintech-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.pill-green  { background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); color: #064E3B; border: 1.5px solid #059669; }
+.pill-indigo { background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%); color: #1E1B4B; border: 1.5px solid #4338CA; }
+.pill-rose   { background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%); color: #881337; border: 1.5px solid #E11D48; }
+.pill-amber  { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); color: #78350F; border: 1.5px solid #D97706; }
+
+.status-dot { width: 8.5px; height: 8.5px; border-radius: 50%; display: inline-block; }
+.dot-green  { background-color: #10B981; animation: greenPulse 2.2s infinite ease-in-out; }
+.dot-indigo { background-color: #4F46E5; animation: statusPulse 2.2s infinite ease-in-out; }
+.dot-rose   { background-color: #F43F5E; animation: rosePulse 2.2s infinite ease-in-out; }
 
 /* Polished Glossy Cards with Crisp Shadows & Specular Rims */
 .fintech-3d-card {
