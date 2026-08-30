@@ -4,13 +4,13 @@ SYVORA — Payment Dispute Intelligence Console
 Autonomous dispute triage, Bayesian Expected Value analysis,
 TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
 
-Features:
-- Floating Top Navigation Bar with high-contrast active states
-- Premium modern color palette (Cobalt, Indigo, Emerald, Amber, Crimson)
-- High-density KPI cards with trend indicators
-- Interactive TreeSHAP and Policy Gate charts
-- Re-themed 3D WebGL Three.js interactive scenes
-- Strict adversarial input quarantine & SHA-256 audit ledger
+ROYAL COLOR PALETTE EDITION:
+- Deep Royal Sapphire (#0F172A / #1E1B4B)
+- Imperial Velvet Purple (#3B0764 / #4C1D95 / #6D28D9)
+- Gilded Royal Gold (#D97706 / #F59E0B / #FEF3C7)
+- Royal Emerald (#065F46 / #059669 / #10B981)
+- Royal Ruby / Crimson (#991B1B / #DC2626 / #FFE4E6)
+- Luminous Marble Surface (#F8FAFC / #FFFFFF)
 
 DISCLAIMER:
 All data, metrics, and simulations are based on synthetic simulation records.
@@ -46,7 +46,7 @@ from src.security.audit import AuditLedger
 from src.security.sanitizer import InputSanitizer
 
 # ---------------------------------------------------------------------------
-# Page Configuration & Master Top-Nav CSS
+# Page Configuration & Master Royal Styling
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
@@ -56,29 +56,15 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Master CSS: Premium Modern Top Navigation & Vivid Clean Theme
+# Master CSS: Royal Colors, High Contrast & Clean Ergonomics
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&family=Syncopate:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&display=swap');
 
-/* Master Global Reset & Typography */
+/* Global Typography & Resets */
 html, body, p, div, h1, h2, h3, h4, h5, h6, label, input, select, textarea {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     letter-spacing: -0.012em;
-}
-
-[data-testid="stIconMaterial"],
-[data-testid="stSidebarCollapseButton"] span,
-[data-testid="baseButton-headerNoPadding"] span,
-[class*="material-symbols"],
-[class*="material-icons"],
-span[translate="no"] {
-    font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif !important;
-    letter-spacing: normal !important;
-    text-transform: none !important;
-    white-space: nowrap !important;
-    direction: ltr !important;
-    -webkit-font-smoothing: antialiased !important;
 }
 
 code, pre, .mono, [class*="stCode"] {
@@ -91,13 +77,13 @@ section[data-testid="stSidebar"],
     display: none !important;
 }
 
-/* App Background: Clean Modern Slate Canvas */
+/* App Background: Clean Luminous Royal Canvas */
 .stApp {
     background-color: #F8FAFC !important;
     background-image:
-        radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 15%, rgba(14, 165, 233, 0.06) 0%, transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 50%) !important;
+        radial-gradient(circle at 15% 15%, rgba(76, 29, 149, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(5, 150, 105, 0.04) 0%, transparent 50%) !important;
     background-attachment: fixed !important;
     color: #0F172A !important;
 }
@@ -116,7 +102,7 @@ header[data-testid="stHeader"] {
 }
 
 /* =========================================================================
-   PREMIUM FLOATING TOP HEADER & COMMAND BAR
+   ROYAL TOP HEADER & COMMAND DECK
    ========================================================================= */
 .top-nav-container {
     background: #FFFFFF;
@@ -136,45 +122,46 @@ header[data-testid="stHeader"] {
 .top-nav-container::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, #1D4ED8, #4F46E5, #06B6D4, #10B981, #E11D48);
+    top: 0; left: 0; right: 0; height: 3.5px;
+    background: linear-gradient(90deg, #F59E0B, #7C3AED, #4F46E5, #06B6D4, #10B981, #E11D48);
 }
 
 .brand-badge {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 .brand-logo-icon {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #1E40AF 0%, #4338CA 50%, #4F46E5 100%);
-    color: #FFFFFF;
+    background: linear-gradient(135deg, #1E1B4B 0%, #3B0764 50%, #4C1D95 100%);
+    color: #F59E0B;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+    font-size: 1.4rem;
+    box-shadow: 0 4px 14px rgba(76, 29, 149, 0.35);
+    border: 1px solid #C084FC;
 }
 .brand-title-text {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     font-weight: 900;
     letter-spacing: -0.02em;
     color: #0F172A;
     line-height: 1.1;
 }
 .brand-sub-text {
-    font-size: 0.72rem;
-    color: #64748B;
+    font-size: 0.74rem;
+    color: #581C87;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
 /* =========================================================================
-   HORIZONTAL TOP SEGMENTED NAVIGATION DOCK (STYLISH & PROMINENT)
+   ROYAL TOP SEGMENTED NAVIGATION DOCK
    ========================================================================= */
 div[data-testid="stRadio"] > div {
     display: flex !important;
@@ -186,7 +173,7 @@ div[data-testid="stRadio"] > div {
     border: 1px solid #E2E8F0 !important;
     border-radius: 16px !important;
     padding: 6px 10px !important;
-    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04) !important;
     margin-bottom: 1.5rem !important;
 }
 
@@ -195,27 +182,27 @@ div[data-testid="stRadio"] label {
     border-radius: 10px !important;
     padding: 8px 16px !important;
     border: 1px solid transparent !important;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
     cursor: pointer !important;
     margin: 0 !important;
 }
 
 div[data-testid="stRadio"] label:hover {
-    background: #EEF2FF !important;
-    border-color: #C7D2FE !important;
+    background: #F3E8FF !important;
+    border-color: #D8B4FE !important;
     transform: translateY(-1px) !important;
 }
 
 div[data-testid="stRadio"] label:hover p {
-    color: #4338CA !important;
+    color: #581C87 !important;
 }
 
-/* Active Nav Pill: Bold Indigo/Cobalt Gradient with White Text */
+/* Active Nav Pill: Royal Velvet Sapphire & Gold Accents */
 div[data-testid="stRadio"] label:has(input:checked),
 div[data-testid="stRadio"] label[data-checked="true"] {
-    background: linear-gradient(135deg, #1E40AF 0%, #3730A3 50%, #4F46E5 100%) !important;
-    border: 1px solid #1E40AF !important;
-    box-shadow: 0 4px 14px rgba(67, 56, 202, 0.32) !important;
+    background: linear-gradient(135deg, #1E1B4B 0%, #3B0764 50%, #4C1D95 100%) !important;
+    border: 1px solid #A855F7 !important;
+    box-shadow: 0 4px 16px rgba(76, 29, 149, 0.35) !important;
     transform: translateY(-1px) !important;
 }
 
@@ -237,22 +224,22 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     color: #FFFFFF !important;
 }
 
-/* Status Chips with Animated Pulses */
-@keyframes pulseGreen {
+/* Royal Enamel Badges with Animated Pulses */
+@keyframes royalGreenPulse {
     0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
     70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
     100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
-@keyframes pulseIndigo {
-    0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.6); }
-    70% { box-shadow: 0 0 0 6px rgba(79, 70, 229, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+@keyframes royalGoldPulse {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+    70% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
 }
 
 .status-pill {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
     padding: 6px 14px;
     border-radius: 9999px;
     font-size: 0.74rem;
@@ -261,15 +248,16 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
-.pill-online { background: #ECFDF5; color: #047857; border: 1.5px solid #059669; }
-.pill-demo   { background: #EEF2FF; color: #1E1B4B; border: 1.5px solid #4338CA; }
-.pill-audit  { background: #FFF1F2; color: #881337; border: 1.5px solid #E11D48; }
+.pill-emerald { background: #ECFDF5; color: #065F46; border: 1.5px solid #059669; }
+.pill-purple  { background: #F3E8FF; color: #3B0764; border: 1.5px solid #7C3AED; }
+.pill-gold    { background: #FEF3C7; color: #92400E; border: 1.5px solid #D97706; }
+.pill-ruby    { background: #FFF1F2; color: #991B1B; border: 1.5px solid #E11D48; }
 
-.dot-green { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: pulseGreen 2s infinite; }
-.dot-indigo { width: 8px; height: 8px; border-radius: 50%; background: #4F46E5; animation: pulseIndigo 2s infinite; }
+.dot-green { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: royalGreenPulse 2s infinite; }
+.dot-gold  { width: 8px; height: 8px; border-radius: 50%; background: #F59E0B; animation: royalGoldPulse 2s infinite; }
 
 /* =========================================================================
-   CARDS & KPI SURFACES
+   ROYAL CARDS & KPI SURFACES
    ========================================================================= */
 .syvora-card {
     background: #FFFFFF;
@@ -323,18 +311,19 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     margin: 0;
 }
 
-/* Metric Badges */
-.badge-green { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
-.badge-red   { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
-.badge-indigo{ background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+/* Royal Badges */
+.badge-green { background: #ECFDF5; color: #065F46; border: 1.5px solid #059669; padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-red   { background: #FEF2F2; color: #991B1B; border: 1.5px solid #DC2626; padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-purple{ background: #F3E8FF; color: #3B0764; border: 1.5px solid #7C3AED; padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-gold  { background: #FEF3C7; color: #92400E; border: 1.5px solid #D97706; padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
 
 /* Scenario Selection Cards */
 .scenario-card-active {
-    background: #EEF2FF !important;
-    border: 2px solid #4F46E5 !important;
+    background: #F3E8FF !important;
+    border: 2px solid #7C3AED !important;
     border-radius: 12px;
     padding: 16px 18px;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.14) !important;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.16) !important;
 }
 .scenario-card-inactive {
     background: #FFFFFF;
@@ -344,53 +333,21 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     transition: all 0.15s ease;
 }
 .scenario-card-inactive:hover {
-    border-color: #818CF8;
-    background: #F8FAFC;
+    border-color: #A855F7;
+    background: #FAF5FF;
     transform: translateY(-1px);
 }
 
-/* Buttons */
-.stButton>button {
-    border-radius: 10px !important;
-    font-weight: 700 !important;
-    font-size: 0.82rem !important;
-    letter-spacing: -0.01em !important;
-    padding: 0.65rem 1.4rem !important;
-    transition: all 0.16s ease !important;
-    background: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
-    color: #1E293B !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
-}
-.stButton>button:hover {
-    background: #F8FAFC !important;
-    border-color: #818CF8 !important;
-    color: #4F46E5 !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
-}
-.stButton>button[kind="primary"] {
-    background: linear-gradient(135deg, #1E40AF 0%, #4338CA 50%, #4F46E5 100%) !important;
-    border: 1px solid #1E40AF !important;
-    color: #FFFFFF !important;
-    box-shadow: 0 2px 8px rgba(67, 56, 202, 0.3) !important;
-}
-.stButton>button[kind="primary"]:hover {
-    box-shadow: 0 4px 14px rgba(67, 56, 202, 0.45) !important;
-    transform: translateY(-1px) !important;
-    color: #FFFFFF !important;
-}
-
-hr { border-color: #E2E8F0 !important; margin: 1.75rem 0 !important; }
-
-/* Form Inputs, Text Areas, Number Inputs, Select Boxes (Crisp White with Dark High-Contrast Text) */
+/* =========================================================================
+   FORM INPUTS, TEXTAREAS & SELECTBOXES (DARK READABLE TEXT)
+   ========================================================================= */
 div[data-baseweb="input"],
 div[data-baseweb="base-input"],
 div[data-baseweb="textarea"],
 div[data-baseweb="select"],
 div[data-baseweb="select"] > div {
     background-color: #FFFFFF !important;
-    border-color: #CBD5E1 !important;
+    border: 1.5px solid #CBD5E1 !important;
     border-radius: 10px !important;
     color: #0F172A !important;
 }
@@ -411,11 +368,10 @@ select,
 div[data-baseweb="input"]:focus-within,
 div[data-baseweb="textarea"]:focus-within,
 div[data-baseweb="select"]:focus-within {
-    border-color: #4F46E5 !important;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+    border-color: #7C3AED !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18) !important;
 }
 
-/* Explicit High-Contrast Form Labels & Legends */
 label,
 .stTextInput label,
 .stNumberInput label,
@@ -428,7 +384,7 @@ div[data-testid="stForm"] strong {
     font-size: 0.86rem !important;
 }
 
-/* High-Contrast Streamlit Tab Headers */
+/* Tab Headers */
 button[data-baseweb="tab"] {
     color: #475569 !important;
     font-weight: 700 !important;
@@ -439,15 +395,48 @@ button[data-baseweb="tab"] {
     transition: all 0.15s ease !important;
 }
 button[data-baseweb="tab"]:hover {
-    color: #4338CA !important;
-    background: #EEF2FF !important;
+    color: #581C87 !important;
+    background: #F3E8FF !important;
 }
 button[data-baseweb="tab"][aria-selected="true"] {
-    color: #4338CA !important;
+    color: #4C1D95 !important;
     font-weight: 800 !important;
-    border-bottom: 3px solid #4F46E5 !important;
+    border-bottom: 3.5px solid #7C3AED !important;
 }
 
+/* Buttons */
+.stButton>button {
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 0.82rem !important;
+    letter-spacing: -0.01em !important;
+    padding: 0.65rem 1.4rem !important;
+    transition: all 0.16s ease !important;
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #1E293B !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+.stButton>button:hover {
+    background: #FAF5FF !important;
+    border-color: #A855F7 !important;
+    color: #581C87 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+}
+.stButton>button[kind="primary"] {
+    background: linear-gradient(135deg, #1E1B4B 0%, #3B0764 50%, #4C1D95 100%) !important;
+    border: 1px solid #6D28D9 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 3px 10px rgba(76, 29, 149, 0.35) !important;
+}
+.stButton>button[kind="primary"]:hover {
+    box-shadow: 0 5px 16px rgba(76, 29, 149, 0.5) !important;
+    transform: translateY(-1px) !important;
+    color: #FFFFFF !important;
+}
+
+hr { border-color: #E2E8F0 !important; margin: 1.75rem 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -528,7 +517,7 @@ def get_ana_triggers(ana: Any) -> List[str]:
     return getattr(ana, "policy_gate_triggers", getattr(ana, "policy_rules_triggered", []))
 
 # ---------------------------------------------------------------------------
-# Reusable Modular UI Components
+# Reusable UI Components
 # ---------------------------------------------------------------------------
 
 def render_top_brand_bar(subtitle: str = "Payment Dispute Intelligence Console", badge_tag: str = "OFFLINE DEMO"):
@@ -541,15 +530,15 @@ def render_top_brand_bar(subtitle: str = "Payment Dispute Intelligence Console",
 </div>
 </div>
 <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-<div class="status-pill pill-online">
+<div class="status-pill pill-emerald">
 <span class="dot-green"></span>
 <span>CORE ONLINE (115/115 TESTS)</span>
 </div>
-<div class="status-pill pill-demo">
-<span class="dot-indigo"></span>
+<div class="status-pill pill-purple">
+<span class="dot-gold"></span>
 <span>{badge_tag}</span>
 </div>
-<div class="status-pill pill-audit">
+<div class="status-pill pill-ruby">
 <span>SHA-256 LEDGER READY</span>
 </div>
 </div>
@@ -591,9 +580,9 @@ def render_kpi_stat_row(obs: Any, ana: Any):
         st.markdown(f"""<div class="kpi-tile">
 <div class="kpi-title">
 <span>Break-Even (τ*)</span>
-<span class="badge-indigo">Min Viable</span>
+<span class="badge-purple">Min Viable</span>
 </div>
-<div class="kpi-stat-value" style="color: #4338CA;">{tau:.1%}</div>
+<div class="kpi-stat-value" style="color: #4C1D95;">{tau:.1%}</div>
 <p class="kpi-footnote">Fee / (Amount + Fee)</p>
 </div>""", unsafe_allow_html=True)
 
@@ -603,7 +592,7 @@ def render_kpi_stat_row(obs: Any, ana: Any):
 <span>Readiness Score</span>
 <span class="{'badge-green' if readiness >= 60 else 'badge-red'}">{readiness}/100</span>
 </div>
-<div class="kpi-stat-value" style="color: #4F46E5;">{readiness}</div>
+<div class="kpi-stat-value" style="color: #6D28D9;">{readiness}</div>
 <p class="kpi-footnote">Exhibit packet completeness</p>
 </div>""", unsafe_allow_html=True)
 
@@ -612,7 +601,7 @@ def render_kpi_stat_row(obs: Any, ana: Any):
         st.markdown(f"""<div class="kpi-tile" style="border-left: 3.5px solid {v_border};">
 <div class="kpi-title">
 <span>Autonomous Verdict</span>
-<span class="badge-indigo">5 GATES</span>
+<span class="badge-purple">5 GATES</span>
 </div>
 <div class="kpi-stat-value" style="font-size: 1.5rem; color: {v_border};">{verdict}</div>
 <p class="kpi-footnote">Deterministic policy decision</p>
@@ -637,9 +626,10 @@ Decision Economics &amp; Probability Space
             fig_prob.add_trace(go.Bar(
                 x=["Calibrated P(Win)", "Break-Even Threshold (τ*)"],
                 y=[p_win * 100, tau * 100],
-                marker_color=["#4F46E5", "#94A3B8"],
+                marker_color=["#6D28D9", "#94A3B8"],
                 text=[f"{p_win:.1%}", f"{tau:.1%}"],
                 textposition="auto",
+                textfont=dict(color="#FFFFFF", size=11, family="Space Grotesk"),
                 width=[0.45, 0.45]
             ))
             fig_prob.update_layout(
@@ -682,7 +672,8 @@ TreeSHAP Feature Attribution
                     orientation='h',
                     marker_color=colors,
                     text=[f"{imp:+.1f}%" for imp in impacts],
-                    textposition="auto"
+                    textposition="auto",
+                    textfont=dict(color="#0F172A", size=11, family="JetBrains Mono")
                 ))
                 fig_shap.update_layout(
                     height=220,
@@ -715,7 +706,7 @@ def render_policy_gate_summary(obs: Any, ana: Any):
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A;">
 5-Gate Deterministic Policy Pipeline
 </div>
-<span class="badge-indigo">DETERMINISTIC SAFETY</span>
+<span class="badge-purple">DETERMINISTIC SAFETY</span>
 </div>
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center;">
@@ -758,28 +749,54 @@ Defense Dossier &bull; Structured Exhibits A–E
         "Exhibit D (Telemetry)", "Exhibit E (Claim)", "🌐 Standalone Packet"
     ])
 
-    ex_pkg = getattr(dossier, "exhibits_package", None)
+    obs = dossier.observed_evidence
+    ana = dossier.analytical_evidence
 
     with t_a:
-        title_a = getattr(ex_pkg.exhibit_a, "title", "Exhibit A: Authentication Verification") if ex_pkg else "Exhibit A: Authentication Verification"
-        st.markdown(f"**{title_a}**")
+        st.markdown("### Exhibit A: Strong Customer Authentication (3DS)")
+        st.markdown(f"- **3DS Protocol Status:** `{obs.authentication.three_ds_status}` ({'AUTHENTICATED' if obs.authentication.is_authenticated else 'UNAUTHENTICATED'})")
+        st.markdown(f"- **Protocol Version:** `EMV 3DS 2.2.0 (Simulated)`")
+        st.markdown(f"- **Audit Source ID:** `{obs.authentication.source_record_id}`")
+        st.markdown(f"- **Timestamp:** `{obs.authentication.timestamp}`")
         st.caption("Cryptographic 3DS 2.0 liability shift verification logs.")
+
     with t_b:
-        title_b = getattr(ex_pkg.exhibit_b, "title", "Exhibit B: Carrier Logistics Proof") if ex_pkg else "Exhibit B: Carrier Logistics Proof"
-        st.markdown(f"**{title_b}**")
+        st.markdown("### Exhibit B: Physical Fulfillment & Carrier Delivery")
+        ful = obs.fulfillment
+        st.markdown(f"- **Carrier:** `{ful.carrier}` | **Tracking Reference:** `{ful.tracking_number or ful.source_record_id}`")
+        st.markdown(f"- **Delivery Status:** `{ful.courier_status}`")
+        st.markdown(f"- **Signed Proof of Delivery (POD):** `{'YES (Signed Proof Attached)' if ful.has_signed_pod else 'NO (Unsigned Delivery)'}`")
         st.caption("Carrier GPS geotagged and signed proof-of-delivery records.")
+
     with t_c:
-        title_c = getattr(ex_pkg.exhibit_c, "title", "Exhibit C: Transaction Ledger Record") if ex_pkg else "Exhibit C: Transaction Ledger Record"
-        st.markdown(f"**{title_c}**")
+        st.markdown("### Exhibit C: Merchant Order & Account Ledger")
+        cust = obs.customer_history
+        st.markdown(f"- **Transaction Amount:** `INR {obs.amount_inr:,.2f}` | **Category:** `{obs.merchant_category}`")
+        st.markdown(f"- **Card Network & Issuer:** `{obs.card_network} / {obs.issuing_bank}`")
+        st.markdown(f"- **Prior Undisputed Customer Transactions:** `{cust.prior_undisputed_txns}` settled orders")
+        st.markdown(f"- **Customer Historical Dispute Count:** `{cust.customer_past_dispute_count}` past chargebacks")
         st.caption("Core order database ledger entry and gateway authorization IDs.")
+
     with t_d:
-        title_d = getattr(ex_pkg.exhibit_d, "title", "Exhibit D: Device & Checkout Telemetry") if ex_pkg else "Exhibit D: Device & Checkout Telemetry"
-        st.markdown(f"**{title_d}**")
+        st.markdown("### Exhibit D: Session & Telemetry Proof")
+        telem = obs.telemetry
+        st.markdown(f"- **Checkout IP Geolocation Match:** `{'MATCHED (Confirmed Location)' if telem.ip_geo_match else 'MISMATCH'}`")
+        st.markdown(f"- **Device Fingerprint Profile:** `{'MATCHED (Known Hardware Profile)' if telem.device_fingerprint_match else 'UNCONFIRMED'}`")
+        st.markdown(f"- **Billing & Shipping Address Match:** `{'MATCHED (Identical Address)' if telem.billing_shipping_match else 'DIFFERENT'}`")
         st.caption("Device fingerprint and checkout IP geolocation telemetry match.")
+
     with t_e:
-        title_e = getattr(ex_pkg.exhibit_e, "title", "Exhibit E: Claim Understanding & Consistency") if ex_pkg else "Exhibit E: Claim Understanding & Consistency"
-        st.markdown(f"**{title_e}**")
+        st.markdown("### Exhibit E: Claim Understanding & Consistency (Advisory)")
+        claim_pkg = getattr(dossier, "advisory_claim_understanding", None)
+        cons_eval = getattr(dossier, "advisory_consistency_evaluation", None)
+        if claim_pkg and claim_pkg.has_structured_claim:
+            st.markdown(f"- **Primary Stated Intent:** `{claim_pkg.primary_intent.value}`")
+            st.markdown(f"- **Consistency Cross-Reference:** `{cons_eval.overall_status.value if cons_eval else 'NO_ASSESSMENT'}`")
+            st.markdown(f"- **Sanitized Customer Text:** `{obs.customer_claim.sanitized_text if obs.customer_claim else 'N/A'}`")
+        else:
+            st.info("No customer claim text submitted for advisory consistency evaluation.")
         st.caption("Advisory claim semantics isolated from analytical calculation.")
+
     with t_print:
         try:
             packet_html = DossierFormatter.to_packet_html(dossier)
@@ -791,11 +808,11 @@ Defense Dossier &bull; Structured Exhibits A–E
 
 
 # ---------------------------------------------------------------------------
-# LIGHT-RETHEMED THREE.JS WEBGL SCENES
+# ROYAL THREE.JS WEBGL SCENES
 # ---------------------------------------------------------------------------
 
-def render_hero_threejs_light():
-    hero_light_html = """
+def render_hero_threejs_royal():
+    hero_royal_html = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -827,37 +844,37 @@ try {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
     scene.add(ambientLight);
 
-    const dirLight1 = new THREE.DirectionalLight(0x4f46e5, 2.0);
+    const dirLight1 = new THREE.DirectionalLight(0x7c3aed, 2.2);
     dirLight1.position.set(10, 15, 10);
     scene.add(dirLight1);
 
     const coreGroup = new THREE.Group();
     scene.add(coreGroup);
 
-    const icoGeo = new THREE.IcosahedronGeometry(4.0, 1);
+    const icoGeo = new THREE.IcosahedronGeometry(4.2, 1);
     const icoMat = new THREE.MeshStandardMaterial({
-        color: 0x4f46e5,
-        roughness: 0.2,
-        metalness: 0.1,
+        color: 0x4c1d95,
+        roughness: 0.15,
+        metalness: 0.2,
         transparent: true,
-        opacity: 0.85,
+        opacity: 0.88,
         wireframe: true
     });
     const icoMesh = new THREE.Mesh(icoGeo, icoMat);
     coreGroup.add(icoMesh);
 
-    const nucGeo = new THREE.SphereGeometry(2.0, 32, 32);
+    const nucGeo = new THREE.SphereGeometry(2.1, 32, 32);
     const nucMat = new THREE.MeshStandardMaterial({
-        color: 0x6366f1,
-        emissive: 0x4f46e5,
-        emissiveIntensity: 0.6,
-        roughness: 0.3
+        color: 0x6d28d9,
+        emissive: 0x3b0764,
+        emissiveIntensity: 0.7,
+        roughness: 0.2
     });
     const nucleus = new THREE.Mesh(nucGeo, nucMat);
     coreGroup.add(nucleus);
 
-    const ring1Geo = new THREE.TorusGeometry(6.2, 0.06, 16, 100);
-    const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
+    const ring1Geo = new THREE.TorusGeometry(6.4, 0.08, 16, 100);
+    const ring1Mat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
     const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
     ring1.rotation.x = Math.PI / 3;
     coreGroup.add(ring1);
@@ -874,7 +891,7 @@ try {
         requestAnimationFrame(animate);
         coreGroup.rotation.y += 0.008;
         coreGroup.rotation.x += 0.004;
-        ring1.rotation.z += 0.01;
+        ring1.rotation.z += 0.012;
 
         coreGroup.rotation.y += (targetX - coreGroup.rotation.y) * 0.05;
         coreGroup.rotation.x += (targetY - coreGroup.rotation.x) * 0.05;
@@ -896,11 +913,11 @@ try {
 </body>
 </html>
 """
-    components.html(hero_light_html, height=320, scrolling=False)
+    components.html(hero_royal_html, height=320, scrolling=False)
 
 
-def render_pipeline_threejs_light():
-    pipeline_light_html = """
+def render_pipeline_threejs_royal():
+    pipeline_royal_html = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -932,18 +949,18 @@ try {
     const ambient = new THREE.AmbientLight(0xffffff, 1.4);
     scene.add(ambient);
 
-    const dirLight = new THREE.DirectionalLight(0x4f46e5, 1.5);
+    const dirLight = new THREE.DirectionalLight(0x7c3aed, 1.8);
     dirLight.position.set(0, 10, 15);
     scene.add(dirLight);
 
     const stages = [
-        { name: "01 INTAKE", x: -15, color: 0x4f46e5 },
-        { name: "02 EVIDENCE", x: -10, color: 0x10b981 },
-        { name: "03 ML MODEL", x: -5, color: 0x4f46e5 },
-        { name: "04 TREESHAP", x: 0, color: 0x6366f1 },
-        { name: "05 ECONOMICS", x: 5, color: 0x10b981 },
-        { name: "06 5 GATES", x: 10, color: 0x4f46e5 },
-        { name: "07 VERDICT", x: 15, color: 0x059669 }
+        { name: "01 INTAKE", x: -15, color: 0x4c1d95 },
+        { name: "02 EVIDENCE", x: -10, color: 0x059669 },
+        { name: "03 ML MODEL", x: -5, color: 0x6d28d9 },
+        { name: "04 TREESHAP", x: 0, color: 0xf59e0b },
+        { name: "05 ECONOMICS", x: 5, color: 0x059669 },
+        { name: "06 5 GATES", x: 10, color: 0x4c1d95 },
+        { name: "07 VERDICT", x: 15, color: 0x10b981 }
     ];
 
     const nodeMeshes = [];
@@ -952,7 +969,7 @@ try {
         const mat = new THREE.MeshStandardMaterial({
             color: stg.color,
             roughness: 0.2,
-            metalness: 0.1
+            metalness: 0.2
         });
         const mesh = new THREE.Mesh(geo, mat);
         mesh.position.set(stg.x, Math.sin(idx * 0.8) * 1.2, 0);
@@ -963,7 +980,7 @@ try {
     const curvePoints = nodeMeshes.map(m => m.position);
     const curve = new THREE.CatmullRomCurve3(curvePoints);
     const tubeGeo = new THREE.TubeGeometry(curve, 80, 0.08, 8, false);
-    const tubeMat = new THREE.MeshBasicMaterial({ color: 0xc7d2fe, transparent: true, opacity: 0.6 });
+    const tubeMat = new THREE.MeshBasicMaterial({ color: 0xd8b4fe, transparent: true, opacity: 0.6 });
     const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
     scene.add(tubeMesh);
 
@@ -971,7 +988,7 @@ try {
     const packetMeshes = [];
     for (let i = 0; i < packetCount; i++) {
         const pGeo = new THREE.SphereGeometry(0.3, 16, 16);
-        const pMat = new THREE.MeshBasicMaterial({ color: 0x4f46e5 });
+        const pMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
         const pMesh = new THREE.Mesh(pGeo, pMat);
         scene.add(pMesh);
         packetMeshes.push({ mesh: pMesh, progress: (i / packetCount) });
@@ -1008,7 +1025,7 @@ try {
 </body>
 </html>
 """
-    components.html(pipeline_light_html, height=260, scrolling=False)
+    components.html(pipeline_royal_html, height=260, scrolling=False)
 
 
 # ---------------------------------------------------------------------------
@@ -1056,15 +1073,15 @@ if st.session_state["app_mode"] == "🌟 Product Overview & Landing":
     with h_col1:
         st.markdown("""<div class="syvora-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 <div>
-<div class="badge-indigo" style="display: inline-block; margin-bottom: 12px;">PAYMENT DISPUTE INTELLIGENCE</div>
+<div class="badge-purple" style="display: inline-block; margin-bottom: 12px;">PAYMENT DISPUTE INTELLIGENCE</div>
 
 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 800; color: #0F172A; line-height: 1.15; margin: 0 0 14px 0;">
 Turn payment disputes into decisions you can defend.
 </h2>
 
 <!-- CORE POSITIONING STATEMENT (MANDATORY IN HERO) -->
-<div style="background: #EEF2FF; border-left: 4px solid #4F46E5; padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 16px;">
-<p style="font-size: 0.98rem; font-weight: 700; color: #1E1B4B; line-height: 1.5; margin: 0;">
+<div style="background: #F3E8FF; border-left: 4px solid #7C3AED; padding: 14px 18px; border-radius: 0 10px 10px 0; margin-bottom: 16px;">
+<p style="font-size: 0.98rem; font-weight: 700; color: #3B0764; line-height: 1.5; margin: 0;">
 &ldquo;Razorpay helps businesses move money. SYVORA helps businesses decide what to do when that money is disputed.&rdquo;
 </p>
 </div>
@@ -1075,7 +1092,7 @@ SYVORA evaluates 41 multi-modal evidence signals across 4 forensic tiers to comp
 </div>
 </div>""", unsafe_allow_html=True)
     with h_col2:
-        render_hero_threejs_light()
+        render_hero_threejs_royal()
 
     # Working CTAs
     c1, c2, c3 = st.columns(3)
@@ -1112,7 +1129,7 @@ Traditional chargeback operations trap merchants in three costly, sub-optimal pa
 <div style="font-size: 0.8rem; color: #475569; margin-top: 4px; line-height: 1.4;">Human analyst backlogs lead to missed 7-day network deadlines and inconsistent subjective decisions.</div>
 </div>
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px;">
-<div style="font-weight: 700; color: #4338CA; font-size: 0.9rem;">3. Passive Surrender</div>
+<div style="font-weight: 700; color: #4C1D95; font-size: 0.9rem;">3. Passive Surrender</div>
 <div style="font-size: 0.8rem; color: #475569; margin-top: 4px; line-height: 1.4;">Automatically refunding surrenders 100% of revenue even when cryptographic 3DS and signed carrier POD exist.</div>
 </div>
 </div>
@@ -1120,7 +1137,7 @@ Traditional chargeback operations trap merchants in three costly, sub-optimal pa
 
     # SECTION 3: THE PIPELINE
     st.markdown("""<div class="syvora-card">
-<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">SECTION 03 &bull; THE INTELLIGENCE PIPELINE</div>
+<div class="badge-purple" style="display: inline-block; margin-bottom: 8px;">SECTION 03 &bull; THE INTELLIGENCE PIPELINE</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 6px 0;">
 From raw telemetry to calibrated verdict.
 </h3>
@@ -1128,7 +1145,7 @@ From raw telemetry to calibrated verdict.
 Transparent 6-stage pipeline with strict separation of analytical intelligence and qualitative advisory signals:
 </p>
 </div>""", unsafe_allow_html=True)
-    render_pipeline_threejs_light()
+    render_pipeline_threejs_royal()
 
     # SECTION 4: THREE DECISION OUTCOMES (REAL ENGINE CALCULATIONS)
     scen_a_raw = {
@@ -1181,7 +1198,7 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
 <div>P(Win): <strong style="color: #059669;">{d_a.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>E[EV]: <strong style="color: #059669;">+₹{d_a.analytical_evidence.expected_value_inr:,.2f}</strong></div>
-<div>Readiness: <strong style="color: #4338CA;">{d_a.analytical_evidence.evidence_readiness_score}/100</strong></div>
+<div>Readiness: <strong style="color: #4C1D95;">{d_a.analytical_evidence.evidence_readiness_score}/100</strong></div>
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -1195,7 +1212,7 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
 <div>P(Win): <strong style="color: #DC2626;">{d_b.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>E[EV]: <strong style="color: #DC2626;">₹{d_b.analytical_evidence.expected_value_inr:,.2f}</strong></div>
-<div>Readiness: <strong style="color: #4338CA;">{d_b.analytical_evidence.evidence_readiness_score}/100</strong></div>
+<div>Readiness: <strong style="color: #4C1D95;">{d_b.analytical_evidence.evidence_readiness_score}/100</strong></div>
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -1203,12 +1220,12 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
         st.markdown(f"""<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-top: 3.5px solid #F59E0B; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #D97706; font-size: 1.1rem;">REVIEW</span>
-<span class="badge-indigo">MANDATORY HITL</span>
+<span class="badge-gold">MANDATORY HITL</span>
 </div>
 <div style="font-size: 0.78rem; color: #475569; margin-bottom: 12px;">Human-in-the-loop triage triggered for high GMV (>₹25k) or urgent deadlines (≤3d).</div>
 <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
 <div>P(Win): <strong style="color: #059669;">{d_d.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
-<div>Amount: <strong style="color: #4338CA;">₹35,000.00</strong></div>
+<div>Amount: <strong style="color: #4C1D95;">₹35,000.00</strong></div>
 <div>Policy Gate: <strong style="color: #D97706;">GMV &gt; ₹25,000</strong></div>
 </div>
 </div>""", unsafe_allow_html=True)
@@ -1235,7 +1252,7 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
     ev_diff = abs(ana_clean.expected_value_inr - ana_injected.expected_value_inr)
 
     st.markdown(f"""<div class="syvora-card">
-<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">SECTION 07 &bull; ADVERSARIAL HARDENING</div>
+<div class="badge-purple" style="display: inline-block; margin-bottom: 8px;">SECTION 07 &bull; ADVERSARIAL HARDENING</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 6px 0;">
 Live Mathematical Invariance Proof
 </h3>
@@ -1260,7 +1277,7 @@ P(Win): {ana_injected.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_inje
 </div>
 </div>
 
-<div style="background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 8px; padding: 10px 14px; font-family: monospace; font-size: 0.8rem; font-weight: 700; color: #1E1B4B;">
+<div style="background: #F3E8FF; border: 1px solid #D8B4FE; border-radius: 8px; padding: 10px 14px; font-family: monospace; font-size: 0.8rem; font-weight: 700; color: #3B0764;">
 🛡️ INVARIANCE PROOF: Δ P(Win) = {p_diff:.4f}% &bull; Δ E[EV] = ₹{ev_diff:.2f} (100% INVARIANT)
 </div>
 </div>""", unsafe_allow_html=True)
@@ -1272,7 +1289,7 @@ P(Win): {ana_injected.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_inje
 
 elif st.session_state["app_mode"] == "❓ Why SYVORA? (Product Story)":
     st.markdown("""<div class="syvora-card">
-<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">PRODUCT STORY &bull; ARCHITECTURAL PILLARS</div>
+<div class="badge-purple" style="display: inline-block; margin-bottom: 8px;">PRODUCT STORY &bull; ARCHITECTURAL PILLARS</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 8px 0;">
 Payment disputes are not simply yes-or-no decisions.
 </h3>
@@ -1284,7 +1301,7 @@ Traditional dispute management forces merchants to either blindly contest every 
     d_col1, d_col2 = st.columns(2)
     with d_col1:
         st.markdown("""<div class="syvora-card" style="height: 100%;">
-<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">01 &bull; DECISION INTELLIGENCE</div>
+<div class="badge-purple" style="display: inline-block; margin-bottom: 8px;">01 &bull; DECISION INTELLIGENCE</div>
 <div style="font-weight: 800; font-size: 1.05rem; color: #0F172A; margin-bottom: 6px;">Bayesian Expected Value &gt; Binary Thresholds</div>
 <div style="font-size: 0.82rem; color: #475569; line-height: 1.5;">
 Rather than guessing with a static risk score, SYVORA computes mathematical Expected Value: <code>E[EV] = P(Win) &times; Amount - (1 - P(Win)) &times; Fee</code>. Only positive-EV disputes are defended.
@@ -1323,9 +1340,9 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
         with s_col_ui:
             is_active = (cur_step == s_num)
             st.markdown(f"""<div class="{'scenario-card-active' if is_active else 'scenario-card-inactive'}" style="margin-bottom: 8px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#4338CA' if is_active else '#0F172A'};">{s_title}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#4C1D95' if is_active else '#0F172A'};">{s_title}</div>
 <div style="font-size: 0.72rem; color: #64748B; margin-top: 2px;">{s_sub}</div>
-{'<span class="badge-indigo" style="display: inline-block; margin-top: 6px;">● ACTIVE STEP ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
+{'<span class="badge-purple" style="display: inline-block; margin-top: 6px;">● ACTIVE STEP ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
 </div>""", unsafe_allow_html=True)
             if st.button(f"SELECT STEP {s_num}", key=f"btn_step_{s_num}", type="primary" if is_active else "secondary", use_container_width=True):
                 st.session_state["demo_step"] = s_num
@@ -1346,6 +1363,7 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
         render_kpi_stat_row(dos_a.observed_evidence, dos_a.analytical_evidence)
         render_interactive_policy_and_shap_charts(dos_a.observed_evidence, dos_a.analytical_evidence)
         render_policy_gate_summary(dos_a.observed_evidence, dos_a.analytical_evidence)
+        render_dossier_exhibits_accordion(dos_a)
 
     elif cur_step == 2:
         scen_b_data = {
@@ -1360,6 +1378,7 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
         render_kpi_stat_row(dos_b.observed_evidence, dos_b.analytical_evidence)
         render_interactive_policy_and_shap_charts(dos_b.observed_evidence, dos_b.analytical_evidence)
         render_policy_gate_summary(dos_b.observed_evidence, dos_b.analytical_evidence)
+        render_dossier_exhibits_accordion(dos_b)
 
     elif cur_step == 3:
         scen_c_base = {
@@ -1374,6 +1393,7 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
         render_kpi_stat_row(dos_c_injected.observed_evidence, dos_c_injected.analytical_evidence)
         render_interactive_policy_and_shap_charts(dos_c_injected.observed_evidence, dos_c_injected.analytical_evidence)
         render_policy_gate_summary(dos_c_injected.observed_evidence, dos_c_injected.analytical_evidence)
+        render_dossier_exhibits_accordion(dos_c_injected)
 
     elif cur_step == 4:
         scen_d_data = {
@@ -1388,6 +1408,7 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
         render_kpi_stat_row(dos_d.observed_evidence, dos_d.analytical_evidence)
         render_interactive_policy_and_shap_charts(dos_d.observed_evidence, dos_d.analytical_evidence)
         render_policy_gate_summary(dos_d.observed_evidence, dos_d.analytical_evidence)
+        render_dossier_exhibits_accordion(dos_d)
 
 
 # ===========================================================================
@@ -1395,31 +1416,40 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "⚡ Live Dispute Triage & Forensics":
+    dispute_ids = test_df["dispute_id"].tolist()
+
+    if "selected_triage_id" not in st.session_state or st.session_state["selected_triage_id"] not in dispute_ids:
+        st.session_state["selected_triage_id"] = dispute_ids[0]
+
     col_sel1, col_sel2 = st.columns([2, 1])
-    with col_sel1:
-        dispute_ids = test_df["dispute_id"].tolist()
-        selected_id = st.selectbox("Select Held-Out Test Case File:", dispute_ids, index=0)
-        dispute_row = test_df[test_df["dispute_id"] == selected_id].iloc[0].to_dict()
 
     with col_sel2:
         st.markdown("**Filter Presets:**")
         col_p1, col_p2, col_p3 = st.columns(3)
-        if col_p1.button("🟢 High Win"):
+        if col_p1.button("🟢 High Win", use_container_width=True):
             match = test_df[(test_df["courier_status"] == "DELIVERED") & (test_df["signed_pod"] == True)]
             if len(match) > 0:
-                selected_id = match.iloc[0]["dispute_id"]
-                dispute_row = match.iloc[0].to_dict()
-        if col_p2.button("🟡 High $"):
+                st.session_state["selected_triage_id"] = match.iloc[0]["dispute_id"]
+                st.rerun()
+        if col_p2.button("🟡 High $", use_container_width=True):
             match = test_df[test_df["txn_amount_inr"] > 25000]
             if len(match) > 0:
-                selected_id = match.iloc[0]["dispute_id"]
-                dispute_row = match.iloc[0].to_dict()
-        if col_p3.button("🔴 Low EV"):
+                st.session_state["selected_triage_id"] = match.iloc[0]["dispute_id"]
+                st.rerun()
+        if col_p3.button("🔴 Low EV", use_container_width=True):
             match = test_df[test_df["courier_status"] == "RETURNED"]
             if len(match) > 0:
-                selected_id = match.iloc[0]["dispute_id"]
-                dispute_row = match.iloc[0].to_dict()
+                st.session_state["selected_triage_id"] = match.iloc[0]["dispute_id"]
+                st.rerun()
 
+    with col_sel1:
+        current_idx = dispute_ids.index(st.session_state["selected_triage_id"])
+        chosen_id = st.selectbox("Select Held-Out Test Case File:", dispute_ids, index=current_idx)
+        if chosen_id != st.session_state["selected_triage_id"]:
+            st.session_state["selected_triage_id"] = chosen_id
+            st.rerun()
+
+    dispute_row = test_df[test_df["dispute_id"] == st.session_state["selected_triage_id"]].iloc[0].to_dict()
     operational_payload = {k: v for k, v in dispute_row.items() if k != "dispute_outcome"}
     dossier = assembler.build_dossier(operational_payload)
     obs = dossier.observed_evidence
@@ -1475,9 +1505,9 @@ elif st.session_state["app_mode"] == "📝 Manual Case Intake":
         with sc_col:
             is_active = (active_scen == sc_key)
             st.markdown(f"""<div class="{'scenario-card-active' if is_active else 'scenario-card-inactive'}" style="margin-bottom: 8px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#4338CA' if is_active else '#0F172A'};">Scenario {sc_key}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#4C1D95' if is_active else '#0F172A'};">Scenario {sc_key}</div>
 <div style="font-size: 0.72rem; color: #64748B; margin-top: 2px;">{sc_info['name']}</div>
-{'<span class="badge-indigo" style="display: inline-block; margin-top: 6px;">● ACTIVE SCENARIO ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
+{'<span class="badge-purple" style="display: inline-block; margin-top: 6px;">● ACTIVE SCENARIO ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
 </div>""", unsafe_allow_html=True)
             if st.button(f"LOAD SCENARIO {sc_key}", key=f"btn_scen_{sc_key}", type="primary" if is_active else "secondary", use_container_width=True):
                 st.session_state["active_scenario"] = sc_key
@@ -1573,7 +1603,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 <span>ROC-AUC Discriminative</span>
 <span class="badge-green">+11.8% vs Base</span>
 </div>
-<div class="kpi-stat-value" style="color: #4338CA;">{roc_auc_val:.4f}</div>
+<div class="kpi-stat-value" style="color: #4C1D95;">{roc_auc_val:.4f}</div>
 <p class="kpi-footnote">Overall ranking separation</p>
 </div>""", unsafe_allow_html=True)
 
@@ -1583,7 +1613,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 <span>Calibrated Brier Score</span>
 <span class="badge-green">-24.1% Error</span>
 </div>
-<div class="kpi-stat-value" style="color: #E11D48;">{brier_val:.4f}</div>
+<div class="kpi-stat-value" style="color: #DC2626;">{brier_val:.4f}</div>
 <p class="kpi-footnote">Empirical reliability metric</p>
 </div>""", unsafe_allow_html=True)
 
@@ -1639,7 +1669,7 @@ Cumulative Net P&amp;L: SYVORA vs Always Contest
 
             if go is not None:
                 fig_line = go.Figure()
-                fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#4F46E5', width=3)))
+                fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#7C3AED', width=3)))
                 fig_line.add_trace(go.Scatter(x=x_pts, y=blind_pnl, mode='lines', name='Always Contest Baseline', line=dict(color='#94A3B8', width=2, dash='dash')))
 
                 fig_line.update_layout(
@@ -1676,7 +1706,11 @@ CHAIN INTEGRITY STATUS: {'VERIFIED &bull; ZERO TAMPERING DETECTED' if is_valid e
 </div>""", unsafe_allow_html=True)
 
     if audit_ledger.entries:
-        st.dataframe(pd.DataFrame([e.dict() if hasattr(e, "dict") else e.__dict__ for e in audit_ledger.entries]), use_container_width=True)
+        rows = []
+        for e in audit_ledger.entries:
+            row_dict = e.model_dump() if hasattr(e, "model_dump") else (e.dict() if hasattr(e, "dict") else e.__dict__)
+            rows.append(row_dict)
+        st.dataframe(pd.DataFrame(rows), use_container_width=True)
     else:
         st.caption("No audit entries currently in ledger.")
 
