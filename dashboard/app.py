@@ -1,15 +1,16 @@
 """
-SYVORA — Payment Dispute Intelligence Dashboard
-================================================
-Stripe-Density Design System & Left Sidebar Navigation (v7)
+SYVORA — Payment Dispute Intelligence Console
+==============================================
+Autonomous dispute triage, Bayesian Expected Value analysis,
+TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
 
-Deterministic decision engine underneath a precision Stripe-density fintech dashboard:
-- Left sidebar navigation with clear high-contrast active state
-- Clean white card surfaces, subtle 1px borders, soft neutral shadows
-- High-density KPI stat cards with trend badges (+% / -%) and muted captions
-- Interactive Plotly ring/donut & comparison charts
-- Light-rethemed WebGL Three.js interactive scenes
-- Strict adversarial input quarantine & SHA-256 audit chain ledger
+Features:
+- Floating Top Navigation Bar with high-contrast active states
+- Premium modern color palette (Cobalt, Indigo, Emerald, Amber, Crimson)
+- High-density KPI cards with trend indicators
+- Interactive TreeSHAP and Policy Gate charts
+- Re-themed 3D WebGL Three.js interactive scenes
+- Strict adversarial input quarantine & SHA-256 audit ledger
 
 DISCLAIMER:
 All data, metrics, and simulations are based on synthetic simulation records.
@@ -23,6 +24,7 @@ import hashlib
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 import pandas as pd
+import numpy as np
 try:
     import plotly.graph_objects as go
 except ImportError:
@@ -44,25 +46,25 @@ from src.security.audit import AuditLedger
 from src.security.sanitizer import InputSanitizer
 
 # ---------------------------------------------------------------------------
-# Page Configuration & Stripe-Density Design System
+# Page Configuration & Master Top-Nav CSS
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
     page_title="SYVORA — Payment Dispute Intelligence",
     page_icon="🛡️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# Master CSS: Stripe-Density White Surfaces, Neutral Shadows, Indigo Identity
+# Master CSS: Premium Modern Top Navigation & Vivid Clean Theme
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&family=Syncopate:wght@700;800&display=swap');
 
 /* Master Global Reset & Typography */
 html, body, p, div, h1, h2, h3, h4, h5, h6, label, input, select, textarea {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.012em;
 }
 
 [data-testid="stIconMaterial"],
@@ -83,9 +85,20 @@ code, pre, .mono, [class*="stCode"] {
     font-family: 'JetBrains Mono', monospace !important;
 }
 
-/* Crisp Clean Neutral App Base */
+/* Hide Sidebar Completely */
+section[data-testid="stSidebar"],
+[data-testid="collapsedControl"] {
+    display: none !important;
+}
+
+/* App Background: Clean Modern Slate Canvas */
 .stApp {
-    background-color: #FAFBFC !important;
+    background-color: #F8FAFC !important;
+    background-image:
+        radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 15%, rgba(14, 165, 233, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 50%) !important;
+    background-attachment: fixed !important;
     color: #0F172A !important;
 }
 
@@ -97,180 +110,182 @@ header[data-testid="stHeader"] {
 .block-container {
     padding-top: 1.25rem !important;
     padding-bottom: 4rem !important;
-    padding-left: clamp(1rem, 2.5vw, 2.5rem) !important;
-    padding-right: clamp(1rem, 2.5vw, 2.5rem) !important;
+    padding-left: clamp(1rem, 3vw, 3rem) !important;
+    padding-right: clamp(1rem, 3vw, 3rem) !important;
     max-width: 1560px !important;
 }
 
 /* =========================================================================
-   SIDEBAR NAVIGATION SYSTEM (Stripe / Sales Dteck Style)
+   PREMIUM FLOATING TOP HEADER & COMMAND BAR
    ========================================================================= */
-section[data-testid="stSidebar"] {
-    background-color: #FFFFFF !important;
-    border-right: 1px solid #E2E8F0 !important;
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.02) !important;
-    padding-top: 0.5rem !important;
-    width: 280px !important;
-}
-
-section[data-testid="stSidebar"] .block-container {
-    padding-top: 1rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-}
-
-/* Sidebar Brand Header */
-.sidebar-brand-box {
-    padding: 12px 14px 18px 14px;
-    border-bottom: 1px solid #F1F5F9;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.sidebar-logo-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #4F46E5 0%, #4338CA 100%);
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
-}
-.sidebar-brand-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: #0F172A;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-}
-.sidebar-brand-sub {
-    font-size: 0.68rem;
-    color: #64748B;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-}
-
-/* High-Contrast Sidebar Navigation Radio Items */
-section[data-testid="stSidebar"] div[data-testid="stRadio"] > div {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 4px !important;
-    background: transparent !important;
-    padding: 0 !important;
-}
-
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label {
-    background: transparent !important;
-    border-radius: 10px !important;
-    padding: 10px 14px !important;
-    border: 1px solid transparent !important;
-    border-left: 3px solid transparent !important;
-    transition: all 0.18s ease-in-out !important;
-    cursor: pointer !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-}
-
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover {
-    background: #F1F5F9 !important;
-    transform: translateX(2px) !important;
-}
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label:hover p {
-    color: #0F172A !important;
-}
-
-/* Sidebar Active Nav Item: Left Accent Bar + Tinted Pill (Sales Dteck Pattern) */
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label:has(input:checked),
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] {
-    background: #EEF2FF !important;
-    border-color: #C7D2FE !important;
-    border-left: 3.5px solid #4F46E5 !important;
-    box-shadow: 0 1px 3px rgba(79, 70, 229, 0.08) !important;
-}
-
-section[data-testid="stSidebar"] div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
-    display: none !important;
-}
-
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label p {
-    font-size: 0.84rem !important;
-    font-weight: 600 !important;
-    color: #475569 !important;
-    letter-spacing: -0.01em !important;
-    transition: all 0.18s ease !important;
-    margin: 0 !important;
-}
-
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label:has(input:checked) p,
-section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="true"] p {
-    color: #4338CA !important;
-    font-weight: 700 !important;
-}
-
-/* Sidebar Status Summary Card */
-.sidebar-status-box {
-    margin-top: 24px;
-    padding: 14px 16px;
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
-    border-radius: 12px;
-}
-
-/* =========================================================================
-   STRIPE-DENSITY CARDS & PANELS
-   ========================================================================= */
-.stripe-card {
+.top-nav-container {
     background: #FFFFFF;
     border: 1px solid #E2E8F0;
-    border-radius: 14px;
-    padding: 22px 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 18px -4px rgba(15, 23, 42, 0.03);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    border-radius: 18px;
+    padding: 16px 24px;
     margin-bottom: 1.25rem;
-    position: relative;
-}
-.stripe-card:hover {
-    border-color: #CBD5E1;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 10px 24px -4px rgba(15, 23, 42, 0.06);
-}
-
-/* Top Page Header Bar */
-.stripe-page-header {
+    box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+}
+.top-nav-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #1D4ED8, #4F46E5, #06B6D4, #10B981, #E11D48);
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
     gap: 12px;
-    padding-bottom: 16px;
-    margin-bottom: 18px;
-    border-bottom: 1px solid #E2E8F0;
 }
-.stripe-header-title {
+.brand-logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1E40AF 0%, #4338CA 50%, #4F46E5 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+}
+.brand-title-text {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.45rem;
-    font-weight: 800;
-    color: #0F172A;
+    font-size: 1.4rem;
+    font-weight: 900;
     letter-spacing: -0.02em;
-    margin: 0;
+    color: #0F172A;
+    line-height: 1.1;
 }
-.stripe-header-sub {
-    font-size: 0.82rem;
+.brand-sub-text {
+    font-size: 0.72rem;
     color: #64748B;
-    margin-top: 2px;
-    font-weight: 500;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 /* =========================================================================
-   KPI / STAT CARDS (Stripe / Sales Dteck Pattern)
+   HORIZONTAL TOP SEGMENTED NAVIGATION DOCK (STYLISH & PROMINENT)
    ========================================================================= */
-.kpi-card-stripe {
+div[data-testid="stRadio"] > div {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 16px !important;
+    padding: 6px 10px !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+div[data-testid="stRadio"] label {
+    background: transparent !important;
+    border-radius: 10px !important;
+    padding: 8px 16px !important;
+    border: 1px solid transparent !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+}
+
+div[data-testid="stRadio"] label:hover {
+    background: #EEF2FF !important;
+    border-color: #C7D2FE !important;
+    transform: translateY(-1px) !important;
+}
+
+div[data-testid="stRadio"] label:hover p {
+    color: #4338CA !important;
+}
+
+/* Active Nav Pill: Bold Indigo/Cobalt Gradient with White Text */
+div[data-testid="stRadio"] label:has(input:checked),
+div[data-testid="stRadio"] label[data-checked="true"] {
+    background: linear-gradient(135deg, #1E40AF 0%, #3730A3 50%, #4F46E5 100%) !important;
+    border: 1px solid #1E40AF !important;
+    box-shadow: 0 4px 14px rgba(67, 56, 202, 0.32) !important;
+    transform: translateY(-1px) !important;
+}
+
+div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
+    display: none !important;
+}
+
+div[data-testid="stRadio"] label p {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+    letter-spacing: -0.01em !important;
+    transition: color 0.15s ease !important;
+}
+
+div[data-testid="stRadio"] label:has(input:checked) p,
+div[data-testid="stRadio"] label[data-checked="true"] p {
+    color: #FFFFFF !important;
+}
+
+/* Status Chips with Animated Pulses */
+@keyframes pulseGreen {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+@keyframes pulseIndigo {
+    0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.6); }
+    70% { box-shadow: 0 0 0 6px rgba(79, 70, 229, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.pill-online { background: #ECFDF5; color: #047857; border: 1.5px solid #059669; }
+.pill-demo   { background: #EEF2FF; color: #1E1B4B; border: 1.5px solid #4338CA; }
+.pill-audit  { background: #FFF1F2; color: #881337; border: 1.5px solid #E11D48; }
+
+.dot-green { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: pulseGreen 2s infinite; }
+.dot-indigo { width: 8px; height: 8px; border-radius: 50%; background: #4F46E5; animation: pulseIndigo 2s infinite; }
+
+/* =========================================================================
+   CARDS & KPI SURFACES
+   ========================================================================= */
+.syvora-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 24px 26px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 12px 24px -4px rgba(15, 23, 42, 0.04);
+    margin-bottom: 1.25rem;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.syvora-card:hover {
+    border-color: #CBD5E1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 16px 32px -4px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-tile {
     background: #FFFFFF;
     border: 1px solid #E2E8F0;
     border-radius: 14px;
@@ -281,7 +296,7 @@ section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="
     flex-direction: column;
     justify-content: space-between;
 }
-.kpi-label {
+.kpi-title {
     font-size: 0.76rem;
     font-weight: 700;
     color: #64748B;
@@ -292,68 +307,34 @@ section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="
     justify-content: space-between;
     align-items: center;
 }
-.kpi-value-row {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 6px;
-}
-.kpi-number {
+.kpi-stat-value {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.85rem;
     font-weight: 800;
     color: #0F172A;
     letter-spacing: -0.03em;
-    line-height: 1;
+    line-height: 1.1;
+    margin-bottom: 6px;
 }
-.kpi-caption {
+.kpi-footnote {
     font-size: 0.74rem;
     color: #64748B;
     font-weight: 500;
     margin: 0;
 }
 
-/* Strict Metric Badges: Green/Red ONLY for metric changes */
-.metric-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-}
-.metric-badge-green {
-    background: #ECFDF5;
-    color: #059669;
-    border: 1px solid #A7F3D0;
-}
-.metric-badge-red {
-    background: #FEF2F2;
-    color: #DC2626;
-    border: 1px solid #FECACA;
-}
-.metric-badge-neutral {
-    background: #F1F5F9;
-    color: #475569;
-    border: 1px solid #E2E8F0;
-}
-.metric-badge-indigo {
-    background: #EEF2FF;
-    color: #4338CA;
-    border: 1px solid #C7D2FE;
-}
+/* Metric Badges */
+.badge-green { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-red   { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-indigo{ background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
 
-/* =========================================================================
-   TACTILE HIGH-CONTRAST SELECTION SYSTEM
-   ========================================================================= */
+/* Scenario Selection Cards */
 .scenario-card-active {
     background: #EEF2FF !important;
     border: 2px solid #4F46E5 !important;
     border-radius: 12px;
     padding: 16px 18px;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.12) !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.14) !important;
 }
 .scenario-card-inactive {
     background: #FFFFFF;
@@ -363,7 +344,7 @@ section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="
     transition: all 0.15s ease;
 }
 .scenario-card-inactive:hover {
-    border-color: #94A3B8;
+    border-color: #818CF8;
     background: #F8FAFC;
     transform: translateY(-1px);
 }
@@ -374,7 +355,7 @@ section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="
     font-weight: 700 !important;
     font-size: 0.82rem !important;
     letter-spacing: -0.01em !important;
-    padding: 0.6rem 1.25rem !important;
+    padding: 0.65rem 1.4rem !important;
     transition: all 0.16s ease !important;
     background: #FFFFFF !important;
     border: 1px solid #CBD5E1 !important;
@@ -383,21 +364,19 @@ section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-checked="
 }
 .stButton>button:hover {
     background: #F8FAFC !important;
-    border-color: #94A3B8 !important;
-    color: #0F172A !important;
+    border-color: #818CF8 !important;
+    color: #4F46E5 !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
 }
 .stButton>button[kind="primary"] {
-    background: #4F46E5 !important;
-    border: 1px solid #4338CA !important;
+    background: linear-gradient(135deg, #1E40AF 0%, #4338CA 50%, #4F46E5 100%) !important;
+    border: 1px solid #1E40AF !important;
     color: #FFFFFF !important;
-    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3) !important;
+    box-shadow: 0 2px 8px rgba(67, 56, 202, 0.3) !important;
 }
 .stButton>button[kind="primary"]:hover {
-    background: #4338CA !important;
-    border-color: #3730A3 !important;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4) !important;
+    box-shadow: 0 4px 14px rgba(67, 56, 202, 0.45) !important;
     transform: translateY(-1px) !important;
     color: #FFFFFF !important;
 }
@@ -482,20 +461,31 @@ def get_obs_past_disputes(obs: Any) -> int:
 def get_ana_triggers(ana: Any) -> List[str]:
     return getattr(ana, "policy_gate_triggers", getattr(ana, "policy_rules_triggered", []))
 
-
 # ---------------------------------------------------------------------------
-# Reusable Stripe-Density UI Components
+# Reusable Modular UI Components
 # ---------------------------------------------------------------------------
 
-def render_page_header(title: str, subtitle: str, badge_text: str = "OFFLINE DEMO"):
-    st.markdown(f"""<div class="stripe-page-header">
+def render_top_brand_bar(subtitle: str = "Payment Dispute Intelligence Console", badge_tag: str = "OFFLINE DEMO"):
+    st.markdown(f"""<div class="top-nav-container">
+<div class="brand-badge">
+<div class="brand-logo-icon">🛡️</div>
 <div>
-<h1 class="stripe-header-title">{title}</h1>
-<div class="stripe-header-sub">{subtitle}</div>
+<div class="brand-title-text">SYVORA</div>
+<div class="brand-sub-text">{subtitle}</div>
 </div>
-<div style="display: flex; gap: 8px; align-items: center;">
-<span class="metric-badge metric-badge-green">● CORE ONLINE</span>
-<span class="metric-badge metric-badge-indigo">{badge_text}</span>
+</div>
+<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+<div class="status-pill pill-online">
+<span class="dot-green"></span>
+<span>CORE ONLINE (115/115 TESTS)</span>
+</div>
+<div class="status-pill pill-demo">
+<span class="dot-indigo"></span>
+<span>{badge_tag}</span>
+</div>
+<div class="status-pill pill-audit">
+<span>SHA-256 LEDGER READY</span>
+</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -511,65 +501,55 @@ def render_kpi_stat_row(obs: Any, ana: Any):
     c1, c2, c3, c4, c5 = st.columns(5)
 
     with c1:
-        st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+        st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>Calibrated P(Win)</span>
-<span class="metric-badge {'metric-badge-green' if p_win >= tau else 'metric-badge-red'}">{'+' if p_win >= tau else ''}{(p_win - tau):.1%} vs τ*</span>
+<span class="{'badge-green' if p_win >= tau else 'badge-red'}">{'+' if p_win >= tau else ''}{(p_win - tau):.1%} vs τ*</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{p_win:.1%}</span>
-</div>
-<p class="kpi-caption">Isotonic calibrated probability</p>
+<div class="kpi-stat-value" style="color: #059669;">{p_win:.1%}</div>
+<p class="kpi-footnote">Isotonic calibrated probability</p>
 </div>""", unsafe_allow_html=True)
 
     with c2:
         ev_sign = "+" if ev >= 0 else "-"
-        st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+        st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>Expected Return E[EV]</span>
-<span class="metric-badge {'metric-badge-green' if ev >= 0 else 'metric-badge-red'}">{ev_sign}₹{abs(ev):,.0f}</span>
+<span class="{'badge-green' if ev >= 0 else 'badge-red'}">{ev_sign}₹{abs(ev):,.0f}</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{ev_sign}₹{abs(ev):,.0f}</span>
-</div>
-<p class="kpi-caption">Fee-adjusted Bayesian return</p>
+<div class="kpi-stat-value" style="color: {'#059669' if ev >= 0 else '#DC2626'};">{ev_sign}₹{abs(ev):,.0f}</div>
+<p class="kpi-footnote">Fee-adjusted Bayesian return</p>
 </div>""", unsafe_allow_html=True)
 
     with c3:
-        st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+        st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>Break-Even (τ*)</span>
-<span class="metric-badge metric-badge-neutral">Min Viable</span>
+<span class="badge-indigo">Min Viable</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{tau:.1%}</span>
-</div>
-<p class="kpi-caption">Fee / (Amount + Fee)</p>
+<div class="kpi-stat-value" style="color: #4338CA;">{tau:.1%}</div>
+<p class="kpi-footnote">Fee / (Amount + Fee)</p>
 </div>""", unsafe_allow_html=True)
 
     with c4:
-        st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+        st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>Readiness Score</span>
-<span class="metric-badge {'metric-badge-green' if readiness >= 60 else 'metric-badge-red'}">{readiness}/100</span>
+<span class="{'badge-green' if readiness >= 60 else 'badge-red'}">{readiness}/100</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{readiness}</span>
-</div>
-<p class="kpi-caption">Exhibit packet completeness</p>
+<div class="kpi-stat-value" style="color: #4F46E5;">{readiness}</div>
+<p class="kpi-footnote">Exhibit packet completeness</p>
 </div>""", unsafe_allow_html=True)
 
     with c5:
-        v_class = "metric-badge-green" if verdict == "CONTEST" else ("metric-badge-red" if verdict == "SURRENDER" else "metric-badge-neutral")
-        st.markdown(f"""<div class="kpi-card-stripe" style="border-left: 3.5px solid {'#10B981' if verdict == 'CONTEST' else ('#EF4444' if verdict == 'SURRENDER' else '#F59E0B')};">
-<div class="kpi-label">
+        v_border = '#059669' if verdict == 'CONTEST' else ('#DC2626' if verdict == 'SURRENDER' else '#D97706')
+        st.markdown(f"""<div class="kpi-tile" style="border-left: 3.5px solid {v_border};">
+<div class="kpi-title">
 <span>Autonomous Verdict</span>
-<span class="metric-badge {v_class}">5 GATES</span>
+<span class="badge-indigo">5 GATES</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number" style="font-size: 1.5rem; color: {'#059669' if verdict == 'CONTEST' else ('#DC2626' if verdict == 'SURRENDER' else '#D97706')};">{verdict}</span>
-</div>
-<p class="kpi-caption">Deterministic policy decision</p>
+<div class="kpi-stat-value" style="font-size: 1.5rem; color: {v_border};">{verdict}</div>
+<p class="kpi-footnote">Deterministic policy decision</p>
 </div>""", unsafe_allow_html=True)
 
 
@@ -577,7 +557,7 @@ def render_interactive_policy_and_shap_charts(obs: Any, ana: Any):
     col1, col2 = st.columns([1.1, 0.9])
 
     with col1:
-        st.markdown("""<div class="stripe-card" style="height: 100%;">
+        st.markdown("""<div class="syvora-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A; margin-bottom: 14px;">
 Decision Economics &amp; Probability Space
 </div>""", unsafe_allow_html=True)
@@ -587,7 +567,6 @@ Decision Economics &amp; Probability Space
         tau = float(ana.break_even_probability)
 
         if go is not None:
-            # Clean Plotly comparison bar chart
             fig_prob = go.Figure()
             fig_prob.add_trace(go.Bar(
                 x=["Calibrated P(Win)", "Break-Even Threshold (τ*)"],
@@ -616,7 +595,7 @@ Dispute Value: <strong>₹{amt:,.2f}</strong> &bull; Bank Fee: <strong>₹{confi
 </div>""", unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""<div class="stripe-card" style="height: 100%;">
+        st.markdown("""<div class="syvora-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A; margin-bottom: 14px;">
 TreeSHAP Feature Attribution
 </div>""", unsafe_allow_html=True)
@@ -665,45 +644,45 @@ def render_policy_gate_summary(obs: Any, ana: Any):
     g4 = obs.days_to_deadline > 3
     g5 = ana.evidence_readiness_score >= config.MIN_EVIDENCE_READINESS_SCORE
 
-    st.markdown("""<div class="stripe-card" style="margin-top: 1rem;">
+    st.markdown("""<div class="syvora-card" style="margin-top: 1rem;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A;">
 5-Gate Deterministic Policy Pipeline
 </div>
-<span class="metric-badge metric-badge-indigo">DETERMINISTIC SAFETY</span>
+<span class="badge-indigo">DETERMINISTIC SAFETY</span>
 </div>
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #64748B;">1. AMOUNT GATE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #0F172A; margin: 4px 0;">≤₹25,000</div>
-<span class="metric-badge {'metric-badge-green' if g1 else 'metric-badge-red'}">{'PASS' if g1 else 'TRIGGERED'}</span>
+<span class="{'badge-green' if g1 else 'badge-red'}">{'PASS' if g1 else 'TRIGGERED'}</span>
 </div>
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #64748B;">2. CONFIDENCE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #0F172A; margin: 4px 0;">≥70.0%</div>
-<span class="metric-badge {'metric-badge-green' if g2 else 'metric-badge-red'}">{'PASS' if g2 else 'TRIGGERED'}</span>
+<span class="{'badge-green' if g2 else 'badge-red'}">{'PASS' if g2 else 'TRIGGERED'}</span>
 </div>
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #64748B;">3. ECONOMICS</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #0F172A; margin: 4px 0;">E[EV] &gt; 0</div>
-<span class="metric-badge {'metric-badge-green' if g3 else 'metric-badge-red'}">{'PASS' if g3 else 'TRIGGERED'}</span>
+<span class="{'badge-green' if g3 else 'badge-red'}">{'PASS' if g3 else 'TRIGGERED'}</span>
 </div>
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #64748B;">4. DEADLINE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #0F172A; margin: 4px 0;">&gt;3 Days</div>
-<span class="metric-badge {'metric-badge-green' if g4 else 'metric-badge-red'}">{'PASS' if g4 else 'TRIGGERED'}</span>
+<span class="{'badge-green' if g4 else 'badge-red'}">{'PASS' if g4 else 'TRIGGERED'}</span>
 </div>
 <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #64748B;">5. READINESS</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #0F172A; margin: 4px 0;">≥60/100</div>
-<span class="metric-badge {'metric-badge-green' if g5 else 'metric-badge-red'}">{'PASS' if g5 else 'TRIGGERED'}</span>
+<span class="{'badge-green' if g5 else 'badge-red'}">{'PASS' if g5 else 'TRIGGERED'}</span>
 </div>
 </div>
 </div>""", unsafe_allow_html=True)
 
 
 def render_dossier_exhibits_accordion(dossier: Any):
-    st.markdown("""<div class="stripe-card" style="margin-top: 1rem;">
+    st.markdown("""<div class="syvora-card" style="margin-top: 1rem;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A; margin-bottom: 12px;">
 Defense Dossier &bull; Structured Exhibits A–E
 </div>""", unsafe_allow_html=True)
@@ -743,7 +722,7 @@ Defense Dossier &bull; Structured Exhibits A–E
 
 
 # ---------------------------------------------------------------------------
-# LIGHT-RETHEMED THREE.JS WEBGL SCENES (CLEAN TRANSLUCENT)
+# LIGHT-RETHEMED THREE.JS WEBGL SCENES
 # ---------------------------------------------------------------------------
 
 def render_hero_threejs_light():
@@ -786,7 +765,6 @@ try {
     const coreGroup = new THREE.Group();
     scene.add(coreGroup);
 
-    // Translucent Indigo Crystal Icosahedron
     const icoGeo = new THREE.IcosahedronGeometry(4.0, 1);
     const icoMat = new THREE.MeshStandardMaterial({
         color: 0x4f46e5,
@@ -799,7 +777,6 @@ try {
     const icoMesh = new THREE.Mesh(icoGeo, icoMat);
     coreGroup.add(icoMesh);
 
-    // Inner Glowing Core
     const nucGeo = new THREE.SphereGeometry(2.0, 32, 32);
     const nucMat = new THREE.MeshStandardMaterial({
         color: 0x6366f1,
@@ -810,7 +787,6 @@ try {
     const nucleus = new THREE.Mesh(nucGeo, nucMat);
     coreGroup.add(nucleus);
 
-    // Clean Orbital Rings
     const ring1Geo = new THREE.TorusGeometry(6.2, 0.06, 16, 100);
     const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
     const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
@@ -967,66 +943,51 @@ try {
 
 
 # ---------------------------------------------------------------------------
-# SIDEBAR NAVIGATION CONTROLLER
+# TOP COMMAND BAR & PROMINENT HORIZONTAL NAVIGATION
 # ---------------------------------------------------------------------------
 
-with st.sidebar:
-    st.markdown("""<div class="sidebar-brand-box">
-<div class="sidebar-logo-icon">🛡️</div>
-<div>
-<div class="sidebar-brand-title">SYVORA</div>
-<div class="sidebar-brand-sub">Dispute Intelligence</div>
-</div>
-</div>""", unsafe_allow_html=True)
+if "app_mode" not in st.session_state:
+    st.session_state["app_mode"] = "🌟 Product Overview & Landing"
 
-    nav_options = [
-        "🌟 Product Overview & Landing",
-        "❓ Why SYVORA? (Product Story)",
-        "🚀 60-Second Guided Demo",
-        "⚡ Live Dispute Triage & Forensics",
-        "📝 Manual Case Intake",
-        "📊 Executive & Benchmark Metrics",
-        "🔒 Cryptographic Audit Ledger",
-        "🛡️ Input Sanitization Firewall",
-    ]
+# Render Top Command Bar
+render_top_brand_bar("Payment Dispute Intelligence Console", badge_tag="OFFLINE DEMO")
 
-    if "app_mode" not in st.session_state:
-        st.session_state["app_mode"] = "🌟 Product Overview & Landing"
+# Top Horizontal Navigation Options
+nav_options = [
+    "🌟 Product Overview & Landing",
+    "❓ Why SYVORA? (Product Story)",
+    "🚀 60-Second Guided Demo",
+    "⚡ Live Dispute Triage & Forensics",
+    "📝 Manual Case Intake",
+    "📊 Executive & Benchmark Metrics",
+    "🔒 Cryptographic Audit Ledger",
+    "🛡️ Input Sanitization Firewall",
+]
 
-    selected_nav = st.radio(
-        "NAVIGATION",
-        nav_options,
-        index=nav_options.index(st.session_state["app_mode"]) if st.session_state["app_mode"] in nav_options else 0,
-        label_visibility="collapsed"
-    )
+selected_nav = st.radio(
+    "TOP NAVIGATION",
+    nav_options,
+    index=nav_options.index(st.session_state["app_mode"]) if st.session_state["app_mode"] in nav_options else 0,
+    horizontal=True,
+    label_visibility="collapsed"
+)
 
-    if selected_nav != st.session_state["app_mode"]:
-        st.session_state["app_mode"] = selected_nav
-        st.rerun()
-
-    st.markdown("""<div class="sidebar-status-box">
-<div style="font-size: 0.72rem; font-weight: 700; color: #475569; text-transform: uppercase; margin-bottom: 6px;">System State</div>
-<div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.76rem; color: #334155;">
-<div>● <strong>Engine:</strong> Online (115/115 Tests)</div>
-<div>● <strong>Model:</strong> Calibrated XGBoost</div>
-<div>● <strong>Ledger:</strong> SHA-256 Chained</div>
-</div>
-</div>""", unsafe_allow_html=True)
+if selected_nav != st.session_state["app_mode"]:
+    st.session_state["app_mode"] = selected_nav
+    st.rerun()
 
 
 # ===========================================================================
-# VIEW 0: 9-SECTION PRODUCT OVERVIEW & STORYTELLING (STRIPE-DENSITY RESKIN)
+# VIEW 0: 9-SECTION PRODUCT OVERVIEW & STORYTELLING
 # ===========================================================================
 
 if st.session_state["app_mode"] == "🌟 Product Overview & Landing":
-    render_page_header("Payment Dispute Intelligence", "Autonomous triage, Bayesian economics, TreeSHAP forensics, and deterministic safety gates.", badge_text="OVERVIEW")
-
     # SECTION 1: HERO
     h_col1, h_col2 = st.columns([1.3, 1])
     with h_col1:
-        st.markdown("""<div class="stripe-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        st.markdown("""<div class="syvora-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 <div>
-<div class="metric-badge metric-badge-indigo" style="margin-bottom: 12px;">PAYMENT DISPUTE INTELLIGENCE</div>
+<div class="badge-indigo" style="display: inline-block; margin-bottom: 12px;">PAYMENT DISPUTE INTELLIGENCE</div>
 
 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 800; color: #0F172A; line-height: 1.15; margin: 0 0 14px 0;">
 Turn payment disputes into decisions you can defend.
@@ -1063,8 +1024,8 @@ SYVORA evaluates 41 multi-modal evidence signals across 4 forensic tiers to comp
             st.rerun()
 
     # SECTION 2: THE PROBLEM
-    st.markdown("""<div class="stripe-card" style="margin-top: 1.5rem;">
-<div class="metric-badge metric-badge-red" style="margin-bottom: 8px;">SECTION 02 &bull; THE PROBLEM</div>
+    st.markdown("""<div class="syvora-card" style="margin-top: 1.5rem;">
+<div class="badge-red" style="display: inline-block; margin-bottom: 8px;">SECTION 02 &bull; THE PROBLEM</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 6px 0;">
 Every dispute is a business decision.
 </h3>
@@ -1089,8 +1050,8 @@ Traditional chargeback operations trap merchants in three costly, sub-optimal pa
 </div>""", unsafe_allow_html=True)
 
     # SECTION 3: THE PIPELINE
-    st.markdown("""<div class="stripe-card">
-<div class="metric-badge metric-badge-indigo" style="margin-bottom: 8px;">SECTION 03 &bull; THE INTELLIGENCE PIPELINE</div>
+    st.markdown("""<div class="syvora-card">
+<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">SECTION 03 &bull; THE INTELLIGENCE PIPELINE</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 6px 0;">
 From raw telemetry to calibrated verdict.
 </h3>
@@ -1130,8 +1091,8 @@ Transparent 6-stage pipeline with strict separation of analytical intelligence a
     d_b = assembler.build_dossier(scen_b_raw, customer_claim_text="Double charge detected.")
     d_d = assembler.build_dossier(scen_d_raw, customer_claim_text="High value package missing.")
 
-    st.markdown("""<div class="stripe-card">
-<div class="metric-badge metric-badge-green" style="margin-bottom: 8px;">SECTION 04 &bull; DON'T JUST PREDICT. DECIDE.</div>
+    st.markdown("""<div class="syvora-card">
+<div class="badge-green" style="display: inline-block; margin-bottom: 8px;">SECTION 04 &bull; DON'T JUST PREDICT. DECIDE.</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 6px 0;">
 Three autonomous decision outcomes.
 </h3>
@@ -1145,7 +1106,7 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
         st.markdown(f"""<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-top: 3.5px solid #10B981; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #059669; font-size: 1.1rem;">CONTEST</span>
-<span class="metric-badge metric-badge-green">AUTO DEFEND</span>
+<span class="badge-green">AUTO DEFEND</span>
 </div>
 <div style="font-size: 0.78rem; color: #475569; margin-bottom: 12px;">Defend high-probability disputes where Expected Financial Return is strictly positive.</div>
 <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
@@ -1159,7 +1120,7 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
         st.markdown(f"""<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-top: 3.5px solid #EF4444; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #DC2626; font-size: 1.1rem;">SURRENDER</span>
-<span class="metric-badge metric-badge-red">ACCEPT LIABILITY</span>
+<span class="badge-red">ACCEPT LIABILITY</span>
 </div>
 <div style="font-size: 0.78rem; color: #475569; margin-bottom: 12px;">Accept liability immediately to prevent non-refundable ₹3,000 bank arbitration fee losses.</div>
 <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
@@ -1173,7 +1134,7 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
         st.markdown(f"""<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-top: 3.5px solid #F59E0B; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #D97706; font-size: 1.1rem;">REVIEW</span>
-<span class="metric-badge metric-badge-neutral">MANDATORY HITL</span>
+<span class="badge-indigo">MANDATORY HITL</span>
 </div>
 <div style="font-size: 0.78rem; color: #475569; margin-bottom: 12px;">Human-in-the-loop triage triggered for high GMV (>₹25k) or urgent deadlines (≤3d).</div>
 <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
@@ -1204,8 +1165,8 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
     p_diff = abs(ana_clean.calibrated_win_probability - ana_injected.calibrated_win_probability)
     ev_diff = abs(ana_clean.expected_value_inr - ana_injected.expected_value_inr)
 
-    st.markdown(f"""<div class="stripe-card">
-<div class="metric-badge metric-badge-indigo" style="margin-bottom: 8px;">SECTION 07 &bull; ADVERSARIAL HARDENING</div>
+    st.markdown(f"""<div class="syvora-card">
+<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">SECTION 07 &bull; ADVERSARIAL HARDENING</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 6px 0;">
 Live Mathematical Invariance Proof
 </h3>
@@ -1241,10 +1202,9 @@ P(Win): {ana_injected.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_inje
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "❓ Why SYVORA? (Product Story)":
-    render_page_header("Architectural Differentiators", "Why traditional dispute triage fails and how SYVORA resolves it.", badge_text="PRODUCT STORY")
-
-    st.markdown("""<div class="stripe-card">
-<h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 800; color: #0F172A; margin: 0 0 8px 0;">
+    st.markdown("""<div class="syvora-card">
+<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">PRODUCT STORY &bull; ARCHITECTURAL PILLARS</div>
+<h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 800; color: #0F172A; margin: 0 0 8px 0;">
 Payment disputes are not simply yes-or-no decisions.
 </h3>
 <p style="font-size: 0.88rem; color: #475569; line-height: 1.5; margin: 0;">
@@ -1254,8 +1214,8 @@ Traditional dispute management forces merchants to either blindly contest every 
 
     d_col1, d_col2 = st.columns(2)
     with d_col1:
-        st.markdown("""<div class="stripe-card" style="height: 100%;">
-<div class="metric-badge metric-badge-indigo" style="margin-bottom: 8px;">01 &bull; DECISION INTELLIGENCE</div>
+        st.markdown("""<div class="syvora-card" style="height: 100%;">
+<div class="badge-indigo" style="display: inline-block; margin-bottom: 8px;">01 &bull; DECISION INTELLIGENCE</div>
 <div style="font-weight: 800; font-size: 1.05rem; color: #0F172A; margin-bottom: 6px;">Bayesian Expected Value &gt; Binary Thresholds</div>
 <div style="font-size: 0.82rem; color: #475569; line-height: 1.5;">
 Rather than guessing with a static risk score, SYVORA computes mathematical Expected Value: <code>E[EV] = P(Win) &times; Amount - (1 - P(Win)) &times; Fee</code>. Only positive-EV disputes are defended.
@@ -1263,8 +1223,8 @@ Rather than guessing with a static risk score, SYVORA computes mathematical Expe
 </div>""", unsafe_allow_html=True)
 
     with d_col2:
-        st.markdown("""<div class="stripe-card" style="height: 100%;">
-<div class="metric-badge metric-badge-green" style="margin-bottom: 8px;">02 &bull; SECURITY BY DESIGN</div>
+        st.markdown("""<div class="syvora-card" style="height: 100%;">
+<div class="badge-green" style="display: inline-block; margin-bottom: 8px;">02 &bull; SECURITY BY DESIGN</div>
 <div style="font-weight: 800; font-size: 1.05rem; color: #0F172A; margin-bottom: 6px;">Adversarial Input Firewall &amp; Quarantine</div>
 <div style="font-size: 0.82rem; color: #475569; line-height: 1.5;">
 Customer-provided remarks are treated as untrusted data. A deterministic defensive sanitizer neutralizes prompt injections and SQL payloads before they can reach analytical engines.
@@ -1273,12 +1233,10 @@ Customer-provided remarks are treated as untrusted data. A deterministic defensi
 
 
 # ===========================================================================
-# VIEW 2: 60-SECOND GUIDED DEMO (STRIPE SELECTION CARDS)
+# VIEW 2: 60-SECOND GUIDED DEMO (SELECTION CARDS)
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
-    render_page_header("60-Second Executive Demo", "Step through the 4 archetype dispute scenarios in 60 seconds.", badge_text="GUIDED DEMO")
-
     if "demo_step" not in st.session_state:
         st.session_state["demo_step"] = 1
 
@@ -1298,7 +1256,7 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
             st.markdown(f"""<div class="{'scenario-card-active' if is_active else 'scenario-card-inactive'}" style="margin-bottom: 8px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#4338CA' if is_active else '#0F172A'};">{s_title}</div>
 <div style="font-size: 0.72rem; color: #64748B; margin-top: 2px;">{s_sub}</div>
-{'<span class="metric-badge metric-badge-indigo" style="margin-top: 6px;">● ACTIVE STEP ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
+{'<span class="badge-indigo" style="display: inline-block; margin-top: 6px;">● ACTIVE STEP ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
 </div>""", unsafe_allow_html=True)
             if st.button(f"SELECT STEP {s_num}", key=f"btn_step_{s_num}", type="primary" if is_active else "secondary", use_container_width=True):
                 st.session_state["demo_step"] = s_num
@@ -1368,8 +1326,6 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "⚡ Live Dispute Triage & Forensics":
-    render_page_header("Dispute Triage Cockpit", "Live empirical scoring, Bayesian return optimization, and forensic exhibit compilation.", badge_text="OPERATIONAL")
-
     col_sel1, col_sel2 = st.columns([2, 1])
     with col_sel1:
         dispute_ids = test_df["dispute_id"].tolist()
@@ -1407,12 +1363,10 @@ elif st.session_state["app_mode"] == "⚡ Live Dispute Triage & Forensics":
 
 
 # ===========================================================================
-# VIEW 4: MANUAL CASE INTAKE (GLOSSY SELECTION STATES)
+# VIEW 4: MANUAL CASE INTAKE
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "📝 Manual Case Intake":
-    render_page_header("Manual Case Intake Workstation", "Evaluate custom or scenario-based dispute telemetry in real time.", badge_text="MANUAL INTAKE")
-
     if "active_scenario" not in st.session_state:
         st.session_state["active_scenario"] = "A"
 
@@ -1454,7 +1408,7 @@ elif st.session_state["app_mode"] == "📝 Manual Case Intake":
             st.markdown(f"""<div class="{'scenario-card-active' if is_active else 'scenario-card-inactive'}" style="margin-bottom: 8px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#4338CA' if is_active else '#0F172A'};">Scenario {sc_key}</div>
 <div style="font-size: 0.72rem; color: #64748B; margin-top: 2px;">{sc_info['name']}</div>
-{'<span class="metric-badge metric-badge-indigo" style="margin-top: 6px;">● ACTIVE SCENARIO ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
+{'<span class="badge-indigo" style="display: inline-block; margin-top: 6px;">● ACTIVE SCENARIO ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #94A3B8; margin-top: 6px;">CLICK TO SELECT</div>'}
 </div>""", unsafe_allow_html=True)
             if st.button(f"LOAD SCENARIO {sc_key}", key=f"btn_scen_{sc_key}", type="primary" if is_active else "secondary", use_container_width=True):
                 st.session_state["active_scenario"] = sc_key
@@ -1517,12 +1471,10 @@ elif st.session_state["app_mode"] == "📝 Manual Case Intake":
 
 
 # ===========================================================================
-# VIEW 5: EXECUTIVE & BENCHMARK METRICS (STRIPE / SALES DTECK CHARTS)
+# VIEW 5: EXECUTIVE & BENCHMARK METRICS
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
-    render_page_header("Executive Benchmark Intelligence", "Rigorous decision-theoretic validation over held-out test datasets (N=180).", badge_text="BENCHMARK")
-
     if benchmark_data and "ml_performance" in benchmark_data and "decision_engine_performance" in benchmark_data:
         ml = benchmark_data["ml_performance"]
         dec = benchmark_data["decision_engine_performance"]
@@ -1537,60 +1489,50 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 
         col_m1, col_m2, col_m3, col_m4 = st.columns(4)
         with col_m1:
-            st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+            st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>PR-AUC (Primary Metric)</span>
-<span class="metric-badge metric-badge-green">+14.2% vs Base</span>
+<span class="badge-green">+14.2% vs Base</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{pr_auc_val:.4f}</span>
-</div>
-<p class="kpi-caption">Imbalanced chargeback evaluation</p>
+<div class="kpi-stat-value" style="color: #059669;">{pr_auc_val:.4f}</div>
+<p class="kpi-footnote">Imbalanced chargeback evaluation</p>
 </div>""", unsafe_allow_html=True)
 
         with col_m2:
-            st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+            st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>ROC-AUC Discriminative</span>
-<span class="metric-badge metric-badge-green">+11.8% vs Base</span>
+<span class="badge-green">+11.8% vs Base</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{roc_auc_val:.4f}</span>
-</div>
-<p class="kpi-caption">Overall ranking separation</p>
+<div class="kpi-stat-value" style="color: #4338CA;">{roc_auc_val:.4f}</div>
+<p class="kpi-footnote">Overall ranking separation</p>
 </div>""", unsafe_allow_html=True)
 
         with col_m3:
-            st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+            st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>Calibrated Brier Score</span>
-<span class="metric-badge metric-badge-green">-24.1% Error</span>
+<span class="badge-green">-24.1% Error</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">{brier_val:.4f}</span>
-</div>
-<p class="kpi-caption">Empirical reliability metric</p>
+<div class="kpi-stat-value" style="color: #E11D48;">{brier_val:.4f}</div>
+<p class="kpi-footnote">Empirical reliability metric</p>
 </div>""", unsafe_allow_html=True)
 
         with col_m4:
-            st.markdown(f"""<div class="kpi-card-stripe">
-<div class="kpi-label">
+            st.markdown(f"""<div class="kpi-tile">
+<div class="kpi-title">
 <span>Net Autonomous Return</span>
-<span class="metric-badge metric-badge-green">+₹{net_ret_val:,.0f}</span>
+<span class="badge-green">+₹{net_ret_val:,.0f}</span>
 </div>
-<div class="kpi-value-row">
-<span class="kpi-number">+₹{net_ret_val:,.0f}</span>
-</div>
-<p class="kpi-caption">vs Blind Contest baseline</p>
+<div class="kpi-stat-value" style="color: #059669;">+₹{net_ret_val:,.0f}</div>
+<p class="kpi-footnote">vs Blind Contest baseline</p>
 </div>""", unsafe_allow_html=True)
 
         st.markdown("<div style='height: 14px;'></div>", unsafe_allow_html=True)
 
-        # Donut Chart for Verdict Distribution + Comparison Line Chart
         c_ch1, c_ch2 = st.columns([1, 1.3])
-
         with c_ch1:
-            st.markdown("""<div class="stripe-card" style="height: 100%;">
+            st.markdown("""<div class="syvora-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A; margin-bottom: 12px;">
 Autonomous Verdict Proportions (N=180)
 </div>""", unsafe_allow_html=True)
@@ -1616,12 +1558,11 @@ Autonomous Verdict Proportions (N=180)
             st.markdown("</div>", unsafe_allow_html=True)
 
         with c_ch2:
-            st.markdown("""<div class="stripe-card" style="height: 100%;">
+            st.markdown("""<div class="syvora-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #0F172A; margin-bottom: 12px;">
 Cumulative Net P&amp;L: SYVORA vs Always Contest
 </div>""", unsafe_allow_html=True)
 
-            # Cumulative PnL line comparison
             n_pts = 20
             x_pts = [f"Batch {i+1}" for i in range(n_pts)]
             syvora_pnl = np.cumsum(np.random.normal(7000, 1500, n_pts))
@@ -1652,17 +1593,15 @@ Cumulative Net P&amp;L: SYVORA vs Always Contest
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "🔒 Cryptographic Audit Ledger":
-    render_page_header("Cryptographic Audit Ledger", "Chained SHA-256 event log guaranteeing tamper-evident decision records.", badge_text="AUDIT CHAIN")
-
     is_valid, err_msg = audit_ledger.verify_integrity()
     msg = err_msg or "All block hashes, previous hash pointers, and payload signatures match canonical state."
 
-    st.markdown(f"""<div class="stripe-card" style="border-left: 3.5px solid {'#10B981' if is_valid else '#EF4444'};">
+    st.markdown(f"""<div class="syvora-card" style="border-left: 3.5px solid {'#10B981' if is_valid else '#EF4444'};">
 <div style="display: flex; justify-content: space-between; align-items: center;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #0F172A;">
 CHAIN INTEGRITY STATUS: {'VERIFIED &bull; ZERO TAMPERING DETECTED' if is_valid else 'FAILED'}
 </div>
-<span class="metric-badge {'metric-badge-green' if is_valid else 'metric-badge-red'}">SHA-256 VERIFIED</span>
+<span class="{'badge-green' if is_valid else 'badge-red'}">SHA-256 VERIFIED</span>
 </div>
 <div style="font-size: 0.8rem; color: #64748B; margin-top: 4px;">{msg}</div>
 </div>""", unsafe_allow_html=True)
@@ -1678,9 +1617,7 @@ CHAIN INTEGRITY STATUS: {'VERIFIED &bull; ZERO TAMPERING DETECTED' if is_valid e
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "🛡️ Input Sanitization Firewall":
-    render_page_header("Adversarial Input Firewall", "Defensive security quarantine intercepting prompt injections and jailbreaks.", badge_text="DEFENSIVE SECURITY")
-
-    st.markdown("""<div class="stripe-card">
+    st.markdown("""<div class="syvora-card">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 6px;">
 Adversarial Input Quarantine Architecture
 </div>
