@@ -23,8 +23,10 @@ import hashlib
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
+try:
+    import plotly.graph_objects as go
+except ImportError:
+    go = None
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -584,26 +586,29 @@ Decision Economics &amp; Probability Space
         p_win = float(ana.calibrated_win_probability)
         tau = float(ana.break_even_probability)
 
-        # Clean Plotly comparison bar chart
-        fig_prob = go.Figure()
-        fig_prob.add_trace(go.Bar(
-            x=["Calibrated P(Win)", "Break-Even Threshold (τ*)"],
-            y=[p_win * 100, tau * 100],
-            marker_color=["#4F46E5", "#94A3B8"],
-            text=[f"{p_win:.1%}", f"{tau:.1%}"],
-            textposition="auto",
-            width=[0.45, 0.45]
-        ))
-        fig_prob.update_layout(
-            height=200,
-            margin=dict(l=20, r=20, t=10, b=20),
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            yaxis=dict(range=[0, 100], title="% Rate", gridcolor="#F1F5F9", showgrid=True),
-            xaxis=dict(tickfont=dict(size=12, color="#475569")),
-            showlegend=False
-        )
-        st.plotly_chart(fig_prob, use_container_width=True, config={"displayModeBar": False})
+        if go is not None:
+            # Clean Plotly comparison bar chart
+            fig_prob = go.Figure()
+            fig_prob.add_trace(go.Bar(
+                x=["Calibrated P(Win)", "Break-Even Threshold (τ*)"],
+                y=[p_win * 100, tau * 100],
+                marker_color=["#4F46E5", "#94A3B8"],
+                text=[f"{p_win:.1%}", f"{tau:.1%}"],
+                textposition="auto",
+                width=[0.45, 0.45]
+            ))
+            fig_prob.update_layout(
+                height=200,
+                margin=dict(l=20, r=20, t=10, b=20),
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)",
+                yaxis=dict(range=[0, 100], title="% Rate", gridcolor="#F1F5F9", showgrid=True),
+                xaxis=dict(tickfont=dict(size=12, color="#475569")),
+                showlegend=False
+            )
+            st.plotly_chart(fig_prob, use_container_width=True, config={"displayModeBar": False})
+        else:
+            st.progress(min(1.0, max(0.0, p_win)), text=f"P(Win): {p_win:.1%} (Break-even τ*: {tau:.1%})")
 
         st.markdown(f"""<div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px 16px; margin-top: 10px; font-size: 0.8rem; color: #334155;">
 Dispute Value: <strong>₹{amt:,.2f}</strong> &bull; Bank Fee: <strong>₹{config.ARBITRATION_FEE_INR:,.2f}</strong> &bull; Net Expected Value: <strong style="color: {'#059669' if ana.expected_value_inr >= 0 else '#DC2626'};">{'+' if ana.expected_value_inr >= 0 else '-'}₹{abs(ana.expected_value_inr):,.2f}</strong>
@@ -625,24 +630,28 @@ TreeSHAP Feature Attribution
             impacts = [f.get("shap_impact", 0) * 100 for f in factors]
             colors = ["#10B981" if imp >= 0 else "#EF4444" for imp in impacts]
 
-            fig_shap = go.Figure(go.Bar(
-                x=impacts,
-                y=names,
-                orientation='h',
-                marker_color=colors,
-                text=[f"{imp:+.1f}%" for imp in impacts],
-                textposition="auto"
-            ))
-            fig_shap.update_layout(
-                height=220,
-                margin=dict(l=20, r=20, t=10, b=20),
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(0,0,0,0)",
-                xaxis=dict(title="Probability Impact (pp)", gridcolor="#F1F5F9", showgrid=True),
-                yaxis=dict(autorange="reversed", tickfont=dict(size=11, color="#334155")),
-                showlegend=False
-            )
-            st.plotly_chart(fig_shap, use_container_width=True, config={"displayModeBar": False})
+            if go is not None:
+                fig_shap = go.Figure(go.Bar(
+                    x=impacts,
+                    y=names,
+                    orientation='h',
+                    marker_color=colors,
+                    text=[f"{imp:+.1f}%" for imp in impacts],
+                    textposition="auto"
+                ))
+                fig_shap.update_layout(
+                    height=220,
+                    margin=dict(l=20, r=20, t=10, b=20),
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    plot_bgcolor="rgba(0,0,0,0)",
+                    xaxis=dict(title="Probability Impact (pp)", gridcolor="#F1F5F9", showgrid=True),
+                    yaxis=dict(autorange="reversed", tickfont=dict(size=11, color="#334155")),
+                    showlegend=False
+                )
+                st.plotly_chart(fig_shap, use_container_width=True, config={"displayModeBar": False})
+            else:
+                for f_n, f_imp in zip(names, impacts):
+                    st.write(f"• **{f_n}**: `{f_imp:+.1f}%`")
         else:
             st.caption("No TreeSHAP attribution factors available.")
         st.markdown("</div>", unsafe_allow_html=True)
@@ -1587,20 +1596,23 @@ Autonomous Verdict Proportions (N=180)
 </div>""", unsafe_allow_html=True)
 
             v_dist = dec.get("verdict_distribution", {"CONTEST": 94, "SURRENDER": 48, "REVIEW": 38})
-            fig_donut = go.Figure(data=[go.Pie(
-                labels=list(v_dist.keys()),
-                values=list(v_dist.values()),
-                hole=0.55,
-                marker=dict(colors=["#10B981", "#EF4444", "#F59E0B"]),
-                textinfo="label+percent"
-            )])
-            fig_donut.update_layout(
-                height=240,
-                margin=dict(l=10, r=10, t=10, b=10),
-                paper_bgcolor="rgba(0,0,0,0)",
-                showlegend=False
-            )
-            st.plotly_chart(fig_donut, use_container_width=True, config={"displayModeBar": False})
+            if go is not None:
+                fig_donut = go.Figure(data=[go.Pie(
+                    labels=list(v_dist.keys()),
+                    values=list(v_dist.values()),
+                    hole=0.55,
+                    marker=dict(colors=["#10B981", "#EF4444", "#F59E0B"]),
+                    textinfo="label+percent"
+                )])
+                fig_donut.update_layout(
+                    height=240,
+                    margin=dict(l=10, r=10, t=10, b=10),
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    showlegend=False
+                )
+                st.plotly_chart(fig_donut, use_container_width=True, config={"displayModeBar": False})
+            else:
+                st.write(v_dist)
             st.markdown("</div>", unsafe_allow_html=True)
 
         with c_ch2:
@@ -1615,20 +1627,23 @@ Cumulative Net P&amp;L: SYVORA vs Always Contest
             syvora_pnl = np.cumsum(np.random.normal(7000, 1500, n_pts))
             blind_pnl = np.cumsum(np.random.normal(2000, 2500, n_pts))
 
-            fig_line = go.Figure()
-            fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#4F46E5', width=3)))
-            fig_line.add_trace(go.Scatter(x=x_pts, y=blind_pnl, mode='lines', name='Always Contest Baseline', line=dict(color='#94A3B8', width=2, dash='dash')))
+            if go is not None:
+                fig_line = go.Figure()
+                fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#4F46E5', width=3)))
+                fig_line.add_trace(go.Scatter(x=x_pts, y=blind_pnl, mode='lines', name='Always Contest Baseline', line=dict(color='#94A3B8', width=2, dash='dash')))
 
-            fig_line.update_layout(
-                height=240,
-                margin=dict(l=20, r=20, t=10, b=20),
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(0,0,0,0)",
-                yaxis=dict(title="Net INR (₹)", gridcolor="#F1F5F9", showgrid=True),
-                xaxis=dict(gridcolor="#F1F5F9", showgrid=False),
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
-            )
-            st.plotly_chart(fig_line, use_container_width=True, config={"displayModeBar": False})
+                fig_line.update_layout(
+                    height=240,
+                    margin=dict(l=20, r=20, t=10, b=20),
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    plot_bgcolor="rgba(0,0,0,0)",
+                    yaxis=dict(title="Net INR (₹)", gridcolor="#F1F5F9", showgrid=True),
+                    xaxis=dict(gridcolor="#F1F5F9", showgrid=False),
+                    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+                )
+                st.plotly_chart(fig_line, use_container_width=True, config={"displayModeBar": False})
+            else:
+                st.line_chart(pd.DataFrame({"SYVORA Expected Value": syvora_pnl, "Always Contest": blind_pnl}))
             st.markdown("</div>", unsafe_allow_html=True)
 
 
