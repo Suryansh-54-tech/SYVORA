@@ -382,6 +382,72 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
 }
 
 hr { border-color: #E2E8F0 !important; margin: 1.75rem 0 !important; }
+
+/* Form Inputs, Text Areas, Number Inputs, Select Boxes (Crisp White with Dark High-Contrast Text) */
+div[data-baseweb="input"],
+div[data-baseweb="base-input"],
+div[data-baseweb="textarea"],
+div[data-baseweb="select"],
+div[data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    border-color: #CBD5E1 !important;
+    border-radius: 10px !important;
+    color: #0F172A !important;
+}
+
+input,
+textarea,
+select,
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    -webkit-text-fill-color: #0F172A !important;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+}
+
+div[data-baseweb="input"]:focus-within,
+div[data-baseweb="textarea"]:focus-within,
+div[data-baseweb="select"]:focus-within {
+    border-color: #4F46E5 !important;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+}
+
+/* Explicit High-Contrast Form Labels & Legends */
+label,
+.stTextInput label,
+.stNumberInput label,
+.stSelectbox label,
+.stTextArea label,
+div[data-testid="stMarkdownContainer"] p strong,
+div[data-testid="stForm"] strong {
+    color: #0F172A !important;
+    font-weight: 700 !important;
+    font-size: 0.86rem !important;
+}
+
+/* High-Contrast Streamlit Tab Headers */
+button[data-baseweb="tab"] {
+    color: #475569 !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    background: transparent !important;
+    border-radius: 8px 8px 0 0 !important;
+    padding: 8px 16px !important;
+    transition: all 0.15s ease !important;
+}
+button[data-baseweb="tab"]:hover {
+    color: #4338CA !important;
+    background: #EEF2FF !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #4338CA !important;
+    font-weight: 800 !important;
+    border-bottom: 3px solid #4F46E5 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -581,8 +647,8 @@ Decision Economics &amp; Probability Space
                 margin=dict(l=20, r=20, t=10, b=20),
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                yaxis=dict(range=[0, 100], title="% Rate", gridcolor="#F1F5F9", showgrid=True),
-                xaxis=dict(tickfont=dict(size=12, color="#475569")),
+                yaxis=dict(range=[0, 100], title=dict(text="% Rate", font=dict(color="#0F172A", size=12, family="Inter")), tickfont=dict(size=12, color="#0F172A"), gridcolor="#E2E8F0", showgrid=True),
+                xaxis=dict(tickfont=dict(size=12, color="#0F172A", family="Inter")),
                 showlegend=False
             )
             st.plotly_chart(fig_prob, use_container_width=True, config={"displayModeBar": False})
@@ -623,8 +689,8 @@ TreeSHAP Feature Attribution
                     margin=dict(l=20, r=20, t=10, b=20),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    xaxis=dict(title="Probability Impact (pp)", gridcolor="#F1F5F9", showgrid=True),
-                    yaxis=dict(autorange="reversed", tickfont=dict(size=11, color="#334155")),
+                    xaxis=dict(title=dict(text="Probability Impact (pp)", font=dict(color="#0F172A", size=12, family="Inter")), tickfont=dict(size=12, color="#0F172A"), gridcolor="#E2E8F0", showgrid=True),
+                    yaxis=dict(autorange="reversed", tickfont=dict(size=12, color="#0F172A", family="Inter")),
                     showlegend=False
                 )
                 st.plotly_chart(fig_shap, use_container_width=True, config={"displayModeBar": False})
@@ -715,7 +781,10 @@ Defense Dossier &bull; Structured Exhibits A–E
         st.markdown(f"**{title_e}**")
         st.caption("Advisory claim semantics isolated from analytical calculation.")
     with t_print:
-        packet_html = MultiExhibitCompiler.compile_standalone_html(dossier)
+        try:
+            packet_html = DossierFormatter.to_packet_html(dossier)
+        except Exception:
+            packet_html = f"<div style='font-family: monospace; padding: 20px;'><h3>Case #{dossier.dispute_id}</h3><pre>{dossier.rebuttal_narrative_markdown}</pre></div>"
         components.html(packet_html, height=580, scrolling=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
