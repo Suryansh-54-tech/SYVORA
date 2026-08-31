@@ -4,14 +4,15 @@ SYVORA — Payment Dispute Intelligence Console
 Autonomous dispute triage, Bayesian Expected Value analysis,
 TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
 
-OBSIDIAN MIDNIGHT PALETTE:
-- Deep Midnight Canvas (#0B0F17 / #0D111A)
-- Dark Slate Glass Cards (#131926 / #161F30)
-- Electric Indigo / Violet Accents (#6366F1 / #8B5CF6 / #A78BFA)
-- Neon Emerald (#10B981 / #34D399)
-- Gilded Gold (#F59E0B / #FBBF24)
-- Vivid Crimson (#EF4444 / #F87171)
-- Luminous Crisp Typography (#FFFFFF / #F8FAFC / #94A3B8)
+OBSIDIAN DARK FINTECH PALETTE:
+- Master Canvas: #0A0D14 (Deep Midnight Obsidian)
+- Card & Container Glass: #121826 (Midnight Slate)
+- Border Accents: #1F293D / #2D3A54
+- Primary Electric Brand: #6366F1 / #4F46E5 / #818CF8
+- Luminous Emerald: #10B981 / #34D399 (P(Win), Positive EV, CONTEST)
+- Gilded Amber: #F59E0B / #FBBF24 (Warnings, Review)
+- Vivid Crimson: #EF4444 / #F87171 (Fees, Risk, SURRENDER)
+- Typography: Stark White #FFFFFF & Crisp Silver #94A3B8 / #CBD5E1
 
 DISCLAIMER:
 All data, metrics, and simulations are based on synthetic simulation records.
@@ -57,7 +58,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Master CSS: Obsidian Midnight Theme with High Contrast & Smooth Glows
+# Master CSS: High-End Obsidian Dark Fintech System
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&display=swap');
@@ -81,10 +82,10 @@ section[data-testid="stSidebar"],
 
 /* App Background: Deep Midnight Canvas */
 .stApp {
-    background-color: #0B0F17 !important;
+    background-color: #0A0D14 !important;
     background-image:
-        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.09) 0%, transparent 45%),
-        radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
         radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 50%) !important;
     background-attachment: fixed !important;
     color: #F8FAFC !important;
@@ -107,12 +108,12 @@ header[data-testid="stHeader"] {
    OBSIDIAN TOP HEADER & COMMAND DECK
    ========================================================================= */
 .top-nav-container {
-    background: #111827;
-    border: 1px solid #1F2937;
+    background: #121826;
+    border: 1px solid #1F293D;
     border-radius: 18px;
     padding: 16px 24px;
     margin-bottom: 1.25rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -171,11 +172,11 @@ div[data-testid="stRadio"] > div {
     flex-wrap: wrap !important;
     justify-content: center !important;
     gap: 6px !important;
-    background: #111827 !important;
-    border: 1px solid #1F2937 !important;
+    background: #121826 !important;
+    border: 1px solid #1F293D !important;
     border-radius: 16px !important;
     padding: 6px 10px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
     margin-bottom: 1.5rem !important;
 }
 
@@ -190,8 +191,8 @@ div[data-testid="stRadio"] label {
 }
 
 div[data-testid="stRadio"] label:hover {
-    background: #1E293B !important;
-    border-color: #334155 !important;
+    background: #1C2436 !important;
+    border-color: #2D3A54 !important;
     transform: translateY(-1px) !important;
 }
 
@@ -262,8 +263,8 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
    DARK CARDS & KPI SURFACES
    ========================================================================= */
 .syvora-card {
-    background: #131926;
-    border: 1px solid #1E293B;
+    background: #121826;
+    border: 1px solid #1F293D;
     border-radius: 16px;
     padding: 24px 26px;
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
@@ -271,14 +272,14 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 .syvora-card:hover {
-    border-color: #334155;
+    border-color: #2D3A54;
     background: #161F30;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
 }
 
 .kpi-tile {
-    background: #131926;
-    border: 1px solid #1E293B;
+    background: #121826;
+    border: 1px solid #1F293D;
     border-radius: 14px;
     padding: 20px 22px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -329,8 +330,8 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25) !important;
 }
 .scenario-card-inactive {
-    background: #131926;
-    border: 1px solid #1E293B;
+    background: #121826;
+    border: 1px solid #1F293D;
     border-radius: 12px;
     padding: 16px 18px;
     transition: all 0.15s ease;
@@ -342,17 +343,29 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
 }
 
 /* =========================================================================
-   FORM INPUTS, TEXTAREAS & SELECTBOXES (OBSIDIAN DARK THEME)
+   FORM INPUTS, TEXTAREAS, SELECTBOXES & BASEWEB MENUS (DARK OBSIDIAN)
    ========================================================================= */
 div[data-baseweb="input"],
 div[data-baseweb="base-input"],
 div[data-baseweb="textarea"],
 div[data-baseweb="select"],
 div[data-baseweb="select"] > div {
-    background-color: #1A2234 !important;
-    border: 1.5px solid #334155 !important;
+    background-color: #161E2E !important;
+    border: 1.5px solid #28354D !important;
     border-radius: 10px !important;
     color: #F8FAFC !important;
+}
+
+div[data-baseweb="popover"],
+ul[data-baseweb="menu"],
+li[data-baseweb="menu-item"] {
+    background-color: #161E2E !important;
+    color: #F8FAFC !important;
+}
+
+li[data-baseweb="menu-item"]:hover {
+    background-color: #1F293D !important;
+    color: #818CF8 !important;
 }
 
 input,
@@ -361,7 +374,7 @@ select,
 .stTextInput input,
 .stNumberInput input,
 .stTextArea textarea {
-    background-color: #1A2234 !important;
+    background-color: #161E2E !important;
     color: #F8FAFC !important;
     -webkit-text-fill-color: #F8FAFC !important;
     font-weight: 600 !important;
@@ -405,6 +418,7 @@ button[data-baseweb="tab"][aria-selected="true"] {
     color: #818CF8 !important;
     font-weight: 800 !important;
     border-bottom: 3.5px solid #6366F1 !important;
+    background: rgba(99, 102, 241, 0.08) !important;
 }
 
 /* Buttons */
@@ -415,13 +429,13 @@ button[data-baseweb="tab"][aria-selected="true"] {
     letter-spacing: -0.01em !important;
     padding: 0.65rem 1.4rem !important;
     transition: all 0.16s ease !important;
-    background: #1E293B !important;
-    border: 1px solid #334155 !important;
+    background: #1C2436 !important;
+    border: 1px solid #2D3A54 !important;
     color: #F8FAFC !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
 }
 .stButton>button:hover {
-    background: #283548 !important;
+    background: #253147 !important;
     border-color: #6366F1 !important;
     color: #A5B4FC !important;
     transform: translateY(-1px) !important;
@@ -439,7 +453,16 @@ button[data-baseweb="tab"][aria-selected="true"] {
     color: #FFFFFF !important;
 }
 
-hr { border-color: #1E293B !important; margin: 1.75rem 0 !important; }
+/* Code formatting */
+code {
+    background: #161E2E !important;
+    color: #818CF8 !important;
+    border: 1px solid #28354D !important;
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+}
+
+hr { border-color: #1F293D !important; margin: 1.75rem 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -630,7 +653,7 @@ Decision Economics &amp; Probability Space
             fig_prob.add_trace(go.Bar(
                 x=["Calibrated P(Win)", "Break-Even Threshold (τ*)"],
                 y=[p_win * 100, tau * 100],
-                marker_color=["#6366F1", "#475569"],
+                marker_color=["#6366F1", "#334155"],
                 text=[f"{p_win:.1%}", f"{tau:.1%}"],
                 textposition="auto",
                 textfont=dict(color="#FFFFFF", size=11, family="Space Grotesk"),
@@ -641,7 +664,7 @@ Decision Economics &amp; Probability Space
                 margin=dict(l=20, r=20, t=10, b=20),
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                yaxis=dict(range=[0, 100], title=dict(text="% Rate", font=dict(color="#94A3B8", size=12, family="Inter")), tickfont=dict(size=12, color="#94A3B8"), gridcolor="#1E293B", showgrid=True),
+                yaxis=dict(range=[0, 100], title=dict(text="% Rate", font=dict(color="#94A3B8", size=12, family="Inter")), tickfont=dict(size=12, color="#94A3B8"), gridcolor="#1F293D", showgrid=True),
                 xaxis=dict(tickfont=dict(size=12, color="#F8FAFC", family="Inter")),
                 showlegend=False
             )
@@ -649,7 +672,7 @@ Decision Economics &amp; Probability Space
         else:
             st.progress(min(1.0, max(0.0, p_win)), text=f"P(Win): {p_win:.1%} (Break-even τ*: {tau:.1%})")
 
-        st.markdown(f"""<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 12px 16px; margin-top: 10px; font-size: 0.8rem; color: #CBD5E1;">
+        st.markdown(f"""<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 12px 16px; margin-top: 10px; font-size: 0.8rem; color: #CBD5E1;">
 Dispute Value: <strong style="color: #FFFFFF;">₹{amt:,.2f}</strong> &bull; Bank Fee: <strong style="color: #FFFFFF;">₹{config.ARBITRATION_FEE_INR:,.2f}</strong> &bull; Net Expected Value: <strong style="color: {'#34D399' if ana.expected_value_inr >= 0 else '#F87171'};">{'+' if ana.expected_value_inr >= 0 else '-'}₹{abs(ana.expected_value_inr):,.2f}</strong>
 </div>
 </div>""", unsafe_allow_html=True)
@@ -684,7 +707,7 @@ TreeSHAP Feature Attribution
                     margin=dict(l=20, r=20, t=10, b=20),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    xaxis=dict(title=dict(text="Probability Impact (pp)", font=dict(color="#94A3B8", size=12, family="Inter")), tickfont=dict(size=12, color="#94A3B8"), gridcolor="#1E293B", showgrid=True),
+                    xaxis=dict(title=dict(text="Probability Impact (pp)", font=dict(color="#94A3B8", size=12, family="Inter")), tickfont=dict(size=12, color="#94A3B8"), gridcolor="#1F293D", showgrid=True),
                     yaxis=dict(autorange="reversed", tickfont=dict(size=12, color="#F8FAFC", family="Inter")),
                     showlegend=False
                 )
@@ -713,27 +736,27 @@ def render_policy_gate_summary(obs: Any, ana: Any):
 <span class="badge-purple">DETERMINISTIC SAFETY</span>
 </div>
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; text-align: center;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">1. AMOUNT GATE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">≤₹25,000</div>
 <span class="{'badge-green' if g1 else 'badge-red'}">{'PASS' if g1 else 'TRIGGERED'}</span>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; text-align: center;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">2. CONFIDENCE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">≥70.0%</div>
 <span class="{'badge-green' if g2 else 'badge-red'}">{'PASS' if g2 else 'TRIGGERED'}</span>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; text-align: center;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">3. ECONOMICS</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">E[EV] &gt; 0</div>
 <span class="{'badge-green' if g3 else 'badge-red'}">{'PASS' if g3 else 'TRIGGERED'}</span>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; text-align: center;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">4. DEADLINE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">&gt;3 Days</div>
 <span class="{'badge-green' if g4 else 'badge-red'}">{'PASS' if g4 else 'TRIGGERED'}</span>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; text-align: center;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 12px; text-align: center;">
 <div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">5. READINESS</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">≥60/100</div>
 <span class="{'badge-green' if g5 else 'badge-red'}">{'PASS' if g5 else 'TRIGGERED'}</span>
@@ -1124,15 +1147,15 @@ Traditional chargeback operations trap merchants in three costly, sub-optimal pa
 </p>
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 16px;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 16px;">
 <div style="font-weight: 700; color: #F87171; font-size: 0.9rem;">1. Blindly Defend</div>
 <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 4px; line-height: 1.4;">Defending unauthenticated disputes risks losing the transaction amount PLUS a non-refundable ₹3,000 bank arbitration fee penalty.</div>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 16px;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 16px;">
 <div style="font-weight: 700; color: #FBBF24; font-size: 0.9rem;">2. Manual Review Overhead</div>
 <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 4px; line-height: 1.4;">Human analyst backlogs lead to missed 7-day network deadlines and inconsistent subjective decisions.</div>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 16px;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 16px;">
 <div style="font-weight: 700; color: #C084FC; font-size: 0.9rem;">3. Passive Surrender</div>
 <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 4px; line-height: 1.4;">Automatically refunding surrenders 100% of revenue even when cryptographic 3DS and signed carrier POD exist.</div>
 </div>
@@ -1193,13 +1216,13 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 
     c_card1, c_card2, c_card3 = st.columns(3)
     with c_card1:
-        st.markdown(f"""<div style="background: #0F172A; border: 1px solid #1E293B; border-top: 3.5px solid #10B981; border-radius: 12px; padding: 18px;">
+        st.markdown(f"""<div style="background: #161E2E; border: 1px solid #1F293D; border-top: 3.5px solid #10B981; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #34D399; font-size: 1.1rem;">CONTEST</span>
 <span class="badge-green">AUTO DEFEND</span>
 </div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-bottom: 12px;">Defend high-probability disputes where Expected Financial Return is strictly positive.</div>
-<div style="background: #131926; border: 1px solid #1E293B; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
+<div style="background: #121826; border: 1px solid #1F293D; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
 <div>P(Win): <strong style="color: #34D399;">{d_a.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>E[EV]: <strong style="color: #34D399;">+₹{d_a.analytical_evidence.expected_value_inr:,.2f}</strong></div>
 <div>Readiness: <strong style="color: #A78BFA;">{d_a.analytical_evidence.evidence_readiness_score}/100</strong></div>
@@ -1207,13 +1230,13 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 </div>""", unsafe_allow_html=True)
 
     with c_card2:
-        st.markdown(f"""<div style="background: #0F172A; border: 1px solid #1E293B; border-top: 3.5px solid #EF4444; border-radius: 12px; padding: 18px;">
+        st.markdown(f"""<div style="background: #161E2E; border: 1px solid #1F293D; border-top: 3.5px solid #EF4444; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #F87171; font-size: 1.1rem;">SURRENDER</span>
 <span class="badge-red">ACCEPT LIABILITY</span>
 </div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-bottom: 12px;">Accept liability immediately to prevent non-refundable ₹3,000 bank arbitration fee losses.</div>
-<div style="background: #131926; border: 1px solid #1E293B; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
+<div style="background: #121826; border: 1px solid #1F293D; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
 <div>P(Win): <strong style="color: #F87171;">{d_b.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>E[EV]: <strong style="color: #F87171;">₹{d_b.analytical_evidence.expected_value_inr:,.2f}</strong></div>
 <div>Readiness: <strong style="color: #A78BFA;">{d_b.analytical_evidence.evidence_readiness_score}/100</strong></div>
@@ -1221,13 +1244,13 @@ Live calculations from actual engine evaluation across the 3 core scenario arche
 </div>""", unsafe_allow_html=True)
 
     with c_card3:
-        st.markdown(f"""<div style="background: #0F172A; border: 1px solid #1E293B; border-top: 3.5px solid #F59E0B; border-radius: 12px; padding: 18px;">
+        st.markdown(f"""<div style="background: #161E2E; border: 1px solid #1F293D; border-top: 3.5px solid #F59E0B; border-radius: 12px; padding: 18px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; color: #FBBF24; font-size: 1.1rem;">REVIEW</span>
 <span class="badge-gold">MANDATORY HITL</span>
 </div>
 <div style="font-size: 0.78rem; color: #94A3B8; margin-bottom: 12px;">Human-in-the-loop triage triggered for high GMV (>₹25k) or urgent deadlines (≤3d).</div>
-<div style="background: #131926; border: 1px solid #1E293B; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
+<div style="background: #121826; border: 1px solid #1F293D; border-radius: 8px; padding: 10px; font-size: 0.76rem; font-family: monospace;">
 <div>P(Win): <strong style="color: #34D399;">{d_d.analytical_evidence.calibrated_win_probability:.1%}</strong></div>
 <div>Amount: <strong style="color: #A78BFA;">₹35,000.00</strong></div>
 <div>Policy Gate: <strong style="color: #FBBF24;">GMV &gt; ₹25,000</strong></div>
@@ -1265,14 +1288,14 @@ Defensive input sanitization quarantines prompt injections in Exhibit E while pr
 </p>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 14px;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 14px;">
 <div style="font-size: 0.8rem; font-weight: 700; color: #34D399; margin-bottom: 6px;">1. CLEAN REMARKS</div>
 <div style="font-family: monospace; font-size: 0.74rem; color: #CBD5E1; margin-bottom: 8px;">"{clean_text}"</div>
 <div style="font-family: monospace; font-size: 0.8rem; font-weight: 700; color: #34D399;">
 P(Win): {ana_clean.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_clean.expected_value_inr:,.0f} &bull; Verdict: {ana_clean.decision_verdict}
 </div>
 </div>
-<div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 10px; padding: 14px;">
+<div style="background: #161E2E; border: 1px solid #1F293D; border-radius: 10px; padding: 14px;">
 <div style="font-size: 0.8rem; font-weight: 700; color: #F87171; margin-bottom: 6px;">2. INJECTION PAYLOAD (QUARANTINED)</div>
 <div style="font-family: monospace; font-size: 0.74rem; color: #F87171; margin-bottom: 8px;">"{malicious_text[:75]}..."</div>
 <div style="font-family: monospace; font-size: 0.8rem; font-weight: 700; color: #34D399;">
@@ -1683,8 +1706,8 @@ Cumulative Net P&amp;L: SYVORA vs Always Contest
                     margin=dict(l=20, r=20, t=10, b=20),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    yaxis=dict(title=dict(text="Net INR (₹)", font=dict(color="#94A3B8")), gridcolor="#1E293B", tickfont=dict(color="#94A3B8"), showgrid=True),
-                    xaxis=dict(gridcolor="#1E293B", tickfont=dict(color="#94A3B8"), showgrid=False),
+                    yaxis=dict(title=dict(text="Net INR (₹)", font=dict(color="#94A3B8")), gridcolor="#1F293D", tickfont=dict(color="#94A3B8"), showgrid=True),
+                    xaxis=dict(gridcolor="#1F293D", tickfont=dict(color="#94A3B8"), showgrid=False),
                     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(color="#F8FAFC"))
                 )
                 st.plotly_chart(fig_line, use_container_width=True, config={"displayModeBar": False})
