@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SYVORA — Advanced Dispute Intelligence</title>
+  <title>SYVORA — Payment Dispute Intelligence</title>
 
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
 
@@ -21,6 +21,7 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
             dark: '#0B0A1A',
@@ -34,7 +35,6 @@
 
   <!-- Custom CSS for 3D Isometric Engine & Keyframes -->
   <style>
-    /* Global Resets */
     body {
       background-color: #0B0A1A;
       font-family: 'Inter', sans-serif;
@@ -44,211 +44,115 @@
       color: #FFFFFF;
     }
 
-    /* Ambient Background Glows */
     .radial-bg {
       background:
         radial-gradient(circle at 10% 15%, rgba(147, 51, 234, 0.18) 0%, transparent 45%),
         radial-gradient(circle at 90% 85%, rgba(37, 99, 235, 0.16) 0%, transparent 50%);
     }
 
-    /* 3D Perspective Wrapper */
     .iso-wrapper {
       perspective: 1200px;
       perspective-origin: 50% 50%;
     }
 
-    /* 3D Isometric Scene */
     .iso-scene {
       transform: rotateX(60deg) rotateZ(45deg);
       transform-style: preserve-3d;
       will-change: transform;
     }
 
-    /* Keyframe Animations for Floating 3D Cubes & UI Elements */
     @keyframes floatZ1 {
-      0%, 100% {
-        transform: translateZ(30px);
-      }
-      50% {
-        transform: translateZ(75px);
-      }
+      0%, 100% { transform: translateZ(30px); }
+      50% { transform: translateZ(75px); }
     }
-
     @keyframes floatZ2 {
-      0%, 100% {
-        transform: translateZ(50px);
-      }
-      50% {
-        transform: translateZ(105px);
-      }
+      0%, 100% { transform: translateZ(50px); }
+      50% { transform: translateZ(105px); }
     }
-
     @keyframes floatZ3 {
-      0%, 100% {
-        transform: translateZ(80px);
-      }
-      50% {
-        transform: translateZ(145px);
-      }
+      0%, 100% { transform: translateZ(80px); }
+      50% { transform: translateZ(145px); }
     }
-
     @keyframes floatZSmall1 {
-      0%, 100% {
-        transform: translateZ(45px);
-      }
-      50% {
-        transform: translateZ(70px);
-      }
+      0%, 100% { transform: translateZ(45px); }
+      50% { transform: translateZ(70px); }
     }
-
     @keyframes floatZSmall2 {
-      0%, 100% {
-        transform: translateZ(60px);
-      }
-      50% {
-        transform: translateZ(90px);
-      }
+      0%, 100% { transform: translateZ(60px); }
+      50% { transform: translateZ(90px); }
     }
 
-    .animate-float-1 {
-      animation: floatZ1 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    }
+    .animate-float-1 { animation: floatZ1 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+    .animate-float-2 { animation: floatZ2 4.1s cubic-bezier(0.45, 0, 0.55, 1) infinite; animation-delay: 0.6s; }
+    .animate-float-3 { animation: floatZ3 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite; animation-delay: 1.2s; }
+    .animate-icon-1 { animation: floatZSmall1 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; animation-delay: 0.3s; }
+    .animate-icon-2 { animation: floatZSmall2 4.4s cubic-bezier(0.45, 0, 0.55, 1) infinite; animation-delay: 0.9s; }
 
-    .animate-float-2 {
-      animation: floatZ2 4.1s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-      animation-delay: 0.6s;
-    }
-
-    .animate-float-3 {
-      animation: floatZ3 4.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-      animation-delay: 1.2s;
-    }
-
-    .animate-icon-1 {
-      animation: floatZSmall1 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-      animation-delay: 0.3s;
-    }
-
-    .animate-icon-2 {
-      animation: floatZSmall2 4.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-      animation-delay: 0.9s;
-    }
-
-    /* 3D Cube Construction */
     .cube-container {
       position: absolute;
       transform-style: preserve-3d;
     }
 
-    /* Yellow Cube (Base 44x44, Height 40) */
-    .cube-yellow {
-      width: 44px;
-      height: 44px;
-    }
+    /* Yellow Cube */
+    .cube-yellow { width: 44px; height: 44px; }
     .cube-yellow .cube-top {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      transform: translateZ(40px);
-      background: rgba(250, 204, 21, 0.45);
-      border: 1px solid rgba(250, 204, 21, 0.9);
+      position: absolute; width: 44px; height: 44px; transform: translateZ(40px);
+      background: rgba(250, 204, 21, 0.45); border: 1px solid rgba(250, 204, 21, 0.9);
       box-shadow: 0 0 20px rgba(250, 204, 21, 0.6), inset 0 0 10px rgba(250, 204, 21, 0.4);
-      backdrop-filter: blur(4px);
     }
     .cube-yellow .cube-front {
-      position: absolute;
-      width: 44px;
-      height: 40px;
-      bottom: 0;
-      transform: rotateX(-90deg);
-      transform-origin: bottom;
+      position: absolute; width: 44px; height: 40px; bottom: 0;
+      transform: rotateX(-90deg); transform-origin: bottom;
       background: linear-gradient(to top, rgba(161, 98, 7, 0.7), rgba(250, 204, 21, 0.35));
       border: 1px solid rgba(250, 204, 21, 0.5);
     }
     .cube-yellow .cube-right {
-      position: absolute;
-      width: 40px;
-      height: 44px;
-      right: 0;
-      transform: rotateY(90deg);
-      transform-origin: right;
+      position: absolute; width: 40px; height: 44px; right: 0;
+      transform: rotateY(90deg); transform-origin: right;
       background: linear-gradient(to right, rgba(202, 138, 4, 0.7), rgba(250, 204, 21, 0.35));
       border: 1px solid rgba(250, 204, 21, 0.5);
     }
 
-    /* Green Cube (Base 44x44, Height 75) */
-    .cube-green {
-      width: 44px;
-      height: 44px;
-    }
+    /* Green Cube */
+    .cube-green { width: 44px; height: 44px; }
     .cube-green .cube-top {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      transform: translateZ(75px);
-      background: rgba(16, 185, 129, 0.45);
-      border: 1px solid rgba(16, 185, 129, 0.9);
+      position: absolute; width: 44px; height: 44px; transform: translateZ(75px);
+      background: rgba(16, 185, 129, 0.45); border: 1px solid rgba(16, 185, 129, 0.9);
       box-shadow: 0 0 24px rgba(16, 185, 129, 0.6), inset 0 0 12px rgba(16, 185, 129, 0.4);
-      backdrop-filter: blur(4px);
     }
     .cube-green .cube-front {
-      position: absolute;
-      width: 44px;
-      height: 75px;
-      bottom: 0;
-      transform: rotateX(-90deg);
-      transform-origin: bottom;
+      position: absolute; width: 44px; height: 75px; bottom: 0;
+      transform: rotateX(-90deg); transform-origin: bottom;
       background: linear-gradient(to top, rgba(4, 120, 87, 0.75), rgba(16, 185, 129, 0.35));
       border: 1px solid rgba(16, 185, 129, 0.5);
     }
     .cube-green .cube-right {
-      position: absolute;
-      width: 75px;
-      height: 44px;
-      right: 0;
-      transform: rotateY(90deg);
-      transform-origin: right;
+      position: absolute; width: 75px; height: 44px; right: 0;
+      transform: rotateY(90deg); transform-origin: right;
       background: linear-gradient(to right, rgba(6, 95, 70, 0.75), rgba(16, 185, 129, 0.35));
       border: 1px solid rgba(16, 185, 129, 0.5);
     }
 
-    /* Cyan Cube (Base 44x44, Height 120) */
-    .cube-cyan {
-      width: 44px;
-      height: 44px;
-    }
+    /* Cyan Cube */
+    .cube-cyan { width: 44px; height: 44px; }
     .cube-cyan .cube-top {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      transform: translateZ(120px);
-      background: rgba(6, 182, 212, 0.5);
-      border: 1px solid rgba(6, 182, 212, 0.95);
+      position: absolute; width: 44px; height: 44px; transform: translateZ(120px);
+      background: rgba(6, 182, 212, 0.5); border: 1px solid rgba(6, 182, 212, 0.95);
       box-shadow: 0 0 30px rgba(6, 182, 212, 0.7), inset 0 0 14px rgba(6, 182, 212, 0.5);
-      backdrop-filter: blur(4px);
     }
     .cube-cyan .cube-front {
-      position: absolute;
-      width: 44px;
-      height: 120px;
-      bottom: 0;
-      transform: rotateX(-90deg);
-      transform-origin: bottom;
+      position: absolute; width: 44px; height: 120px; bottom: 0;
+      transform: rotateX(-90deg); transform-origin: bottom;
       background: linear-gradient(to top, rgba(14, 116, 144, 0.8), rgba(6, 182, 212, 0.4));
       border: 1px solid rgba(6, 182, 212, 0.5);
     }
     .cube-cyan .cube-right {
-      position: absolute;
-      width: 120px;
-      height: 44px;
-      right: 0;
-      transform: rotateY(90deg);
-      transform-origin: right;
+      position: absolute; width: 120px; height: 44px; right: 0;
+      transform: rotateY(90deg); transform-origin: right;
       background: linear-gradient(to right, rgba(21, 94, 117, 0.8), rgba(6, 182, 212, 0.4));
       border: 1px solid rgba(6, 182, 212, 0.5);
     }
 
-    /* 4-Color Pie Chart in CSS */
     .pie-circle {
       width: 58px;
       height: 58px;
@@ -279,69 +183,59 @@
 
 <body class="radial-bg min-h-screen relative flex items-center justify-center py-16 lg:py-24">
 
-  <!-- Ambient Decorative Background Glow Shapes -->
-  <div
-    class="pointer-events-none fixed -top-48 -right-48 w-[800px] h-[800px] bg-gradient-to-br from-blue-900/20 to-transparent rotate-45 rounded-full blur-3xl"
-  ></div>
-  <div
-    class="pointer-events-none fixed -bottom-40 -left-40 w-[600px] h-[600px] bg-gradient-to-tr from-purple-900/20 to-transparent -rotate-45 rounded-full blur-3xl"
-  ></div>
+  <!-- Ambient Glow Shapes -->
+  <div class="pointer-events-none fixed -top-48 -right-48 w-[800px] h-[800px] bg-gradient-to-br from-blue-900/20 to-transparent rotate-45 rounded-full blur-3xl"></div>
+  <div class="pointer-events-none fixed -bottom-40 -left-40 w-[600px] h-[600px] bg-gradient-to-tr from-purple-900/20 to-transparent -rotate-45 rounded-full blur-3xl"></div>
 
-  <!-- Global Responsive 2-Column Container -->
+  <!-- Global 2-Column Container -->
   <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-    <!-- =========================================================================
-         LEFT COLUMN: Typography & Pure CSS 3D Isometric Scene
-         ========================================================================= -->
+    <!-- LEFT COLUMN -->
     <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+        <span>●</span> PAYMENT DISPUTE INTELLIGENCE
+      </div>
 
-      <!-- Heading -->
-      <h2 class="text-4xl md:text-5xl font-bold mb-5 tracking-tight text-white leading-tight">
-        Advanced Analytics.
+      <h2 class="text-4xl md:text-5xl font-black mb-5 tracking-tight text-white leading-tight">
+        WHEN A DISPUTE<br/>BECOMES A DECISION.
       </h2>
 
-      <!-- Paragraph -->
-      <p class="text-gray-400 text-base md:text-lg mb-16 max-w-md leading-relaxed">
-        Track your digital assets with unparalleled precision. Our platform provides deep insights that help you navigate complex markets and make informed decisions effortlessly.
+      <!-- Core Quote -->
+      <div class="bg-cyan-500/10 border-l-4 border-cyan-400 p-4 rounded-r-xl mb-6 text-left">
+        <p class="text-cyan-100 font-semibold text-base leading-relaxed">
+          &ldquo;Razorpay helps businesses move money. SYVORA helps businesses decide what to do when that money is disputed.&rdquo;
+        </p>
+      </div>
+
+      <p class="text-gray-400 text-base md:text-lg mb-12 max-w-md leading-relaxed">
+        SYVORA transforms chargeback evidence into calibrated, explainable, and financially optimal decisions. Using 41 multi-modal signals, Bayesian Expected Value, and 5 deterministic policy gates, SYVORA decides whether to <strong>Defend</strong>, <strong>Surrender</strong>, or <strong>Review</strong> every dispute automatically.
       </p>
 
-      <!-- 3D Isometric Illustration Container -->
+      <!-- 3D Isometric Illustration -->
       <div class="iso-wrapper w-full max-w-[420px] h-[480px] flex items-center justify-center relative">
         <div class="iso-scene relative w-[260px] h-[440px]">
 
-          <!-- Backing Negative-Z Glow Shadows -->
-          <div
-            class="absolute inset-0 rounded-[2.5rem] bg-cyan-500/25 blur-2xl pointer-events-none"
-            style="transform: translateZ(-50px);"
-          ></div>
-          <div
-            class="absolute inset-4 rounded-[2.5rem] bg-blue-600/30 blur-3xl pointer-events-none"
-            style="transform: translateZ(-70px);"
-          ></div>
+          <div class="absolute inset-0 rounded-[2.5rem] bg-cyan-500/25 blur-2xl pointer-events-none" style="transform: translateZ(-50px);"></div>
+          <div class="absolute inset-4 rounded-[2.5rem] bg-blue-600/30 blur-3xl pointer-events-none" style="transform: translateZ(-70px);"></div>
 
           <!-- Phone Body -->
-          <div
-            class="relative w-full h-full bg-[#13152A]/90 rounded-[2.5rem] border-2 border-cyan-500/40 p-3 shadow-[0_0_40px_rgba(6,182,212,0.25)] backdrop-blur-md"
-            style="transform: translateZ(0px);"
-          >
-            <!-- Phone Inner Screen -->
+          <div class="relative w-full h-full bg-[#13152A]/90 rounded-[2.5rem] border-2 border-cyan-500/40 p-3 shadow-[0_0_40px_rgba(6,182,212,0.25)] backdrop-blur-md" style="transform: translateZ(0px);">
             <div class="w-full h-full bg-[#0B0A1A] rounded-[1.8rem] p-4 flex flex-col justify-between overflow-hidden border border-white/5">
 
-              <!-- Top Status Bar & Pie Chart Row -->
+              <!-- Top Row -->
               <div class="flex items-center justify-between">
                 <div class="pie-circle"></div>
                 <div class="flex flex-col gap-1 text-right">
-                  <div class="text-[10px] font-bold text-cyan-400 tracking-wider">LIVE HEALTH</div>
-                  <div class="text-xs font-semibold text-white">99.98% OK</div>
+                  <div class="text-[10px] font-bold text-cyan-400 tracking-wider font-mono">TRIAGE ENGINE</div>
+                  <div class="text-xs font-semibold text-white">115/115 ONLINE</div>
                 </div>
               </div>
 
-              <!-- Mini Cards Row with Minimal SVG Sparklines -->
+              <!-- Mini Cards -->
               <div class="grid grid-cols-2 gap-2 my-2">
-                <!-- Mini Card 1 (Green Trend) -->
                 <div class="bg-gradient-to-b from-white/10 to-white/5 rounded-xl p-2.5 border border-white/10 flex flex-col justify-between">
-                  <div class="text-[9px] text-gray-400 font-medium">RECOVERY</div>
-                  <div class="text-xs font-bold text-emerald-400">+₹142.1k</div>
+                  <div class="text-[9px] text-gray-400 font-medium">NET RECOVERY</div>
+                  <div class="text-xs font-bold text-emerald-400">+₹142,153</div>
                   <svg class="w-full h-6 mt-1" viewBox="0 0 60 20" fill="none">
                     <path d="M0 18 L15 12 L30 15 L45 6 L60 2" stroke="#10B981" stroke-width="2" stroke-linecap="round" />
                     <path d="M0 18 L15 12 L30 15 L45 6 L60 2 L60 20 L0 20 Z" fill="url(#greenGrad)" opacity="0.25" />
@@ -354,10 +248,9 @@
                   </svg>
                 </div>
 
-                <!-- Mini Card 2 (Rose Trend) -->
                 <div class="bg-gradient-to-b from-white/10 to-white/5 rounded-xl p-2.5 border border-white/10 flex flex-col justify-between">
-                  <div class="text-[9px] text-gray-400 font-medium">DISPUTE RATE</div>
-                  <div class="text-xs font-bold text-rose-400">0.31% LOW</div>
+                  <div class="text-[9px] text-gray-400 font-medium">ARBITRATION RISK</div>
+                  <div class="text-xs font-bold text-rose-400">-24.1% BRIER</div>
                   <svg class="w-full h-6 mt-1" viewBox="0 0 60 20" fill="none">
                     <path d="M0 4 L15 8 L30 6 L45 14 L60 18" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
                     <path d="M0 4 L15 8 L30 6 L45 14 L60 18 L60 20 L0 20 Z" fill="url(#roseGrad)" opacity="0.25" />
@@ -371,38 +264,35 @@
                 </div>
               </div>
 
-              <!-- Stack of 3 Glowing Progress Bars -->
+              <!-- 3 Progress Bars -->
               <div class="flex flex-col gap-2">
-                <!-- Bar 1: Cyan (75%) -->
                 <div>
                   <div class="flex justify-between text-[9px] text-gray-400 mb-0.5">
-                    <span>Evidence Auto-Match</span>
-                    <span class="text-cyan-400 font-bold">75%</span>
+                    <span>Evidence Readiness</span>
+                    <span class="text-cyan-400 font-bold">85%</span>
                   </div>
                   <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
-                    <div class="h-full bg-cyan-400 rounded-full w-[75%] shadow-[0_0_8px_#06B6D4]"></div>
+                    <div class="h-full bg-cyan-400 rounded-full w-[85%] shadow-[0_0_8px_#06B6D4]"></div>
                   </div>
                 </div>
 
-                <!-- Bar 2: Yellow (45%) -->
                 <div>
                   <div class="flex justify-between text-[9px] text-gray-400 mb-0.5">
-                    <span>Decision Velocity</span>
-                    <span class="text-yellow-400 font-bold">45%</span>
+                    <span>Calibrated P(Win)</span>
+                    <span class="text-yellow-400 font-bold">78.4%</span>
                   </div>
                   <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
-                    <div class="h-full bg-yellow-400 rounded-full w-[45%] shadow-[0_0_8px_#FACC15]"></div>
+                    <div class="h-full bg-yellow-400 rounded-full w-[78.4%] shadow-[0_0_8px_#FACC15]"></div>
                   </div>
                 </div>
 
-                <!-- Bar 3: Blue (90%) -->
                 <div>
                   <div class="flex justify-between text-[9px] text-gray-400 mb-0.5">
-                    <span>Ledger Consensus</span>
-                    <span class="text-blue-400 font-bold">90%</span>
+                    <span>SHA-256 Ledger State</span>
+                    <span class="text-blue-400 font-bold">100%</span>
                   </div>
                   <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
-                    <div class="h-full bg-blue-500 rounded-full w-[90%] shadow-[0_0_8px_#3B82F6]"></div>
+                    <div class="h-full bg-blue-500 rounded-full w-[100%] shadow-[0_0_8px_#3B82F6]"></div>
                   </div>
                 </div>
               </div>
@@ -410,153 +300,100 @@
             </div>
           </div>
 
-          <!-- =================================================================
-               FLOATING 3D CUBES (Asynchronous Floating Animations)
-               ================================================================= -->
-
-          <!-- Cube 1: Yellow (Base 44x44, Height 40) -->
+          <!-- 3D Cubes -->
           <div class="cube-container cube-yellow animate-float-1" style="top: 30px; right: -25px;">
-            <div class="cube-top"></div>
-            <div class="cube-front"></div>
-            <div class="cube-right"></div>
+            <div class="cube-top"></div><div class="cube-front"></div><div class="cube-right"></div>
           </div>
 
-          <!-- Cube 2: Green (Base 44x44, Height 75) -->
           <div class="cube-container cube-green animate-float-2" style="bottom: 120px; right: -35px;">
-            <div class="cube-top"></div>
-            <div class="cube-front"></div>
-            <div class="cube-right"></div>
+            <div class="cube-top"></div><div class="cube-front"></div><div class="cube-right"></div>
           </div>
 
-          <!-- Cube 3: Cyan (Base 44x44, Height 120) -->
           <div class="cube-container cube-cyan animate-float-3" style="bottom: 40px; left: -30px;">
-            <div class="cube-top"></div>
-            <div class="cube-front"></div>
-            <div class="cube-right"></div>
+            <div class="cube-top"></div><div class="cube-front"></div><div class="cube-right"></div>
           </div>
 
-          <!-- =================================================================
-               FLOATING UI GLASS BOXES
-               ================================================================= -->
-
-          <!-- Floating Icon Box 1: Purple Settings Gear -->
-          <div
-            class="absolute top-16 -left-8 w-11 h-11 rounded-2xl bg-purple-900/50 border border-purple-400/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_18px_rgba(168,85,247,0.5)] animate-icon-1"
-          >
-            <svg class="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
+          <!-- Floating Icons -->
+          <div class="absolute top-16 -left-8 w-11 h-11 rounded-2xl bg-purple-900/50 border border-purple-400/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_18px_rgba(168,85,247,0.5)] animate-icon-1">
+            <span class="text-lg">⚙️</span>
           </div>
 
-          <!-- Floating Icon Box 2: Yellow Clock / Currency -->
-          <div
-            class="absolute bottom-28 -right-10 w-11 h-11 rounded-2xl bg-yellow-900/50 border border-yellow-400/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_18px_rgba(250,204,21,0.5)] animate-icon-2"
-          >
-            <svg class="w-5 h-5 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+          <div class="absolute bottom-28 -right-10 w-11 h-11 rounded-2xl bg-yellow-900/50 border border-yellow-400/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_18px_rgba(250,204,21,0.5)] animate-icon-2">
+            <span class="text-lg">⏱️</span>
           </div>
 
         </div>
       </div>
     </div>
 
-    <!-- =========================================================================
-         RIGHT COLUMN: Glassmorphic Feature Cards & CTA
-         ========================================================================= -->
+    <!-- RIGHT COLUMN: 4 TAILORED CARDS -->
     <div class="flex flex-col gap-4">
 
-      <!-- Card 1: Green (Seamless Integration) -->
-      <div
-        class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg"
-      >
-        <div
-          class="w-14 h-14 shrink-0 rounded-xl border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center shadow-[0_0_16px_rgba(16,185,129,0.25)] group-hover:shadow-[0_0_24px_rgba(16,185,129,0.45)] transition-all"
-        >
-          <svg class="w-7 h-7 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.6)] group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
+      <!-- Card 1: Green -->
+      <div class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg">
+        <div class="w-14 h-14 shrink-0 rounded-xl border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center text-2xl shadow-[0_0_16px_rgba(16,185,129,0.25)] group-hover:shadow-[0_0_24px_rgba(16,185,129,0.45)] transition-all">
+          💰
         </div>
         <div>
-          <h3 class="text-white font-semibold text-lg mb-1.5">Seamless Integration</h3>
+          <h3 class="text-white font-semibold text-lg mb-1.5">Bayesian Expected Value</h3>
           <p class="text-gray-400 text-sm leading-relaxed">
-            Connect directly with your existing payment gateways and data streams with zero friction. Automate ingestion across all major card networks instantly.
+            Calculates cost-weighted expected returns against non-refundable bank arbitration fees. Only disputes with positive mathematical recovery are defended.
           </p>
         </div>
       </div>
 
-      <!-- Card 2: Yellow (Insightful Metrics) -->
-      <div
-        class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg"
-      >
-        <div
-          class="w-14 h-14 shrink-0 rounded-xl border border-yellow-400/40 bg-yellow-400/10 flex items-center justify-center shadow-[0_0_16px_rgba(250,204,21,0.25)] group-hover:shadow-[0_0_24px_rgba(250,204,21,0.45)] transition-all"
-        >
-          <svg class="w-7 h-7 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)] group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-          </svg>
+      <!-- Card 2: Yellow -->
+      <div class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg">
+        <div class="w-14 h-14 shrink-0 rounded-xl border border-yellow-400/40 bg-yellow-400/10 flex items-center justify-center text-2xl shadow-[0_0_16px_rgba(250,204,21,0.25)] group-hover:shadow-[0_0_24px_rgba(250,204,21,0.45)] transition-all">
+          📊
         </div>
         <div>
-          <h3 class="text-white font-semibold text-lg mb-1.5">Insightful Metrics</h3>
+          <h3 class="text-white font-semibold text-lg mb-1.5">TreeSHAP Explainability</h3>
           <p class="text-gray-400 text-sm leading-relaxed">
-            Harness TreeSHAP explainability to understand exact signal contributions. Convert raw transaction telemetry into clear, calibrated win probabilities.
+            Decomposes exact percentage-point contributions for 41 evidence signals—from 3DS 2.0 authentication to carrier GPS proof-of-delivery.
           </p>
         </div>
       </div>
 
-      <!-- Card 3: Blue (Instant Alerts) -->
-      <div
-        class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg"
-      >
-        <div
-          class="w-14 h-14 shrink-0 rounded-xl border border-blue-500/40 bg-blue-500/10 flex items-center justify-center shadow-[0_0_16px_rgba(59,130,246,0.25)] group-hover:shadow-[0_0_24px_rgba(59,130,246,0.45)] transition-all"
-        >
-          <svg class="w-7 h-7 text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+      <!-- Card 3: Blue -->
+      <div class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg">
+        <div class="w-14 h-14 shrink-0 rounded-xl border border-blue-500/40 bg-blue-500/10 flex items-center justify-center text-2xl shadow-[0_0_16px_rgba(59,130,246,0.25)] group-hover:shadow-[0_0_24px_rgba(59,130,246,0.45)] transition-all">
+          🚦
         </div>
         <div>
-          <h3 class="text-white font-semibold text-lg mb-1.5">Instant Alerts</h3>
+          <h3 class="text-white font-semibold text-lg mb-1.5">5 Deterministic Policy Gates</h3>
           <p class="text-gray-400 text-sm leading-relaxed">
-            Receive real-time notifications for critical arbitration deadlines and high-risk claims. Stay ahead of network timeouts with automated SLA tracking.
+            Hard-coded safety guardrails enforce monetary thresholds (≤₹25k), confidence floors (≥70%), and strict bank submission SLA deadlines.
           </p>
         </div>
       </div>
 
-      <!-- Card 4: Rose (Ironclad Security) -->
-      <div
-        class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg"
-      >
-        <div
-          class="w-14 h-14 shrink-0 rounded-xl border border-rose-500/40 bg-rose-500/10 flex items-center justify-center shadow-[0_0_16px_rgba(244,63,94,0.25)] group-hover:shadow-[0_0_24px_rgba(244,63,94,0.45)] transition-all"
-        >
-          <svg class="w-7 h-7 text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.6)] group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
+      <!-- Card 4: Rose -->
+      <div class="feature-card opacity-0 translate-x-8 group rounded-[1.25rem] p-5 bg-card hover:bg-cardHover border border-white/10 hover:border-white/20 backdrop-blur-md flex items-start sm:items-center gap-5 transition-all duration-500 ease-out hover:-translate-x-3 cursor-pointer shadow-lg">
+        <div class="w-14 h-14 shrink-0 rounded-xl border border-rose-500/40 bg-rose-500/10 flex items-center justify-center text-2xl shadow-[0_0_16px_rgba(244,63,94,0.25)] group-hover:shadow-[0_0_24px_rgba(244,63,94,0.45)] transition-all">
+          🛡️
         </div>
         <div>
-          <h3 class="text-white font-semibold text-lg mb-1.5">Ironclad Security</h3>
+          <h3 class="text-white font-semibold text-lg mb-1.5">Adversarial Input Firewall</h3>
           <p class="text-gray-400 text-sm leading-relaxed">
-            Deterministic adversarial firewalls quarantine untrusted customer text. Every single decision is sealed in an append-only SHA-256 cryptographic audit ledger.
+            Guarantees untrusted customer remarks cannot manipulate mathematical decisions, backed by an append-only SHA-256 cryptographic audit ledger.
           </p>
         </div>
       </div>
 
-      <!-- Call To Action Button -->
+      <!-- CTA -->
       <div class="mt-4">
         <button
           class="inline-flex items-center justify-center bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-semibold py-3.5 px-8 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:-translate-y-1 transition-all duration-300 cursor-pointer text-base"
           onclick="window.location.href='http://localhost:8501'"
         >
-          Explore More &rarr;
+          Launch Command Center &rarr;
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- JavaScript: Staggered Entrance Animation for Feature Cards -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.feature-card');

@@ -5,10 +5,10 @@ Autonomous dispute triage, Bayesian Expected Value analysis,
 TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
 
 PREMIUM ISOMETRIC 3D FINTECH DESIGN SYSTEM:
-- Dark Canvas: #0B0A1A / #0F1523
-- Ambient Purple & Blue Radial Lighting
+- Master Canvas: #0B0A1A / #0F1523
+- Ambient Purple & Blue Radial Atmosphere
 - Pure CSS 3D Isometric Phone Scene with Floating 3D Cubes (Yellow, Green, Cyan)
-- Glassmorphic Feature Cards with Theme-Glow Icon Boxes (Green, Yellow, Blue, Rose)
+- Glassmorphic Feature Cards with Theme-Glow Icon Boxes (Emerald, Yellow, Blue, Rose)
 """
 
 import os
@@ -50,7 +50,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Master CSS
+# Master CSS: Tailored Fintech Styling (100% Clean Navigation & High Contrast)
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -194,20 +194,21 @@ div[data-testid="stRadio"] > div {
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 4px !important;
+    gap: 6px !important;
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     backdrop-filter: blur(20px) !important;
     border-radius: 16px !important;
-    padding: 5px 8px !important;
+    padding: 6px 10px !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
     margin-bottom: 1.5rem !important;
 }
 
-/* HIDE RADIO CIRCLE / INPUT COMPLETELY */
+/* HIDE RADIO CIRCLE / INPUT COMPLETELY ACROSS ALL BROWSERS & VERSIONS */
 div[data-testid="stRadio"] input[type="radio"],
 div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child,
-div[data-testid="stRadio"] label > div:first-child {
+div[data-testid="stRadio"] label > div:first-child,
+div[data-testid="stRadio"] label span:first-child:not(:last-child) {
     display: none !important;
     visibility: hidden !important;
     width: 0 !important;
@@ -219,7 +220,7 @@ div[data-testid="stRadio"] label > div:first-child {
 div[data-testid="stRadio"] label {
     background: transparent !important;
     border-radius: 12px !important;
-    padding: 8px 16px !important;
+    padding: 8px 18px !important;
     border: 1px solid transparent !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     cursor: pointer !important;
@@ -246,7 +247,7 @@ div[data-testid="stRadio"] label[data-checked="true"] {
 }
 
 div[data-testid="stRadio"] label p {
-    font-size: 0.82rem !important;
+    font-size: 0.84rem !important;
     font-weight: 700 !important;
     color: #94A3B8 !important;
     letter-spacing: -0.01em !important;
@@ -274,7 +275,6 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
 .glass-card:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
 }
 
 .kpi-tile {
@@ -322,7 +322,7 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
 .badge-yellow { background: rgba(250, 204, 21, 0.12); color: #FDE047; border: 1px solid rgba(250, 204, 21, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
 .badge-rose   { background: rgba(244, 63, 94, 0.12); color: #FDA4AF; border: 1px solid rgba(244, 63, 94, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
 
-/* Form Inputs */
+/* Form Controls */
 div[data-baseweb="input"],
 div[data-baseweb="base-input"],
 div[data-baseweb="textarea"],
@@ -784,20 +784,20 @@ body { background: transparent; overflow: hidden; height: 480px; width: 100%; fo
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div class="pie-circle"></div>
           <div style="text-align: right;">
-            <div style="font-size: 9px; font-weight: 800; color: #22D3EE; font-family: monospace;">LIVE HEALTH</div>
-            <div style="font-size: 11px; font-weight: 700; color: #FFFFFF;">99.98% OK</div>
+            <div style="font-size: 9px; font-weight: 800; color: #22D3EE; font-family: monospace;">TRIAGE ENGINE</div>
+            <div style="font-size: 11px; font-weight: 700; color: #FFFFFF;">115/115 ONLINE</div>
           </div>
         </div>
 
         <!-- Mini Trend Cards -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0;">
           <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 10px;">
-            <div style="font-size: 8px; color: #94A3B8; font-weight: 700;">RECOVERY</div>
-            <div style="font-size: 11px; font-weight: 800; color: #34D399;">+₹142.1k</div>
+            <div style="font-size: 8px; color: #94A3B8; font-weight: 700;">NET RECOVERY</div>
+            <div style="font-size: 11px; font-weight: 800; color: #34D399;">+₹142,153</div>
           </div>
           <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 10px;">
-            <div style="font-size: 8px; color: #94A3B8; font-weight: 700;">DISPUTE RATE</div>
-            <div style="font-size: 11px; font-weight: 800; color: #FDA4AF;">0.31% LOW</div>
+            <div style="font-size: 8px; color: #94A3B8; font-weight: 700;">ARBITRATION RISK</div>
+            <div style="font-size: 11px; font-weight: 800; color: #FDA4AF;">-24.1% BRIER</div>
           </div>
         </div>
 
@@ -805,29 +805,29 @@ body { background: transparent; overflow: hidden; height: 480px; width: 100%; fo
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div>
             <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94A3B8; margin-bottom: 2px;">
-              <span>Evidence Match</span>
-              <span style="color: #22D3EE; font-weight: 700;">75%</span>
+              <span>Evidence Readiness</span>
+              <span style="color: #22D3EE; font-weight: 700;">85%</span>
             </div>
             <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 9999px; overflow: hidden;">
-              <div style="width: 75%; height: 100%; background: #06B6D4; border-radius: 9999px; box-shadow: 0 0 6px #06B6D4;"></div>
+              <div style="width: 85%; height: 100%; background: #06B6D4; border-radius: 9999px; box-shadow: 0 0 6px #06B6D4;"></div>
             </div>
           </div>
           <div>
             <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94A3B8; margin-bottom: 2px;">
-              <span>Decision Speed</span>
-              <span style="color: #FDE047; font-weight: 700;">45%</span>
+              <span>Calibrated P(Win)</span>
+              <span style="color: #FDE047; font-weight: 700;">78.4%</span>
             </div>
             <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 9999px; overflow: hidden;">
-              <div style="width: 45%; height: 100%; background: #FACC15; border-radius: 9999px; box-shadow: 0 0 6px #FACC15;"></div>
+              <div style="width: 78.4%; height: 100%; background: #FACC15; border-radius: 9999px; box-shadow: 0 0 6px #FACC15;"></div>
             </div>
           </div>
           <div>
             <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94A3B8; margin-bottom: 2px;">
-              <span>Ledger Consensus</span>
-              <span style="color: #60A5FA; font-weight: 700;">90%</span>
+              <span>SHA-256 Ledger State</span>
+              <span style="color: #60A5FA; font-weight: 700;">100%</span>
             </div>
             <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 9999px; overflow: hidden;">
-              <div style="width: 90%; height: 100%; background: #3B82F6; border-radius: 9999px; box-shadow: 0 0 6px #3B82F6;"></div>
+              <div style="width: 100%; height: 100%; background: #3B82F6; border-radius: 9999px; box-shadow: 0 0 6px #3B82F6;"></div>
             </div>
           </div>
         </div>
@@ -918,10 +918,10 @@ if st.session_state["app_mode"] == "🌟 Product Overview & Landing":
     with h_col1:
         st.markdown("""<div class="glass-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 <div>
-<div class="badge-cyan" style="display: inline-block; margin-bottom: 14px;">ADVANCED ANALYTICS</div>
+<div class="badge-cyan" style="display: inline-block; margin-bottom: 14px;">PAYMENT DISPUTE INTELLIGENCE</div>
 
 <h1 style="font-size: clamp(2.2rem, 3.4vw, 3.0rem); font-weight: 900; color: #FFFFFF; line-height: 1.1; margin: 0 0 16px 0; letter-spacing: -0.03em;">
-Advanced Analytics.
+WHEN A DISPUTE<br/>BECOMES A DECISION.
 </h1>
 
 <!-- CORE POSITIONING STATEMENT -->
@@ -932,7 +932,7 @@ Advanced Analytics.
 </div>
 
 <p style="font-size: 0.95rem; color: #94A3B8; line-height: 1.6; margin: 0 0 20px 0;">
-Track your digital assets with unparalleled precision. Our platform provides deep insights that help you navigate complex markets and make informed decisions effortlessly across 41 multi-modal signals.
+SYVORA transforms chargeback evidence into calibrated, explainable, and financially optimal decisions. Using 41 multi-modal signals, Bayesian Expected Value, and 5 deterministic policy gates, SYVORA decides whether to <strong>Defend</strong>, <strong>Surrender</strong>, or <strong>Review</strong> every dispute automatically.
 </p>
 </div>
 </div>""", unsafe_allow_html=True)
@@ -955,11 +955,11 @@ Track your digital assets with unparalleled precision. Our platform provides dee
             st.session_state["app_mode"] = "📝 Manual Case Intake"
             st.rerun()
 
-    # Glassmorphic 4-Feature Cards Section
+    # Glassmorphic 4-Feature Cards Section Tailored Specifically to SYVORA
     st.markdown("""<div style="margin-top: 1.75rem; margin-bottom: 1rem;">
-<div class="badge-cyan" style="display: inline-block; margin-bottom: 8px;">CORE CAPABILITIES</div>
+<div class="badge-cyan" style="display: inline-block; margin-bottom: 8px;">FOUR CORE PILLARS</div>
 <h3 style="font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin: 0 0 16px 0;">
-Engineered for Enterprise Payment Operations
+Architected for Autonomous Enterprise Dispute Operations
 </h3>
 </div>""", unsafe_allow_html=True)
 
@@ -967,21 +967,21 @@ Engineered for Enterprise Payment Operations
     with fc1:
         st.markdown("""<div class="glass-card" style="display: flex; gap: 16px; align-items: center;">
 <div style="width: 54px; height: 54px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 1.5px solid rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 18px rgba(16, 185, 129, 0.25);">
-✉️
+💰
 </div>
 <div>
-<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Seamless Integration</div>
-<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Connect directly with existing payment gateways with zero friction. Automate ingestion across Visa and Mastercard networks.</div>
+<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Bayesian Expected Value</div>
+<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Calculates cost-weighted expected returns against non-refundable bank arbitration fees. Only disputes with positive mathematical recovery are defended.</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
         st.markdown("""<div class="glass-card" style="display: flex; gap: 16px; align-items: center;">
 <div style="width: 54px; height: 54px; border-radius: 12px; background: rgba(59, 130, 246, 0.1); border: 1.5px solid rgba(59, 130, 246, 0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 18px rgba(59, 130, 246, 0.25);">
-⏱️
+🚦
 </div>
 <div>
-<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Instant Alerts</div>
-<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Receive real-time notifications for critical arbitration deadlines. Stay ahead of network timeouts with automated SLA tracking.</div>
+<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">5 Deterministic Policy Gates</div>
+<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Hard-coded safety guardrails enforce monetary thresholds (≤₹25k), confidence floors (≥70%), and strict bank submission SLA deadlines.</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -991,8 +991,8 @@ Engineered for Enterprise Payment Operations
 📊
 </div>
 <div>
-<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Insightful Metrics</div>
-<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Harness TreeSHAP explainability to understand exact signal contributions. Convert telemetry into calibrated win probabilities.</div>
+<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">TreeSHAP Explainability</div>
+<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Decomposes exact percentage-point contributions for 41 evidence signals—from 3DS 2.0 authentication to carrier GPS proof-of-delivery.</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -1001,8 +1001,8 @@ Engineered for Enterprise Payment Operations
 🛡️
 </div>
 <div>
-<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Ironclad Security</div>
-<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Deterministic adversarial firewalls quarantine untrusted customer text. Decisions sealed in an append-only SHA-256 ledger.</div>
+<div style="font-size: 1.05rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Adversarial Input Firewall</div>
+<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.45;">Guarantees untrusted customer remarks cannot manipulate mathematical decisions, backed by an append-only SHA-256 cryptographic audit ledger.</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
