@@ -4,19 +4,14 @@ SYVORA — Payment Dispute Intelligence Console
 Autonomous dispute triage, Bayesian Expected Value analysis,
 TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
 
-PREMIUM FINTECH / APPLE-STYLE DESIGN SYSTEM:
-- Master Canvas: #050608 / #080A0F / #0B0F16
-- Surfaces: #10151E / #141A24 / #18202C (Glassmorphic cards, 18px blur, subtle highlights)
-- Primary Accent: #67D7FF / #38BDF8 (Ice Blue)
-- Secondary Accent: #8B7CFF / #6366F1 (Subtle Violet)
-- Success: #39E6A5 (Luminous Emerald)
-- Warning: #FFB84D (Gilded Amber)
-- Danger: #FF5C6C (Coral Crimson)
-- Typography: #F5F7FA (Headings), #C6CEDA (Body), #8793A5 (Muted)
-
-DISCLAIMER:
-All data, metrics, and simulations are based on synthetic simulation records.
-Not real customer or payment data.
+ULTRA-PREMIUM FINTECH DESIGN SYSTEM:
+- Deep Midnight Obsidian (#06080F / #0A0E17)
+- Razorpay / Linear / Stripe Quality Surfaces (#0F1523 with hairline 1px rgba(255,255,255,0.08) border)
+- Cyan / Ice Blue Brand Primary (#38BDF8 / #67D7FF)
+- Electric Violet Secondary (#818CF8 / #6366F1)
+- Luminous Emerald (#10B981 / #34D399)
+- Gilded Amber (#F59E0B / #FBBF24)
+- Coral Crimson (#EF4444 / #F87171)
 """
 
 import os
@@ -48,7 +43,7 @@ from src.security.audit import AuditLedger
 from src.security.sanitizer import InputSanitizer
 
 # ---------------------------------------------------------------------------
-# Page Configuration & Global Design System
+# Page Configuration & Master Fintech Styling
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
@@ -58,16 +53,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Master CSS: Premium Dark Fintech Design System
+# Master CSS: Pixel-Perfect Fintech Design System (Razorpay / Linear / Apple Level)
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800;900&display=swap');
 
-/* Global Typography & Resets */
-html, body, p, div, h1, h2, h3, h4, h5, h6, label, input, select, textarea {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    letter-spacing: -0.015em;
-    color: #F5F7FA;
+/* Global Resets */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body, [class*="css"], .stApp {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: #F8FAFC !important;
+    background-color: #06080F !important;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -75,155 +74,193 @@ code, pre, .mono, [class*="stCode"] {
     font-family: 'JetBrains Mono', monospace !important;
 }
 
-/* Hide Sidebar Completely */
+/* Hide Streamlit Sidebar & Default Chrome */
 section[data-testid="stSidebar"],
 [data-testid="collapsedControl"] {
     display: none !important;
 }
 
-/* App Background: Deep Midnight Canvas with Subtle Atmosphere */
-.stApp {
-    background-color: #050608 !important;
-    background-image:
-        radial-gradient(circle at 12% 12%, rgba(56, 189, 248, 0.07) 0%, transparent 45%),
-        radial-gradient(circle at 88% 18%, rgba(139, 124, 255, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(57, 230, 165, 0.04) 0%, transparent 50%) !important;
-    background-attachment: fixed !important;
-    color: #F5F7FA !important;
-}
-
 header[data-testid="stHeader"] {
     background: transparent !important;
-    z-index: 999990 !important;
+    z-index: 100 !important;
 }
 
 .block-container {
-    padding-top: 1.25rem !important;
+    padding-top: 1rem !important;
     padding-bottom: 4rem !important;
-    padding-left: clamp(1rem, 3.5vw, 3.5rem) !important;
-    padding-right: clamp(1rem, 3.5vw, 3.5rem) !important;
+    padding-left: clamp(1rem, 3vw, 3.5rem) !important;
+    padding-right: clamp(1rem, 3vw, 3.5rem) !important;
     max-width: 1560px !important;
 }
 
+/* App Background: Deep Mesh with Subtle Kinetic Glow */
+.stApp {
+    background-image:
+        radial-gradient(circle at 20% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.05) 0%, transparent 50%) !important;
+    background-attachment: fixed !important;
+}
+
 /* =========================================================================
-   GLOBAL TOP COMMAND DECK & BRAND HEADER
+   TOP BRAND HEADER & STATUS BAR
    ========================================================================= */
-.top-nav-container {
-    background: rgba(16, 21, 30, 0.85);
+.top-nav-bar {
+    background: rgba(15, 21, 35, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 16px 26px;
-    margin-bottom: 1.25rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 18px;
+    padding: 14px 24px;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     position: relative;
     overflow: hidden;
 }
-.top-nav-container::before {
+.top-nav-bar::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, #38BDF8 0%, #8B7CFF 35%, #39E6A5 70%, #FFB84D 100%);
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #38BDF8 0%, #818CF8 30%, #34D399 70%, #FBBF24 100%);
 }
 
-.brand-badge {
-    display: inline-flex;
+.brand-wrapper {
+    display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
-.brand-logo-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #10151E 0%, #1E1B4B 50%, #312E81 100%);
-    color: #67D7FF;
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+    border: 1px solid rgba(56, 189, 248, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.35rem;
-    box-shadow: 0 4px 18px rgba(56, 189, 248, 0.35);
-    border: 1px solid rgba(56, 189, 248, 0.4);
+    font-size: 1.25rem;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
 }
-.brand-title-text {
+.brand-name {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     font-weight: 900;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     color: #FFFFFF;
     line-height: 1.1;
 }
-.brand-sub-text {
-    font-size: 0.72rem;
-    color: #8B7CFF;
+.brand-tagline {
+    font-size: 0.68rem;
+    color: #818CF8;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
+}
+
+/* Status Chips */
+.status-dock {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+.chip-green  { background: rgba(16, 185, 129, 0.12); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.chip-purple { background: rgba(99, 102, 241, 0.12); color: #A5B4FC; border: 1px solid rgba(99, 102, 241, 0.3); }
+.chip-amber  { background: rgba(245, 158, 11, 0.12); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3); }
+.chip-red    { background: rgba(239, 68, 68, 0.12); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #34D399;
+    box-shadow: 0 0 8px #34D399;
 }
 
 /* =========================================================================
-   HORIZONTAL SEGMENTED NAVIGATION DOCK
+   CUSTOM SEGMENTED PILL NAVIGATION DOCK (ZERO RADIO CIRCLES!)
    ========================================================================= */
 div[data-testid="stRadio"] > div {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 6px !important;
-    background: rgba(16, 21, 30, 0.85) !important;
+    gap: 4px !important;
+    background: rgba(15, 21, 35, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     backdrop-filter: blur(20px) !important;
-    border-radius: 16px !important;
-    padding: 6px 10px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    border-radius: 14px !important;
+    padding: 4px 6px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
     margin-bottom: 1.5rem !important;
+}
+
+/* HIDE RADIO CIRCLE / INPUT COMPLETELY */
+div[data-testid="stRadio"] input[type="radio"],
+div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child,
+div[data-testid="stRadio"] label > div:first-child {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 div[data-testid="stRadio"] label {
     background: transparent !important;
     border-radius: 10px !important;
-    padding: 8px 16px !important;
+    padding: 8px 15px !important;
     border: 1px solid transparent !important;
-    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     cursor: pointer !important;
     margin: 0 !important;
 }
 
 div[data-testid="stRadio"] label:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border-color: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
     transform: translateY(-1px) !important;
 }
 
 div[data-testid="stRadio"] label:hover p {
-    color: #F5F7FA !important;
+    color: #FFFFFF !important;
 }
 
-/* Active Nav Pill: Glowing Ice Blue / Violet Gradient */
+/* Active Nav Pill: Pure Glowing Gradient */
 div[data-testid="stRadio"] label:has(input:checked),
 div[data-testid="stRadio"] label[data-checked="true"] {
-    background: linear-gradient(135deg, #312E81 0%, #4F46E5 50%, #0284C7 100%) !important;
-    border: 1px solid #38BDF8 !important;
-    box-shadow: 0 4px 18px rgba(56, 189, 248, 0.4) !important;
+    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #0284C7 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.6) !important;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35) !important;
     transform: translateY(-1px) !important;
-}
-
-div[data-testid="stRadio"] div[role="radiogroup"] > label > div:first-child {
-    display: none !important;
 }
 
 div[data-testid="stRadio"] label p {
     font-family: 'Space Grotesk', sans-serif !important;
     font-size: 0.82rem !important;
     font-weight: 700 !important;
-    color: #8793A5 !important;
+    color: #94A3B8 !important;
     letter-spacing: -0.01em !important;
     transition: color 0.15s ease !important;
+    margin: 0 !important;
 }
 
 div[data-testid="stRadio"] label:has(input:checked) p,
@@ -231,59 +268,27 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     color: #FFFFFF !important;
 }
 
-/* Status Indicator Pills */
-@keyframes neonEmeraldPulse {
-    0% { box-shadow: 0 0 0 0 rgba(57, 230, 165, 0.6); }
-    70% { box-shadow: 0 0 0 6px rgba(57, 230, 165, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(57, 230, 165, 0); }
-}
-@keyframes neonAmberPulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 184, 77, 0.6); }
-    70% { box-shadow: 0 0 0 6px rgba(255, 184, 77, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 184, 77, 0); }
-}
-
-.status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-.pill-emerald { background: rgba(57, 230, 165, 0.12); color: #39E6A5; border: 1px solid rgba(57, 230, 165, 0.35); }
-.pill-purple  { background: rgba(139, 124, 255, 0.12); color: #8B7CFF; border: 1px solid rgba(139, 124, 255, 0.35); }
-.pill-amber   { background: rgba(255, 184, 77, 0.12); color: #FFB84D; border: 1px solid rgba(255, 184, 77, 0.35); }
-.pill-coral   { background: rgba(255, 92, 108, 0.12); color: #FF5C6C; border: 1px solid rgba(255, 92, 108, 0.35); }
-
-.dot-green { width: 8px; height: 8px; border-radius: 50%; background: #39E6A5; animation: neonEmeraldPulse 2s infinite; }
-.dot-amber { width: 8px; height: 8px; border-radius: 50%; background: #FFB84D; animation: neonAmberPulse 2s infinite; }
-
 /* =========================================================================
-   FINTECH GLASS CARDS & SURFACES
+   FINTECH SURFACES & KPI TILES
    ========================================================================= */
-.syvora-card {
-    background: rgba(16, 21, 30, 0.75);
+.fintech-card {
+    background: rgba(15, 21, 35, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 18px;
-    padding: 24px 28px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 26px 28px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     margin-bottom: 1.25rem;
-    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.syvora-card:hover {
+.fintech-card:hover {
     border-color: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .kpi-tile {
-    background: rgba(16, 21, 30, 0.8);
+    background: rgba(15, 21, 35, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 20px 22px;
@@ -294,9 +299,9 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
     justify-content: space-between;
 }
 .kpi-title {
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    color: #8793A5;
+    color: #94A3B8;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 8px;
@@ -306,7 +311,7 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
 }
 .kpi-stat-value {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.9rem;
+    font-size: 1.95rem;
     font-weight: 800;
     color: #FFFFFF;
     letter-spacing: -0.03em;
@@ -315,63 +320,63 @@ div[data-testid="stRadio"] label[data-checked="true"] p {
 }
 .kpi-footnote {
     font-size: 0.74rem;
-    color: #8793A5;
+    color: #94A3B8;
     font-weight: 500;
     margin: 0;
 }
 
 /* Badges */
-.badge-blue   { background: rgba(56, 189, 248, 0.12); color: #67D7FF; border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
-.badge-green  { background: rgba(57, 230, 165, 0.12); color: #39E6A5; border: 1px solid rgba(57, 230, 165, 0.35); padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
-.badge-purple { background: rgba(139, 124, 255, 0.12); color: #8B7CFF; border: 1px solid rgba(139, 124, 255, 0.35); padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
-.badge-amber  { background: rgba(255, 184, 77, 0.12); color: #FFB84D; border: 1px solid rgba(255, 184, 77, 0.35); padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
-.badge-red    { background: rgba(255, 92, 108, 0.12); color: #FF5C6C; border: 1px solid rgba(255, 92, 108, 0.35); padding: 3px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-blue   { background: rgba(56, 189, 248, 0.12); color: #38BDF8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-green  { background: rgba(16, 185, 129, 0.12); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-purple { background: rgba(99, 102, 241, 0.12); color: #A5B4FC; border: 1px solid rgba(99, 102, 241, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-amber  { background: rgba(245, 158, 11, 0.12); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
+.badge-red    { background: rgba(239, 68, 68, 0.12); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace; }
 
 /* Scenario Selection Cards */
 .scenario-card-active {
-    background: rgba(56, 189, 248, 0.12) !important;
+    background: rgba(56, 189, 248, 0.1) !important;
     border: 2px solid #38BDF8 !important;
     border-radius: 14px;
     padding: 16px 18px;
-    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.25) !important;
+    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.2) !important;
 }
 .scenario-card-inactive {
-    background: rgba(16, 21, 30, 0.75);
+    background: rgba(15, 21, 35, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
     padding: 16px 18px;
-    transition: all 0.2s ease;
+    transition: all 0.18s ease;
 }
 .scenario-card-inactive:hover {
     border-color: #38BDF8;
-    background: rgba(20, 26, 36, 0.9);
+    background: rgba(20, 28, 45, 0.9);
     transform: translateY(-2px);
 }
 
 /* =========================================================================
-   FORM INPUTS, TEXTAREAS, SELECTBOXES & BASEWEB MENUS (DARK THEME)
+   FORM CONTROLS & BASEWEB POPUPS
    ========================================================================= */
 div[data-baseweb="input"],
 div[data-baseweb="base-input"],
 div[data-baseweb="textarea"],
 div[data-baseweb="select"],
 div[data-baseweb="select"] > div {
-    background-color: #141A24 !important;
+    background-color: #121826 !important;
     border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 10px !important;
-    color: #F5F7FA !important;
+    color: #F8FAFC !important;
 }
 
 div[data-baseweb="popover"],
 ul[data-baseweb="menu"],
 li[data-baseweb="menu-item"] {
-    background-color: #141A24 !important;
-    color: #F5F7FA !important;
+    background-color: #121826 !important;
+    color: #F8FAFC !important;
 }
 
 li[data-baseweb="menu-item"]:hover {
-    background-color: #1E2638 !important;
-    color: #67D7FF !important;
+    background-color: #1E293B !important;
+    color: #38BDF8 !important;
 }
 
 input,
@@ -380,9 +385,9 @@ select,
 .stTextInput input,
 .stNumberInput input,
 .stTextArea textarea {
-    background-color: #141A24 !important;
-    color: #F5F7FA !important;
-    -webkit-text-fill-color: #F5F7FA !important;
+    background-color: #121826 !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
     font-weight: 600 !important;
     font-size: 0.88rem !important;
 }
@@ -391,7 +396,7 @@ div[data-baseweb="input"]:focus-within,
 div[data-baseweb="textarea"]:focus-within,
 div[data-baseweb="select"]:focus-within {
     border-color: #38BDF8 !important;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2) !important;
 }
 
 label,
@@ -401,14 +406,14 @@ label,
 .stTextArea label,
 div[data-testid="stMarkdownContainer"] p strong,
 div[data-testid="stForm"] strong {
-    color: #F5F7FA !important;
+    color: #F8FAFC !important;
     font-weight: 700 !important;
     font-size: 0.86rem !important;
 }
 
-/* Tab Headers */
+/* Tabs */
 button[data-baseweb="tab"] {
-    color: #8793A5 !important;
+    color: #94A3B8 !important;
     font-weight: 700 !important;
     font-size: 0.85rem !important;
     background: transparent !important;
@@ -417,11 +422,11 @@ button[data-baseweb="tab"] {
     transition: all 0.15s ease !important;
 }
 button[data-baseweb="tab"]:hover {
-    color: #C6CEDA !important;
+    color: #FFFFFF !important;
     background: rgba(255, 255, 255, 0.05) !important;
 }
 button[data-baseweb="tab"][aria-selected="true"] {
-    color: #67D7FF !important;
+    color: #38BDF8 !important;
     font-weight: 800 !important;
     border-bottom: 3px solid #38BDF8 !important;
     background: rgba(56, 189, 248, 0.08) !important;
@@ -437,31 +442,31 @@ button[data-baseweb="tab"][aria-selected="true"] {
     transition: all 0.18s ease !important;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    color: #F5F7FA !important;
+    color: #F8FAFC !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 .stButton>button:hover {
     background: rgba(255, 255, 255, 0.1) !important;
     border-color: #38BDF8 !important;
-    color: #67D7FF !important;
+    color: #38BDF8 !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
 }
 .stButton>button[kind="primary"] {
-    background: linear-gradient(135deg, #312E81 0%, #4F46E5 50%, #0284C7 100%) !important;
+    background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #0284C7 100%) !important;
     border: 1px solid #38BDF8 !important;
     color: #FFFFFF !important;
-    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35) !important;
 }
 .stButton>button[kind="primary"]:hover {
-    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.55) !important;
+    box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5) !important;
     transform: translateY(-1px) !important;
     color: #FFFFFF !important;
 }
 
 code {
-    background: #141A24 !important;
-    color: #67D7FF !important;
+    background: #121826 !important;
+    color: #38BDF8 !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 4px !important;
     padding: 2px 6px !important;
@@ -472,7 +477,7 @@ hr { border-color: rgba(255, 255, 255, 0.08) !important; margin: 1.75rem 0 !impo
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# Data & Core Engine Loading
+# Core Systems & Dataset Loading
 # ---------------------------------------------------------------------------
 
 @st.cache_resource
@@ -552,28 +557,27 @@ def get_ana_triggers(ana: Any) -> List[str]:
 # ---------------------------------------------------------------------------
 
 def render_top_brand_bar(subtitle: str = "PAYMENT DISPUTE INTELLIGENCE"):
-    st.markdown(f"""<div class="top-nav-container">
-<div class="brand-badge">
-<div class="brand-logo-icon">🛡️</div>
+    st.markdown(f"""<div class="top-nav-bar">
+<div class="brand-wrapper">
+<div class="brand-icon">🛡️</div>
 <div>
-<div class="brand-title-text">SYVORA</div>
-<div class="brand-sub-text">{subtitle}</div>
+<div class="brand-name">SYVORA</div>
+<div class="brand-tagline">{subtitle}</div>
 </div>
 </div>
-<div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-<div class="status-pill pill-emerald">
-<span class="dot-green"></span>
-<span>● SYSTEM ONLINE (115/115 TESTS)</span>
+<div class="status-dock">
+<div class="chip chip-green">
+<span class="pulse-dot"></span>
+<span>SYSTEM ONLINE (115/115)</span>
 </div>
-<div class="status-pill pill-purple">
-<span>● DECISION ENGINE READY</span>
+<div class="chip chip-purple">
+<span>DECISION ENGINE READY</span>
 </div>
-<div class="status-pill pill-amber">
-<span class="dot-amber"></span>
-<span>● SECURITY ACTIVE</span>
+<div class="chip chip-amber">
+<span>SECURITY ACTIVE</span>
 </div>
-<div class="status-pill pill-coral">
-<span>● AUDIT READY (SHA-256)</span>
+<div class="chip chip-red">
+<span>SHA-256 AUDIT READY</span>
 </div>
 </div>
 </div>""", unsafe_allow_html=True)
@@ -595,7 +599,7 @@ def render_kpi_stat_row(obs: Any, ana: Any):
 <span>CALIBRATED P(WIN)</span>
 <span class="{'badge-green' if p_win >= tau else 'badge-red'}">{'+' if p_win >= tau else ''}{(p_win - tau):.1%} vs τ*</span>
 </div>
-<div class="kpi-stat-value" style="color: #39E6A5;">{p_win:.1%}</div>
+<div class="kpi-stat-value" style="color: #34D399;">{p_win:.1%}</div>
 <p class="kpi-footnote">Isotonic calibrated probability</p>
 </div>""", unsafe_allow_html=True)
 
@@ -606,7 +610,7 @@ def render_kpi_stat_row(obs: Any, ana: Any):
 <span>EXPECTED VALUE E[EV]</span>
 <span class="{'badge-green' if ev >= 0 else 'badge-red'}">{ev_sign}₹{abs(ev):,.0f}</span>
 </div>
-<div class="kpi-stat-value" style="color: {'#39E6A5' if ev >= 0 else '#FF5C6C'};">{ev_sign}₹{abs(ev):,.0f}</div>
+<div class="kpi-stat-value" style="color: {'#34D399' if ev >= 0 else '#F87171'};">{ev_sign}₹{abs(ev):,.0f}</div>
 <p class="kpi-footnote">Fee-adjusted Bayesian return</p>
 </div>""", unsafe_allow_html=True)
 
@@ -616,7 +620,7 @@ def render_kpi_stat_row(obs: Any, ana: Any):
 <span>BREAK-EVEN (τ*)</span>
 <span class="badge-blue">Min Viable</span>
 </div>
-<div class="kpi-stat-value" style="color: #67D7FF;">{tau:.1%}</div>
+<div class="kpi-stat-value" style="color: #38BDF8;">{tau:.1%}</div>
 <p class="kpi-footnote">Fee / (Amount + Fee)</p>
 </div>""", unsafe_allow_html=True)
 
@@ -626,13 +630,13 @@ def render_kpi_stat_row(obs: Any, ana: Any):
 <span>EVIDENCE READINESS</span>
 <span class="{'badge-green' if readiness >= 60 else 'badge-red'}">{readiness}/100</span>
 </div>
-<div class="kpi-stat-value" style="color: #8B7CFF;">{readiness}</div>
+<div class="kpi-stat-value" style="color: #818CF8;">{readiness}</div>
 <p class="kpi-footnote">Exhibit packet completeness</p>
 </div>""", unsafe_allow_html=True)
 
     with c5:
-        v_border = '#39E6A5' if verdict == 'CONTEST' else ('#FF5C6C' if verdict == 'SURRENDER' else '#FFB84D')
-        v_color = '#39E6A5' if verdict == 'CONTEST' else ('#FF5C6C' if verdict == 'SURRENDER' else '#FFB84D')
+        v_border = '#34D399' if verdict == 'CONTEST' else ('#F87171' if verdict == 'SURRENDER' else '#FBBF24')
+        v_color = '#34D399' if verdict == 'CONTEST' else ('#F87171' if verdict == 'SURRENDER' else '#FBBF24')
         st.markdown(f"""<div class="kpi-tile" style="border-left: 3.5px solid {v_border};">
 <div class="kpi-title">
 <span>AUTONOMOUS VERDICT</span>
@@ -647,7 +651,7 @@ def render_interactive_policy_and_shap_charts(obs: Any, ana: Any):
     col1, col2 = st.columns([1.1, 0.9])
 
     with col1:
-        st.markdown("""<div class="syvora-card" style="height: 100%;">
+        st.markdown("""<div class="fintech-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FFFFFF; margin-bottom: 14px;">
 Decision Economics &amp; Probability Space
 </div>""", unsafe_allow_html=True)
@@ -672,21 +676,21 @@ Decision Economics &amp; Probability Space
                 margin=dict(l=20, r=20, t=10, b=20),
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                yaxis=dict(range=[0, 100], title=dict(text="% Rate", font=dict(color="#8793A5", size=12, family="Inter")), tickfont=dict(size=12, color="#8793A5"), gridcolor="rgba(255,255,255,0.06)", showgrid=True),
-                xaxis=dict(tickfont=dict(size=12, color="#F5F7FA", family="Inter")),
+                yaxis=dict(range=[0, 100], title=dict(text="% Rate", font=dict(color="#94A3B8", size=12, family="Plus Jakarta Sans")), tickfont=dict(size=12, color="#94A3B8"), gridcolor="rgba(255,255,255,0.06)", showgrid=True),
+                xaxis=dict(tickfont=dict(size=12, color="#F8FAFC", family="Plus Jakarta Sans")),
                 showlegend=False
             )
             st.plotly_chart(fig_prob, use_container_width=True, config={"displayModeBar": False})
         else:
             st.progress(min(1.0, max(0.0, p_win)), text=f"P(Win): {p_win:.1%} (Break-even τ*: {tau:.1%})")
 
-        st.markdown(f"""<div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 16px; margin-top: 10px; font-size: 0.8rem; color: #C6CEDA;">
-Dispute Value: <strong style="color: #FFFFFF;">₹{amt:,.2f}</strong> &bull; Bank Fee: <strong style="color: #FFFFFF;">₹{config.ARBITRATION_FEE_INR:,.2f}</strong> &bull; Net Expected Value: <strong style="color: {'#39E6A5' if ana.expected_value_inr >= 0 else '#FF5C6C'};">{'+' if ana.expected_value_inr >= 0 else '-'}₹{abs(ana.expected_value_inr):,.2f}</strong>
+        st.markdown(f"""<div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 16px; margin-top: 10px; font-size: 0.8rem; color: #CBD5E1;">
+Dispute Value: <strong style="color: #FFFFFF;">₹{amt:,.2f}</strong> &bull; Bank Fee: <strong style="color: #FFFFFF;">₹{config.ARBITRATION_FEE_INR:,.2f}</strong> &bull; Net Expected Value: <strong style="color: {'#34D399' if ana.expected_value_inr >= 0 else '#F87171'};">{'+' if ana.expected_value_inr >= 0 else '-'}₹{abs(ana.expected_value_inr):,.2f}</strong>
 </div>
 </div>""", unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""<div class="syvora-card" style="height: 100%;">
+        st.markdown("""<div class="fintech-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FFFFFF; margin-bottom: 14px;">
 TreeSHAP Feature Attribution (Why)
 </div>""", unsafe_allow_html=True)
@@ -698,7 +702,7 @@ TreeSHAP Feature Attribution (Why)
         if factors:
             names = [f.get("display_name", f.get("feature", "Feature")) for f in factors]
             impacts = [f.get("shap_impact", 0) * 100 for f in factors]
-            colors = ["#39E6A5" if imp >= 0 else "#FF5C6C" for imp in impacts]
+            colors = ["#34D399" if imp >= 0 else "#F87171" for imp in impacts]
 
             if go is not None:
                 fig_shap = go.Figure(go.Bar(
@@ -715,8 +719,8 @@ TreeSHAP Feature Attribution (Why)
                     margin=dict(l=20, r=20, t=10, b=20),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    xaxis=dict(title=dict(text="Probability Impact (pp)", font=dict(color="#8793A5", size=12, family="Inter")), tickfont=dict(size=12, color="#8793A5"), gridcolor="rgba(255,255,255,0.06)", showgrid=True),
-                    yaxis=dict(autorange="reversed", tickfont=dict(size=12, color="#F5F7FA", family="Inter")),
+                    xaxis=dict(title=dict(text="Probability Impact (pp)", font=dict(color="#94A3B8", size=12, family="Plus Jakarta Sans")), tickfont=dict(size=12, color="#94A3B8"), gridcolor="rgba(255,255,255,0.06)", showgrid=True),
+                    yaxis=dict(autorange="reversed", tickfont=dict(size=12, color="#F8FAFC", family="Plus Jakarta Sans")),
                     showlegend=False
                 )
                 st.plotly_chart(fig_shap, use_container_width=True, config={"displayModeBar": False})
@@ -736,7 +740,7 @@ def render_policy_gate_summary(obs: Any, ana: Any):
     g4 = obs.days_to_deadline > 3
     g5 = ana.evidence_readiness_score >= config.MIN_EVIDENCE_READINESS_SCORE
 
-    st.markdown("""<div class="syvora-card" style="margin-top: 1rem;">
+    st.markdown("""<div class="fintech-card" style="margin-top: 1rem;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FFFFFF;">
 5-Gate Deterministic Policy Pipeline
@@ -745,27 +749,27 @@ def render_policy_gate_summary(obs: Any, ana: Any):
 </div>
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; text-align: center;">
-<div style="font-size: 0.68rem; font-weight: 700; color: #8793A5;">1. AMOUNT GATE</div>
+<div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">1. AMOUNT GATE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">≤₹25,000</div>
 <span class="{'badge-green' if g1 else 'badge-red'}">{'PASS' if g1 else 'TRIGGERED'}</span>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; text-align: center;">
-<div style="font-size: 0.68rem; font-weight: 700; color: #8793A5;">2. CONFIDENCE</div>
+<div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">2. CONFIDENCE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">≥70.0%</div>
 <span class="{'badge-green' if g2 else 'badge-red'}">{'PASS' if g2 else 'TRIGGERED'}</span>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; text-align: center;">
-<div style="font-size: 0.68rem; font-weight: 700; color: #8793A5;">3. ECONOMICS</div>
+<div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">3. ECONOMICS</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">E[EV] &gt; 0</div>
 <span class="{'badge-green' if g3 else 'badge-red'}">{'PASS' if g3 else 'TRIGGERED'}</span>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; text-align: center;">
-<div style="font-size: 0.68rem; font-weight: 700; color: #8793A5;">4. DEADLINE</div>
+<div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">4. DEADLINE</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">&gt;3 Days</div>
 <span class="{'badge-green' if g4 else 'badge-red'}">{'PASS' if g4 else 'TRIGGERED'}</span>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; text-align: center;">
-<div style="font-size: 0.68rem; font-weight: 700; color: #8793A5;">5. READINESS</div>
+<div style="font-size: 0.68rem; font-weight: 700; color: #94A3B8;">5. READINESS</div>
 <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin: 4px 0;">≥60/100</div>
 <span class="{'badge-green' if g5 else 'badge-red'}">{'PASS' if g5 else 'TRIGGERED'}</span>
 </div>
@@ -774,14 +778,14 @@ def render_policy_gate_summary(obs: Any, ana: Any):
 
 
 def render_dossier_exhibits_accordion(dossier: Any):
-    st.markdown("""<div class="syvora-card" style="margin-top: 1rem;">
+    st.markdown("""<div class="fintech-card" style="margin-top: 1rem;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FFFFFF;">
 DEFENSE DOSSIER &amp; EVIDENCE PACKAGE
 </div>
 <span class="badge-blue">EVIDENCE READY</span>
 </div>
-<p style="font-size: 0.82rem; color: #8793A5; margin-bottom: 14px;">
+<p style="font-size: 0.82rem; color: #94A3B8; margin-bottom: 14px;">
 Decision-ready evidence package compiled deterministically from observed dispute telemetry.
 </p>
 """, unsafe_allow_html=True)
@@ -850,7 +854,7 @@ Decision-ready evidence package compiled deterministically from observed dispute
 
 
 # ---------------------------------------------------------------------------
-# 3D DECISION CORE (ISOLATED WEBGL WITH PARALLAX & PIPELINE NODES)
+# 3D DECISION CORE (GLOWING POLYHEDRON WITH KINETIC ENERGY STREAM)
 # ---------------------------------------------------------------------------
 
 def render_3d_decision_core():
@@ -861,23 +865,8 @@ def render_3d_decision_core():
 <meta charset="utf-8">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: transparent; overflow: hidden; height: 340px; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+body { background: transparent; overflow: hidden; height: 350px; width: 100%; font-family: sans-serif; }
 #canvas-container { width: 100%; height: 100%; position: relative; }
-.node-label {
-    position: absolute;
-    padding: 4px 10px;
-    background: rgba(16, 21, 30, 0.85);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #67D7FF;
-    font-family: 'JetBrains Mono', monospace;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    transition: opacity 0.2s;
-}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
@@ -887,7 +876,7 @@ body { background: transparent; overflow: hidden; height: 340px; width: 100%; fo
 try {
     const container = document.getElementById('canvas-container');
     const width = container.clientWidth || window.innerWidth;
-    const height = 340;
+    const height = 350;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
@@ -898,21 +887,32 @@ try {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0x67d7ff, 1.4);
+    const ambientLight = new THREE.AmbientLight(0x38bdf8, 1.5);
     scene.add(ambientLight);
 
-    const dirLight1 = new THREE.DirectionalLight(0x8b7cff, 2.5);
+    const dirLight1 = new THREE.DirectionalLight(0x818cf8, 2.5);
     dirLight1.position.set(10, 15, 12);
     scene.add(dirLight1);
 
     const coreGroup = new THREE.Group();
     scene.add(coreGroup);
 
-    // Central Intelligence Core: Polyhedron with glowing inner nucleus
-    const icoGeo = new THREE.IcosahedronGeometry(3.6, 1);
-    const icoMat = new THREE.MeshStandardMaterial({
+    // Glowing Inner Sphere
+    const nucGeo = new THREE.SphereGeometry(1.9, 32, 32);
+    const nucMat = new THREE.MeshStandardMaterial({
         color: 0x38bdf8,
-        roughness: 0.15,
+        emissive: 0x1e1b4b,
+        emissiveIntensity: 0.9,
+        roughness: 0.1
+    });
+    const nucleus = new THREE.Mesh(nucGeo, nucMat);
+    coreGroup.add(nucleus);
+
+    // Wireframe Outer Cage
+    const icoGeo = new THREE.IcosahedronGeometry(3.8, 1);
+    const icoMat = new THREE.MeshStandardMaterial({
+        color: 0x818cf8,
+        roughness: 0.2,
         metalness: 0.8,
         transparent: true,
         opacity: 0.85,
@@ -921,35 +921,21 @@ try {
     const icoMesh = new THREE.Mesh(icoGeo, icoMat);
     coreGroup.add(icoMesh);
 
-    const nucGeo = new THREE.SphereGeometry(1.8, 32, 32);
-    const nucMat = new THREE.MeshStandardMaterial({
-        color: 0x8b7cff,
-        emissive: 0x4f46e5,
-        emissiveIntensity: 0.95,
-        roughness: 0.2
-    });
-    const nucleus = new THREE.Mesh(nucGeo, nucMat);
-    coreGroup.add(nucleus);
-
-    // Orbital Rings
+    // 2 Elegant Orbital Rings
     const ring1Geo = new THREE.TorusGeometry(5.8, 0.05, 16, 100);
-    const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x67d7ff, transparent: true, opacity: 0.7 });
+    const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.7 });
     const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
     ring1.rotation.x = Math.PI / 3;
     coreGroup.add(ring1);
 
-    const ring2Geo = new THREE.TorusGeometry(7.2, 0.04, 16, 100);
-    const ring2Mat = new THREE.MeshBasicMaterial({ color: 0x39e6a5, transparent: true, opacity: 0.5 });
+    const ring2Geo = new THREE.TorusGeometry(7.0, 0.04, 16, 100);
+    const ring2Mat = new THREE.MeshBasicMaterial({ color: 0x34d399, transparent: true, opacity: 0.6 });
     const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
     ring2.rotation.y = Math.PI / 4;
     ring2.rotation.x = -Math.PI / 6;
     coreGroup.add(ring2);
 
-    // 7 Surrounding Pipeline Nodes
-    const nodeNames = [
-        "01 41 SIGNALS", "02 ML MODEL", "03 CALIBRATION",
-        "04 TREESHAP", "05 EXPECTED VAL", "06 5 GATES", "07 VERDICT"
-    ];
+    // 7 Orbiting Satellites
     const nodeMeshes = [];
     const nodeCount = 7;
     for (let i = 0; i < nodeCount; i++) {
@@ -957,14 +943,14 @@ try {
         const radius = 6.2;
         const nGeo = new THREE.OctahedronGeometry(0.55, 0);
         const nMat = new THREE.MeshStandardMaterial({
-            color: i === 6 ? 0x39e6a5 : (i === 4 ? 0xffb84d : 0x38bdf8),
+            color: i === 6 ? 0x34d399 : (i === 4 ? 0xfbbf24 : 0x38bdf8),
             roughness: 0.2,
-            metalness: 0.7
+            metalness: 0.8
         });
         const nMesh = new THREE.Mesh(nGeo, nMat);
-        nMesh.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius * 0.5, Math.sin(angle) * 1.5);
+        nMesh.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius * 0.45, Math.sin(angle) * 1.5);
         coreGroup.add(nMesh);
-        nodeMeshes.push({ mesh: nMesh, angle: angle, name: nodeNames[i] });
+        nodeMeshes.push(nMesh);
     }
 
     let targetX = 0, targetY = 0;
@@ -977,13 +963,13 @@ try {
 
     function animate() {
         requestAnimationFrame(animate);
-        coreGroup.rotation.y += 0.005;
-        ring1.rotation.z += 0.008;
-        ring2.rotation.z -= 0.006;
+        coreGroup.rotation.y += 0.006;
+        ring1.rotation.z += 0.009;
+        ring2.rotation.z -= 0.007;
 
-        nodeMeshes.forEach((n, idx) => {
-            n.mesh.rotation.y += 0.02;
-            n.mesh.rotation.x += 0.01;
+        nodeMeshes.forEach(m => {
+            m.rotation.y += 0.02;
+            m.rotation.x += 0.01;
         });
 
         coreGroup.rotation.y += (targetX - coreGroup.rotation.y) * 0.04;
@@ -995,31 +981,31 @@ try {
 
     window.addEventListener('resize', () => {
         const w = container.clientWidth || window.innerWidth;
-        camera.aspect = w / 340;
+        camera.aspect = w / 350;
         camera.updateProjectionMatrix();
-        renderer.setSize(w, 340);
+        renderer.setSize(w, 350);
     });
-} catch (err) {
-    console.error("Decision Core Three.js error:", err);
+} catch (e) {
+    console.error("Three.js error:", e);
 }
 </script>
 </body>
 </html>
 """
-    components.html(decision_core_html, height=340, scrolling=False)
+    components.html(decision_core_html, height=350, scrolling=False)
 
 
 # ---------------------------------------------------------------------------
-# TOP COMMAND BAR & PROMINENT HORIZONTAL NAVIGATION
+# NAVIGATION STATE & ROUTING
 # ---------------------------------------------------------------------------
 
 if "app_mode" not in st.session_state:
     st.session_state["app_mode"] = "🌟 Product Overview & Landing"
 
-# Render Global Brand Top Header
+# Render Master Brand Header
 render_top_brand_bar("PAYMENT DISPUTE INTELLIGENCE")
 
-# Top Horizontal Navigation Options
+# Clean Navigation Options
 nav_options = [
     "🌟 Product Overview & Landing",
     "❓ Why SYVORA? (Product Story)",
@@ -1032,7 +1018,7 @@ nav_options = [
 ]
 
 selected_nav = st.radio(
-    "TOP NAVIGATION",
+    "NAVIGATION DOCK",
     nav_options,
     index=nav_options.index(st.session_state["app_mode"]) if st.session_state["app_mode"] in nav_options else 0,
     horizontal=True,
@@ -1045,18 +1031,18 @@ if selected_nav != st.session_state["app_mode"]:
 
 
 # ===========================================================================
-# VIEW 0: 11-SECTION CINEMATIC PRODUCT EXPERIENCE & STORYTELLING
+# VIEW 0: 11-SECTION CINEMATIC PRODUCT EXPERIENCE
 # ===========================================================================
 
 if st.session_state["app_mode"] == "🌟 Product Overview & Landing":
-    # SECTION 1: HERO
+    # HERO CONTAINER
     h_col1, h_col2 = st.columns([1.25, 1])
     with h_col1:
-        st.markdown("""<div class="syvora-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        st.markdown("""<div class="fintech-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 <div>
-<div class="badge-blue" style="display: inline-block; margin-bottom: 12px;">PAYMENT DISPUTE INTELLIGENCE</div>
+<div class="badge-blue" style="display: inline-block; margin-bottom: 14px;">PAYMENT DISPUTE INTELLIGENCE</div>
 
-<h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.0rem, 3.2vw, 2.7rem); font-weight: 900; color: #FFFFFF; line-height: 1.1; margin: 0 0 14px 0; letter-spacing: -0.03em;">
+<h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.1rem, 3.2vw, 2.8rem); font-weight: 900; color: #FFFFFF; line-height: 1.1; margin: 0 0 16px 0; letter-spacing: -0.03em;">
 WHEN A DISPUTE<br/>BECOMES A DECISION.
 </h1>
 
@@ -1067,7 +1053,7 @@ WHEN A DISPUTE<br/>BECOMES A DECISION.
 </p>
 </div>
 
-<p style="font-size: 0.9rem; color: #8793A5; line-height: 1.5; margin: 0 0 18px 0;">
+<p style="font-size: 0.9rem; color: #94A3B8; line-height: 1.5; margin: 0 0 20px 0;">
 SYVORA transforms payment dispute evidence into calibrated, explainable and financially-aware decisions across 41 multi-modal signals and 5 deterministic policy gates.
 </p>
 </div>
@@ -1075,7 +1061,7 @@ SYVORA transforms payment dispute evidence into calibrated, explainable and fina
     with h_col2:
         render_3d_decision_core()
 
-    # Hero Action CTAs
+    # Working Hero CTAs
     c1, c2, c3 = st.columns(3)
     with c1:
         if st.button("⚡ ENTER COMMAND CENTER ➔", type="primary", use_container_width=True):
@@ -1091,88 +1077,66 @@ SYVORA transforms payment dispute evidence into calibrated, explainable and fina
             st.rerun()
 
     # SECTION 2: THE PROBLEM
-    st.markdown("""<div class="syvora-card" style="margin-top: 1.5rem;">
+    st.markdown("""<div class="fintech-card" style="margin-top: 1.5rem;">
 <div class="badge-red" style="display: inline-block; margin-bottom: 8px;">SECTION 02 &bull; THE PROBLEM</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 6px 0;">
 DISPUTES AREN'T JUST FRAUD PROBLEMS.
 </h3>
-<p style="font-size: 0.88rem; color: #8793A5; margin-bottom: 16px;">
-Every dispute is an economic optimization problem with real financial risk:
+<p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 16px;">
+Traditional dispute handling forces merchants into three sub-optimal paths:
 </p>
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-weight: 800; color: #39E6A5; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;">DEFEND</div>
-<div style="font-size: 0.8rem; color: #8793A5; margin-top: 6px; line-height: 1.45;">Potential revenue recovery, but incurs a non-refundable bank arbitration fee penalty if evidence fails.</div>
+<div style="font-weight: 800; color: #34D399; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;">DEFEND</div>
+<div style="font-size: 0.8rem; color: #94A3B8; margin-top: 6px; line-height: 1.45;">Potential revenue recovery, but risks losing a non-refundable ₹3,000 bank arbitration fee penalty if proof fails.</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-weight: 800; color: #FF5C6C; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;">SURRENDER</div>
-<div style="font-size: 0.8rem; color: #8793A5; margin-top: 6px; line-height: 1.45;">Certain transaction loss, but avoids defense costs and arbitration fees when recovery probability is zero.</div>
+<div style="font-weight: 800; color: #F87171; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;">SURRENDER</div>
+<div style="font-size: 0.8rem; color: #94A3B8; margin-top: 6px; line-height: 1.45;">Certain transaction loss, but avoids defense costs and arbitration penalties when win probability is near zero.</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-weight: 800; color: #FFB84D; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;">REVIEW</div>
-<div style="font-size: 0.8rem; color: #8793A5; margin-top: 6px; line-height: 1.45;">Human-in-the-loop escalation for high-GMV or tight deadlines where autonomous threshold fails.</div>
+<div style="font-weight: 800; color: #FBBF24; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif;">REVIEW</div>
+<div style="font-size: 0.8rem; color: #94A3B8; margin-top: 6px; line-height: 1.45;">Human-in-the-loop triage for high-value GMV (>₹25k) or urgent deadlines (≤3 days).</div>
 </div>
 </div>
-<div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 10px; padding: 12px 16px; margin-top: 14px; font-weight: 700; font-size: 0.88rem; color: #67D7FF;">
+<div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 10px; padding: 12px 16px; margin-top: 14px; font-weight: 700; font-size: 0.88rem; color: #38BDF8;">
 💡 SYVORA calculates which path makes mathematical sense for every single dispute.
 </div>
 </div>""", unsafe_allow_html=True)
 
     # SECTION 3: 41 SIGNALS. ONE DECISION.
-    st.markdown("""<div class="syvora-card">
+    st.markdown("""<div class="fintech-card">
 <div class="badge-blue" style="display: inline-block; margin-bottom: 8px;">SECTION 03 &bull; THE SIGNALS</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 6px 0;">
 41 SIGNALS. ONE DECISION.
 </h3>
-<p style="font-size: 0.88rem; color: #8793A5; margin-bottom: 16px;">
+<p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 16px;">
 Multi-modal evidence signals flow deterministically through the feature pipeline into calibrated probabilistic inference:
 </p>
 
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px;">
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px;">
-<div style="font-size: 0.72rem; font-weight: 700; color: #8793A5;">TIER 1 &bull; AUTHENTICATION</div>
+<div style="font-size: 0.72rem; font-weight: 700; color: #94A3B8;">TIER 1 &bull; AUTHENTICATION</div>
 <div style="font-size: 0.85rem; font-weight: 700; color: #FFFFFF; margin-top: 4px;">EMV 3DS 2.2.0 Protocol</div>
-<div style="font-size: 0.74rem; color: #8793A5; margin-top: 2px;">Liability shift verification</div>
+<div style="font-size: 0.74rem; color: #94A3B8; margin-top: 2px;">Liability shift verification</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px;">
-<div style="font-size: 0.72rem; font-weight: 700; color: #8793A5;">TIER 2 &bull; LOGISTICS</div>
+<div style="font-size: 0.72rem; font-weight: 700; color: #94A3B8;">TIER 2 &bull; LOGISTICS</div>
 <div style="font-size: 0.85rem; font-weight: 700; color: #FFFFFF; margin-top: 4px;">Carrier GPS &amp; Signed POD</div>
-<div style="font-size: 0.74rem; color: #8793A5; margin-top: 2px;">Physical delivery confirmation</div>
+<div style="font-size: 0.74rem; color: #94A3B8; margin-top: 2px;">Physical delivery confirmation</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px;">
-<div style="font-size: 0.72rem; font-weight: 700; color: #8793A5;">TIER 3 &bull; TELEMETRY</div>
+<div style="font-size: 0.72rem; font-weight: 700; color: #94A3B8;">TIER 3 &bull; TELEMETRY</div>
 <div style="font-size: 0.85rem; font-weight: 700; color: #FFFFFF; margin-top: 4px;">IP Match &amp; Device Hash</div>
-<div style="font-size: 0.74rem; color: #8793A5; margin-top: 2px;">Hardware &amp; geolocation match</div>
+<div style="font-size: 0.74rem; color: #94A3B8; margin-top: 2px;">Hardware &amp; geolocation match</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 14px;">
-<div style="font-size: 0.72rem; font-weight: 700; color: #8793A5;">TIER 4 &bull; RELATIONSHIP</div>
+<div style="font-size: 0.72rem; font-weight: 700; color: #94A3B8;">TIER 4 &bull; RELATIONSHIP</div>
 <div style="font-size: 0.85rem; font-weight: 700; color: #FFFFFF; margin-top: 4px;">Historical Dispute Ledger</div>
-<div style="font-size: 0.74rem; color: #8793A5; margin-top: 2px;">Customer repeat behavior</div>
+<div style="font-size: 0.74rem; color: #94A3B8; margin-top: 2px;">Customer repeat behavior</div>
 </div>
 </div>
-</div>""", unsafe_allow_html=True)
-
-    # SECTION 4: EXPLAINABILITY (TREESHAP)
-    st.markdown("""<div class="syvora-card">
-<div class="badge-purple" style="display: inline-block; margin-bottom: 8px;">SECTION 04 &bull; EXPLAINABILITY</div>
-<h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 6px 0;">
-DON'T JUST GIVE THE SCORE. SHOW THE WHY.
-</h3>
-<p style="font-size: 0.88rem; color: #8793A5; margin-bottom: 16px;">
-TreeSHAP decomposes the exact probability contribution for every factual evidence signal:
-</p>
-</div>""", unsafe_allow_html=True)
-
-    # SECTION 5: ECONOMICS (BAYESIAN EXPECTED VALUE)
-    st.markdown("""<div class="syvora-card">
-<div class="badge-green" style="display: inline-block; margin-bottom: 8px;">SECTION 05 &bull; DECISION ECONOMICS</div>
-<h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 6px 0;">
-ACCURACY ISN'T THE OBJECTIVE. VALUE IS.
-</h3>
-<p style="font-size: 0.88rem; color: #8793A5; margin-bottom: 16px;">
-Expected Financial Value formula: <code>E[EV] = P(Win) &times; Amount - (1 - P(Win)) &times; Arbitration_Fee</code>
-</p>
 </div>""", unsafe_allow_html=True)
 
     # SECTION 7: SECURITY FIREWALL (DUAL EVALUATION PROOF)
@@ -1195,27 +1159,27 @@ Expected Financial Value formula: <code>E[EV] = P(Win) &times; Amount - (1 - P(W
     p_diff = abs(ana_clean.calibrated_win_probability - ana_injected.calibrated_win_probability)
     ev_diff = abs(ana_clean.expected_value_inr - ana_injected.expected_value_inr)
 
-    st.markdown(f"""<div class="syvora-card">
+    st.markdown(f"""<div class="fintech-card">
 <div class="badge-amber" style="display: inline-block; margin-bottom: 8px;">SECTION 07 &bull; ADVERSARIAL SECURITY</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 6px 0;">
 UNTRUSTED INPUT NEVER GETS TO DECIDE.
 </h3>
-<p style="font-size: 0.88rem; color: #8793A5; margin-bottom: 16px;">
+<p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 16px;">
 Customer remarks are quarantined into Exhibit E advisory space, guaranteeing exact mathematical invariance on analytical decisions:
 </p>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px;">
-<div style="font-size: 0.76rem; font-weight: 700; color: #39E6A5; margin-bottom: 6px;">1. CLEAN REMARKS EVALUATION</div>
-<div style="font-family: monospace; font-size: 0.74rem; color: #C6CEDA; margin-bottom: 8px;">"{clean_text}"</div>
-<div style="font-family: monospace; font-size: 0.82rem; font-weight: 700; color: #39E6A5;">
+<div style="font-size: 0.76rem; font-weight: 700; color: #34D399; margin-bottom: 6px;">1. CLEAN REMARKS EVALUATION</div>
+<div style="font-family: monospace; font-size: 0.74rem; color: #CBD5E1; margin-bottom: 8px;">"{clean_text}"</div>
+<div style="font-family: monospace; font-size: 0.82rem; font-weight: 700; color: #34D399;">
 P(Win): {ana_clean.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_clean.expected_value_inr:,.0f} &bull; Verdict: {ana_clean.decision_verdict}
 </div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px;">
-<div style="font-size: 0.76rem; font-weight: 700; color: #FF5C6C; margin-bottom: 6px;">2. INJECTION PAYLOAD (QUARANTINED)</div>
-<div style="font-family: monospace; font-size: 0.74rem; color: #FF5C6C; margin-bottom: 8px;">"{malicious_text[:75]}..."</div>
-<div style="font-family: monospace; font-size: 0.82rem; font-weight: 700; color: #39E6A5;">
+<div style="font-size: 0.76rem; font-weight: 700; color: #F87171; margin-bottom: 6px;">2. INJECTION PAYLOAD (QUARANTINED)</div>
+<div style="font-family: monospace; font-size: 0.74rem; color: #F87171; margin-bottom: 8px;">"{malicious_text[:75]}..."</div>
+<div style="font-family: monospace; font-size: 0.82rem; font-weight: 700; color: #34D399;">
 P(Win): {ana_injected.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_injected.expected_value_inr:,.0f} &bull; Verdict: {ana_injected.decision_verdict}
 </div>
 </div>
@@ -1227,7 +1191,7 @@ P(Win): {ana_injected.calibrated_win_probability:.1%} &bull; E[EV]: ₹{ana_inje
 </div>""", unsafe_allow_html=True)
 
     # SECTION 10: WHY SYVORA (4 PILLARS)
-    st.markdown("""<div class="syvora-card">
+    st.markdown("""<div class="fintech-card">
 <div class="badge-blue" style="display: inline-block; margin-bottom: 8px;">SECTION 10 &bull; WHY SYVORA</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 16px 0;">
 FOUR ARCHITECTURAL PILLARS
@@ -1235,35 +1199,35 @@ FOUR ARCHITECTURAL PILLARS
 
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #67D7FF; margin-bottom: 4px;">01</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #38BDF8; margin-bottom: 4px;">01</div>
 <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF; margin-bottom: 6px;">EXPLAINABLE</div>
-<div style="font-size: 0.78rem; color: #8793A5; line-height: 1.45;">Exact TreeSHAP probability attribution for every signal.</div>
+<div style="font-size: 0.78rem; color: #94A3B8; line-height: 1.45;">Exact TreeSHAP probability attribution for every signal.</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #39E6A5; margin-bottom: 4px;">02</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #34D399; margin-bottom: 4px;">02</div>
 <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF; margin-bottom: 6px;">FINANCIALLY AWARE</div>
-<div style="font-size: 0.78rem; color: #8793A5; line-height: 1.45;">Bayesian Expected Value accounts for bank arbitration fees.</div>
+<div style="font-size: 0.78rem; color: #94A3B8; line-height: 1.45;">Bayesian Expected Value accounts for bank arbitration fees.</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #FFB84D; margin-bottom: 4px;">03</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #FBBF24; margin-bottom: 4px;">03</div>
 <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF; margin-bottom: 6px;">ADVERSARIAL-HARDENED</div>
-<div style="font-size: 0.78rem; color: #8793A5; line-height: 1.45;">Untrusted text cannot manipulate mathematical decisions.</div>
+<div style="font-size: 0.78rem; color: #94A3B8; line-height: 1.45;">Untrusted text cannot manipulate mathematical decisions.</div>
 </div>
 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #8B7CFF; margin-bottom: 4px;">04</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; color: #818CF8; margin-bottom: 4px;">04</div>
 <div style="font-weight: 800; font-size: 0.92rem; color: #FFFFFF; margin-bottom: 6px;">AUDITABLE</div>
-<div style="font-size: 0.78rem; color: #8793A5; line-height: 1.45;">Tamper-evident SHA-256 hash-chained ledger trail.</div>
+<div style="font-size: 0.78rem; color: #94A3B8; line-height: 1.45;">Tamper-evident SHA-256 hash-chained ledger trail.</div>
 </div>
 </div>
 </div>""", unsafe_allow_html=True)
 
     # SECTION 11: LIVE DEMO CALL TO ACTION
-    st.markdown("""<div class="syvora-card" style="margin-top: 1rem;">
+    st.markdown("""<div class="fintech-card" style="margin-top: 1rem;">
 <div class="badge-green" style="display: inline-block; margin-bottom: 8px;">SECTION 11 &bull; INTERACTIVE DEMO</div>
 <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 6px 0;">
 ENOUGH THEORY. SEE IT DECIDE.
 </h3>
-<p style="font-size: 0.88rem; color: #8793A5; margin-bottom: 16px;">
+<p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 16px;">
 Run four live operational scenario archetypes through the real decision engine:
 </p>
 </div>""", unsafe_allow_html=True)
@@ -1296,31 +1260,31 @@ Run four live operational scenario archetypes through the real decision engine:
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "❓ Why SYVORA? (Product Story)":
-    st.markdown("""<div class="syvora-card">
+    st.markdown("""<div class="fintech-card">
 <div class="badge-blue" style="display: inline-block; margin-bottom: 8px;">PRODUCT STORY &bull; ARCHITECTURAL PILLARS</div>
 <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin: 0 0 10px 0;">
 Payment disputes are not simply yes-or-no decisions.
 </h2>
-<p style="font-size: 0.9rem; color: #C6CEDA; line-height: 1.55; margin: 0;">
+<p style="font-size: 0.9rem; color: #CBD5E1; line-height: 1.55; margin: 0;">
 Traditional dispute management forces merchants to either blindly contest every claim (risking severe bank arbitration penalties upon loss) or surrender valid revenue. SYVORA introduces deterministic decision intelligence combining calibrated probabilities, Bayesian Expected Value, input security firewalls, and strict policy safety gates to optimize net financial P&amp;L automatically.
 </p>
 </div>""", unsafe_allow_html=True)
 
     d_col1, d_col2 = st.columns(2)
     with d_col1:
-        st.markdown("""<div class="syvora-card" style="height: 100%;">
+        st.markdown("""<div class="fintech-card" style="height: 100%;">
 <div class="badge-purple" style="display: inline-block; margin-bottom: 8px;">01 &bull; DECISION INTELLIGENCE</div>
 <div style="font-weight: 800; font-size: 1.05rem; color: #FFFFFF; margin-bottom: 6px;">Bayesian Expected Value &gt; Binary Thresholds</div>
-<div style="font-size: 0.82rem; color: #8793A5; line-height: 1.5;">
+<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.5;">
 Rather than guessing with a static risk score, SYVORA computes mathematical Expected Value: <code>E[EV] = P(Win) &times; Amount - (1 - P(Win)) &times; Fee</code>. Only positive-EV disputes are defended.
 </div>
 </div>""", unsafe_allow_html=True)
 
     with d_col2:
-        st.markdown("""<div class="syvora-card" style="height: 100%;">
+        st.markdown("""<div class="fintech-card" style="height: 100%;">
 <div class="badge-green" style="display: inline-block; margin-bottom: 8px;">02 &bull; SECURITY BY DESIGN</div>
 <div style="font-weight: 800; font-size: 1.05rem; color: #FFFFFF; margin-bottom: 6px;">Adversarial Input Firewall &amp; Quarantine</div>
-<div style="font-size: 0.82rem; color: #8793A5; line-height: 1.5;">
+<div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.5;">
 Customer-provided remarks are treated as untrusted data. A deterministic defensive sanitizer neutralizes prompt injections and SQL payloads before they can reach analytical engines.
 </div>
 </div>""", unsafe_allow_html=True)
@@ -1348,8 +1312,8 @@ elif st.session_state["app_mode"] == "🚀 60-Second Guided Demo":
         with s_col_ui:
             is_active = (cur_step == s_num)
             st.markdown(f"""<div class="{'scenario-card-active' if is_active else 'scenario-card-inactive'}" style="margin-bottom: 8px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#67D7FF' if is_active else '#FFFFFF'};">{s_title}</div>
-<div style="font-size: 0.72rem; color: #8793A5; margin-top: 2px;">{s_sub}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#38BDF8' if is_active else '#FFFFFF'};">{s_title}</div>
+<div style="font-size: 0.72rem; color: #94A3B8; margin-top: 2px;">{s_sub}</div>
 {'<span class="badge-blue" style="display: inline-block; margin-top: 6px;">● ACTIVE STEP ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #64748B; margin-top: 6px;">CLICK TO SELECT</div>'}
 </div>""", unsafe_allow_html=True)
             if st.button(f"SELECT STEP {s_num}", key=f"btn_step_{s_num}", type="primary" if is_active else "secondary", use_container_width=True):
@@ -1513,8 +1477,8 @@ elif st.session_state["app_mode"] == "📝 Manual Case Intake":
         with sc_col:
             is_active = (active_scen == sc_key)
             st.markdown(f"""<div class="{'scenario-card-active' if is_active else 'scenario-card-inactive'}" style="margin-bottom: 8px;">
-<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#67D7FF' if is_active else '#FFFFFF'};">Scenario {sc_key}</div>
-<div style="font-size: 0.72rem; color: #8793A5; margin-top: 2px;">{sc_info['name']}</div>
+<div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 800; color: {'#38BDF8' if is_active else '#FFFFFF'};">Scenario {sc_key}</div>
+<div style="font-size: 0.72rem; color: #94A3B8; margin-top: 2px;">{sc_info['name']}</div>
 {'<span class="badge-blue" style="display: inline-block; margin-top: 6px;">● ACTIVE SCENARIO ✓</span>' if is_active else '<div style="font-size: 0.68rem; color: #64748B; margin-top: 6px;">CLICK TO SELECT</div>'}
 </div>""", unsafe_allow_html=True)
             if st.button(f"LOAD SCENARIO {sc_key}", key=f"btn_scen_{sc_key}", type="primary" if is_active else "secondary", use_container_width=True):
@@ -1601,7 +1565,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 <span>PR-AUC (PRIMARY METRIC)</span>
 <span class="badge-green">+14.2% vs Base</span>
 </div>
-<div class="kpi-stat-value" style="color: #39E6A5;">{pr_auc_val:.4f}</div>
+<div class="kpi-stat-value" style="color: #34D399;">{pr_auc_val:.4f}</div>
 <p class="kpi-footnote">Imbalanced chargeback evaluation</p>
 </div>""", unsafe_allow_html=True)
 
@@ -1611,7 +1575,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 <span>ROC-AUC DISCRIMINATIVE</span>
 <span class="badge-blue">+11.8% vs Base</span>
 </div>
-<div class="kpi-stat-value" style="color: #67D7FF;">{roc_auc_val:.4f}</div>
+<div class="kpi-stat-value" style="color: #38BDF8;">{roc_auc_val:.4f}</div>
 <p class="kpi-footnote">Overall ranking separation</p>
 </div>""", unsafe_allow_html=True)
 
@@ -1621,7 +1585,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 <span>CALIBRATED BRIER SCORE</span>
 <span class="badge-green">-24.1% Error</span>
 </div>
-<div class="kpi-stat-value" style="color: #FF5C6C;">{brier_val:.4f}</div>
+<div class="kpi-stat-value" style="color: #F87171;">{brier_val:.4f}</div>
 <p class="kpi-footnote">Empirical reliability metric</p>
 </div>""", unsafe_allow_html=True)
 
@@ -1631,7 +1595,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 <span>NET AUTONOMOUS RETURN</span>
 <span class="badge-green">+₹{net_ret_val:,.0f}</span>
 </div>
-<div class="kpi-stat-value" style="color: #39E6A5;">+₹{net_ret_val:,.0f}</div>
+<div class="kpi-stat-value" style="color: #34D399;">+₹{net_ret_val:,.0f}</div>
 <p class="kpi-footnote">vs Blind Contest baseline</p>
 </div>""", unsafe_allow_html=True)
 
@@ -1639,7 +1603,7 @@ elif st.session_state["app_mode"] == "📊 Executive & Benchmark Metrics":
 
         c_ch1, c_ch2 = st.columns([1, 1.3])
         with c_ch1:
-            st.markdown("""<div class="syvora-card" style="height: 100%;">
+            st.markdown("""<div class="fintech-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FFFFFF; margin-bottom: 12px;">
 Autonomous Verdict Proportions (N=180)
 </div>""", unsafe_allow_html=True)
@@ -1650,7 +1614,7 @@ Autonomous Verdict Proportions (N=180)
                     labels=["CONTEST", "SURRENDER", "REVIEW"],
                     values=[v_dist.get("CONTEST", 51), v_dist.get("SURRENDER", 44), v_dist.get("REVIEW", 85)],
                     hole=0.55,
-                    marker=dict(colors=["#39E6A5", "#FF5C6C", "#FFB84D"]),
+                    marker=dict(colors=["#34D399", "#F87171", "#FBBF24"]),
                     textinfo="label+percent",
                     textfont=dict(color="#FFFFFF", family="Space Grotesk")
                 )])
@@ -1667,7 +1631,7 @@ Autonomous Verdict Proportions (N=180)
             st.markdown("</div>", unsafe_allow_html=True)
 
         with c_ch2:
-            st.markdown("""<div class="syvora-card" style="height: 100%;">
+            st.markdown("""<div class="fintech-card" style="height: 100%;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: #FFFFFF; margin-bottom: 12px;">
 Cumulative Net P&amp;L: SYVORA vs Always Contest
 </div>""", unsafe_allow_html=True)
@@ -1679,7 +1643,7 @@ Cumulative Net P&amp;L: SYVORA vs Always Contest
 
             if go is not None:
                 fig_line = go.Figure()
-                fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#67D7FF', width=3)))
+                fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#38BDF8', width=3)))
                 fig_line.add_trace(go.Scatter(x=x_pts, y=blind_pnl, mode='lines', name='Always Contest Baseline', line=dict(color='#64748B', width=2, dash='dash')))
 
                 fig_line.update_layout(
@@ -1687,9 +1651,9 @@ Cumulative Net P&amp;L: SYVORA vs Always Contest
                     margin=dict(l=20, r=20, t=10, b=20),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    yaxis=dict(title=dict(text="Net INR (₹)", font=dict(color="#8793A5")), gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#8793A5"), showgrid=True),
-                    xaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#8793A5"), showgrid=False),
-                    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(color="#F5F7FA"))
+                    yaxis=dict(title=dict(text="Net INR (₹)", font=dict(color="#94A3B8")), gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#94A3B8"), showgrid=True),
+                    xaxis=dict(gridcolor="rgba(255,255,255,0.06)", tickfont=dict(color="#94A3B8"), showgrid=False),
+                    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(color="#F8FAFC"))
                 )
                 st.plotly_chart(fig_line, use_container_width=True, config={"displayModeBar": False})
             else:
@@ -1705,14 +1669,14 @@ elif st.session_state["app_mode"] == "🔒 Cryptographic Audit Ledger":
     is_valid, err_msg = audit_ledger.verify_integrity()
     msg = err_msg or "All block hashes, previous hash pointers, and payload signatures match canonical state."
 
-    st.markdown(f"""<div class="syvora-card" style="border-left: 3.5px solid {'#39E6A5' if is_valid else '#FF5C6C'};">
+    st.markdown(f"""<div class="fintech-card" style="border-left: 3.5px solid {'#34D399' if is_valid else '#F87171'};">
 <div style="display: flex; justify-content: space-between; align-items: center;">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #FFFFFF;">
 CHAIN INTEGRITY STATUS: {'VERIFIED &bull; ZERO TAMPERING DETECTED' if is_valid else 'FAILED'}
 </div>
 <span class="{'badge-green' if is_valid else 'badge-red'}">SHA-256 VERIFIED</span>
 </div>
-<div style="font-size: 0.8rem; color: #8793A5; margin-top: 4px;">{msg}</div>
+<div style="font-size: 0.8rem; color: #94A3B8; margin-top: 4px;">{msg}</div>
 </div>""", unsafe_allow_html=True)
 
     if audit_ledger.entries:
@@ -1730,11 +1694,11 @@ CHAIN INTEGRITY STATUS: {'VERIFIED &bull; ZERO TAMPERING DETECTED' if is_valid e
 # ===========================================================================
 
 elif st.session_state["app_mode"] == "🛡️ Input Sanitization Firewall":
-    st.markdown("""<div class="syvora-card">
+    st.markdown("""<div class="fintech-card">
 <div style="font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">
 Adversarial Input Quarantine Architecture
 </div>
-<div style="font-size: 0.84rem; color: #8793A5; line-height: 1.5;">
+<div style="font-size: 0.84rem; color: #94A3B8; line-height: 1.5;">
 Customer remarks are processed through a deterministic multi-pattern sanitizer that intercepts prompt injections, SQL payload syntax, and jailbreaks before they reach downstream components.
 </div>
 </div>""", unsafe_allow_html=True)
