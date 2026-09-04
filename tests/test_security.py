@@ -1,5 +1,5 @@
 """
-SYVORA — Security & Cryptographic Audit Ledger Unit Tests
+NYAYANTRA — Security & Cryptographic Audit Ledger Unit Tests
 =========================================================
 Verifies:
 - SHA-256 hash-chain integrity verification

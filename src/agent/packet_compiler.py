@@ -1,5 +1,5 @@
 """
-SYVORA — Multi-Exhibit Evidence Compiler (Stage 4)
+NYAYANTRA — Multi-Exhibit Evidence Compiler (Stage 4)
 ===================================================
 Compiles structured evidentiary exhibits from a verified DisputeDefenseDossier.
 

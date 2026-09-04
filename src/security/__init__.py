@@ -1,1 +1,1 @@
-# SYVORA Security Module
+# NYAYANTRA Security Module

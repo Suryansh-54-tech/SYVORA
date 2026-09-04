@@ -1,5 +1,5 @@
 """
-SYVORA — Evidence & Dossier Pydantic Schemas
+NYAYANTRA — Evidence & Dossier Pydantic Schemas
 ============================================
 Strictly typed data schemas for observed digital evidence, derived analytical
 metrics, and structured dispute defense dossiers.
@@ -383,7 +383,7 @@ class ExhibitPackage(BaseModel):
 
 class SimulatedDefensePacket(BaseModel):
     """
-    Complete structured representation of a SYVORA Demonstration Defense Packet.
+    Complete structured representation of a NYAYANTRA Demonstration Defense Packet.
     Export output only — strictly downstream of the core decision engine.
     """
     packet_id: str

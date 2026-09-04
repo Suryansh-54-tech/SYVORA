@@ -1,5 +1,5 @@
 """
-SYVORA — Stage 5 Guided Demo Scenarios & Invariant Tests
+NYAYANTRA — Stage 5 Guided Demo Scenarios & Invariant Tests
 ========================================================
 Tests deterministic execution of the 4 Buildathon demonstration archetypes,
 verifying natural engine decisioning, policy gating, sanitizer containment,

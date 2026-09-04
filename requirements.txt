@@ -1,4 +1,4 @@
-# SYVORA — Payment Dispute Intelligence
+# NYAYANTRA — Payment Dispute Intelligence
 # Core ML & Data
 pandas>=2.2.0
 numpy>=1.26.0

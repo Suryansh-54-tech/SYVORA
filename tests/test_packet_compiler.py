@@ -1,5 +1,5 @@
 """
-SYVORA — Stage 4 Multi-Exhibit Compiler & Defense Packet Generator Tests
+NYAYANTRA — Stage 4 Multi-Exhibit Compiler & Defense Packet Generator Tests
 ========================================================================
 Tests deterministic exhibit compilation, standalone HTML generation,
 missing evidence representations, HTML entity escaping, prompt injection isolation,

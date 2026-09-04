@@ -1,1 +1,1 @@
-# SYVORA Agent Module
+# NYAYANTRA Agent Module

@@ -1,8 +1,8 @@
-# SYVORA
+# NYAYANTRA
 
 ## Payment Dispute Intelligence
 
-SYVORA is a decision-support system for post-payment chargeback triage: an operator enters a dispute manually, and the system sanitizes any customer complaint text, extracts deterministic advisory claim signals, engineers a deterministic feature set, produces a calibrated win probability with a Random Forest classifier, explains that score with exact TreeSHAP attributions, weighs the economics of contesting against a non-refundable arbitration fee, applies deterministic policy gates, and returns one of three verdicts — **CONTEST**, **REVIEW**, or **SURRENDER** — together with a provenance-aware evidence dossier and an append-only cryptographic audit trail. Everything runs locally on synthetic data through a Streamlit operations console.
+NYAYANTRA is a decision-support system for post-payment chargeback triage: an operator enters a dispute manually, and the system sanitizes any customer complaint text, extracts deterministic advisory claim signals, engineers a deterministic feature set, produces a calibrated win probability with a Random Forest classifier, explains that score with exact TreeSHAP attributions, weighs the economics of contesting against a non-refundable arbitration fee, applies deterministic policy gates, and returns one of three verdicts — **CONTEST**, **REVIEW**, or **SURRENDER** — together with a provenance-aware evidence dossier and an append-only cryptographic audit trail. Everything runs locally on synthetic data through a Streamlit operations console.
 
 > [!IMPORTANT]
 > **This is a synthetic simulation / technical demonstration — not production software.**
@@ -55,7 +55,7 @@ Cryptographic audit ledger ───────── append-only SHA-256 hash 
 1. **Intake** — an operator fills the manual intake form (`dashboard/app.py`) or selects a stored test dispute.
 2. **Sanitization & claim understanding** — complaint text passes through `src/security/sanitizer.py`; hostile phrasing is neutralized, and `src/nlp/claim_extractor.py` extracts advisory claim signals with zero ML influence.
 3. **Feature engineering** — `src/ml/features.py` converts the record into 41 fixed-schema features; outcome-related fields are structurally blocked from entering.
-4. **Win probability** — `SyvoraScorer` (`src/ml/train.py`) returns a calibrated probability on the calibrated Random Forest.
+4. **Win probability** — `NyayantraScorer` (`src/ml/train.py`) returns a calibrated probability on the calibrated Random Forest.
 5. **Explanation** — `DisputeExplainer` (`src/ml/explain.py`) attributes that score to individual evidence factors using exact TreeSHAP.
 6. **Economics** — `DecisionEngine.calculate_expected_value` (`src/engine.py`) weighs potential recovery against the non-refundable fee and derives the break-even threshold τ*.
 7. **Gates & verdict** — five deterministic gates in `evaluate_dispute` (`src/engine.py`) produce CONTEST, REVIEW, or SURRENDER.
@@ -142,7 +142,7 @@ Policy gates can force REVIEW even when Expected Value is positive. Current gate
 - Original complaint text is preserved **only** inside an explicitly labeled `UNTRUSTED / SANITIZED` audit field; display surfaces use the neutralized copy.
 - Customer text cannot influence ML features, win probability, expected value, verdicts, or evidence provenance — enforced structurally and covered by regression tests.
 - Audit ledger: canonical-JSON SHA-256 payload hashing plus chained entry hashing (`prev_hash ‖ payload_hash ‖ timestamp ‖ id ‖ type`).
-- Optional HMAC-SHA256 entry authentication: set `SYVORA_AUDIT_SECRET` (or `SENTINEL_AUDIT_SECRET`) to sign every new entry; verification fails closed on unsigned entries when the key is configured.
+- Optional HMAC-SHA256 entry authentication: set `NYAYANTRA_AUDIT_SECRET` (or `SENTINEL_AUDIT_SECRET`) to sign every new entry; verification fails closed on unsigned entries when the key is configured.
 - Demo ledger (`data/demo_audit_ledger.jsonl`) is separated from the runtime ledger path (`data/audit_ledger.jsonl`); both are environment-local and never committed.
 
 This is a demonstration of security-engineering patterns, not a production-bank secure system.
@@ -177,7 +177,7 @@ flowchart TD
 ## Project Structure
 
 ```
-syvora/
+nyayantra/
 ├── config.py                  # thresholds, paths, seeds (all simulation constants)
 ├── requirements.txt
 ├── docs/
@@ -232,7 +232,7 @@ python src/ml/train.py
 python benchmark/evaluate.py
 ```
 
-To enable HMAC-signed audit entries, set the `SYVORA_AUDIT_SECRET` environment variable before launching the app.
+To enable HMAC-signed audit entries, set the `NYAYANTRA_AUDIT_SECRET` environment variable before launching the app.
 
 ## Testing
 
@@ -244,7 +244,7 @@ The suite covers unit mathematics (EV/break-even boundaries), feature-pipeline i
 
 ## Important Disclaimer
 
-**SYVORA is a synthetic simulation and technical demonstration.**
+**NYAYANTRA is a synthetic simulation and technical demonstration.**
 
 - It does not connect to any bank, card issuer, card network, carrier, or payment gateway.
 - The datasets, telemetry, and provenance record IDs are synthetic.

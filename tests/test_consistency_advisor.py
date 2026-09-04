@@ -1,5 +1,5 @@
 """
-SYVORA — Stage 3 Consistency Advisor Unit & Integration Tests
+NYAYANTRA — Stage 3 Consistency Advisor Unit & Integration Tests
 =============================================================
 Tests deterministic claim-evidence consistency evaluation, structural immutability,
 provenance preservation, and strict decision invariance.

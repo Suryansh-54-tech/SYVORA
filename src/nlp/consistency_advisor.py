@@ -1,5 +1,5 @@
 """
-SYVORA — Deterministic Offline Claim–Evidence Consistency Advisor
+NYAYANTRA — Deterministic Offline Claim–Evidence Consistency Advisor
 =================================================================
 Compares extracted customer claim intents against verified digital evidence records.
 

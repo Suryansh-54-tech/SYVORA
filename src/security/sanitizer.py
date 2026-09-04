@@ -1,5 +1,5 @@
 """
-SYVORA — Defensive Input Sanitizer & Prompt Injection Firewall
+NYAYANTRA — Defensive Input Sanitizer & Prompt Injection Firewall
 ==============================================================
 Sanitizes untrusted customer remarks, transaction memos, and claim text
 before ingestion by downstream analytical or dossier-generation layers.

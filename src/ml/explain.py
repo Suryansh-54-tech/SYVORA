@@ -1,5 +1,5 @@
 """
-SYVORA — Model Explainability Engine (TreeSHAP)
+NYAYANTRA — Model Explainability Engine (TreeSHAP)
 ================================================
 Generates local feature attributions for individual dispute risk scores
 using TreeSHAP on the underlying tree ensemble model.
@@ -231,7 +231,7 @@ class DisputeExplainer:
 
 def run_explainability_check():
     print("=" * 65)
-    print("  SYVORA -- Model Explainability Verification (TreeSHAP)")
+    print("  NYAYANTRA -- Model Explainability Verification (TreeSHAP)")
     print("=" * 65)
 
     explainer = DisputeExplainer()

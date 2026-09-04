@@ -1,5 +1,5 @@
 """
-SYVORA — Deterministic Offline Natural Language Claim Understanding
+NYAYANTRA — Deterministic Offline Natural Language Claim Understanding
 ====================================================================
 Pure-Python, deterministic, zero-network, negation-aware claim understanding.
 Extracts structured advisory claim signals from sanitized customer remarks.

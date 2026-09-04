@@ -1,5 +1,5 @@
 """
-SYVORA — Deterministic Offline Natural Language Claim Extractor
+NYAYANTRA — Deterministic Offline Natural Language Claim Extractor
 ================================================================
 Extracts structured advisory claim signals from sanitized customer dispute remarks.
 

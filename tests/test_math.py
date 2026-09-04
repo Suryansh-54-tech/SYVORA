@@ -1,5 +1,5 @@
 """
-SYVORA — Mathematical & Decision Economics Unit Tests
+NYAYANTRA — Mathematical & Decision Economics Unit Tests
 =====================================================
 Verifies:
 - Bayesian Expected Value formula calculations

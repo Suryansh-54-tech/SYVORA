@@ -1,1 +1,1 @@
-# SYVORA Tests
+# NYAYANTRA Tests

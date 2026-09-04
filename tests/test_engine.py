@@ -1,5 +1,5 @@
 """
-SYVORA — End-to-End Engine & Integration Unit Tests
+NYAYANTRA — End-to-End Engine & Integration Unit Tests
 ===================================================
 Verifies:
 - Feature engineering schema consistency and leak prevention

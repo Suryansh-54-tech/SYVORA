@@ -1,5 +1,5 @@
 """
-SYVORA — Claim Intent Lexicons and Deterministic Pattern Definitions
+NYAYANTRA — Claim Intent Lexicons and Deterministic Pattern Definitions
 =====================================================================
 Defines the deterministic matching rules, regular expressions, and negative/positive
 trigger vocabularies for standard dispute claim classifications.

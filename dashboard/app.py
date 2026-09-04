@@ -1,5 +1,5 @@
 """
-SYVORA — Payment Dispute Intelligence Console
+NYAYANTRA — Payment Dispute Intelligence Console
 ==============================================
 Autonomous dispute triage, Bayesian Expected Value analysis,
 TreeSHAP explainability, adversarial input quarantine, and cryptographically chained audit ledger.
@@ -44,7 +44,7 @@ from src.security.sanitizer import InputSanitizer
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
-    page_title="SYVORA — Payment Dispute Intelligence",
+    page_title="NYAYANTRA — Payment Dispute Intelligence",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -480,7 +480,7 @@ def render_top_brand_bar(subtitle: str = "PAYMENT DISPUTE INTELLIGENCE"):
   </div>
 </div>
 <div>
-<div class="brand-name">SYVORA</div>
+<div class="brand-name">NYAYANTRA</div>
 <div class="brand-tagline">{subtitle}</div>
 </div>
 </div>
@@ -921,7 +921,7 @@ render_top_brand_bar("PAYMENT DISPUTE INTELLIGENCE")
 # Navigation Options
 nav_options = [
     "🌟 Product Overview & Landing",
-    "❓ Why SYVORA? (Product Story)",
+    "❓ Why NYAYANTRA? (Product Story)",
     "🚀 60-Second Guided Demo",
     "⚡ Live Dispute Triage & Forensics",
     "📝 Manual Case Intake",
@@ -966,12 +966,12 @@ WHEN A DISPUTE <br/><span style="color: #DBA85A;">BECOMES A DECISION.</span>
 <!-- CORE POSITIONING STATEMENT -->
 <div style="background: #0A0A0A; border: 1px solid #1F2937; border-left: 4px solid #DBA85A; border-radius: 0.75rem; padding: 1.1rem 1.4rem; margin-bottom: 1.4rem;">
 <p style="font-size: 0.95rem; font-weight: 600; color: #F3F4F6; line-height: 1.5; margin: 0;">
-&ldquo;Razorpay helps businesses move money. SYVORA helps businesses decide what to do when that money is disputed.&rdquo;
+&ldquo;Razorpay helps businesses move money. NYAYANTRA helps businesses decide what to do when that money is disputed.&rdquo;
 </p>
 </div>
 
 <p style="font-size: 1.05rem; color: #9CA3AF; line-height: 1.65; margin: 0 0 1.75rem 0;">
-SYVORA transforms chargeback evidence into calibrated, explainable, and financially optimal decisions. Using 41 multi-modal signals, Bayesian Expected Value, and 5 deterministic policy gates, SYVORA decides whether to <strong style="color: #FFFFFF;">Defend</strong>, <strong style="color: #FFFFFF;">Surrender</strong>, or <strong style="color: #FFFFFF;">Review</strong> every dispute automatically.
+NYAYANTRA transforms chargeback evidence into calibrated, explainable, and financially optimal decisions. Using 41 multi-modal signals, Bayesian Expected Value, and 5 deterministic policy gates, NYAYANTRA decides whether to <strong style="color: #FFFFFF;">Defend</strong>, <strong style="color: #FFFFFF;">Surrender</strong>, or <strong style="color: #FFFFFF;">Review</strong> every dispute automatically.
 </p>
 </div>""", unsafe_allow_html=True)
 
@@ -1039,7 +1039,7 @@ Four Pillars of Autonomous Dispute Operations
 </div>""", unsafe_allow_html=True)
 
     # -----------------------------------------------------------------------
-    # 3. WHY SYVORA (Product Story & Architectural Trust - 2 Columns)
+    # 3. WHY NYAYANTRA (Product Story & Architectural Trust - 2 Columns)
     # -----------------------------------------------------------------------
     why_col1, why_col2 = st.columns([1, 1.15])
 
@@ -1050,7 +1050,7 @@ Four Pillars of Autonomous Dispute Operations
 ARCHITECTURAL TRUST
 </div>
 <div style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin-bottom: 1.5rem;">
-Why Enterprise Teams Rely on SYVORA
+Why Enterprise Teams Rely on NYAYANTRA
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 1.25rem;">
@@ -1091,7 +1091,7 @@ Why Enterprise Teams Rely on SYVORA
         st.markdown("""<div style="background: #0A0A0A; border: 1px solid #1F2937; border-radius: 1.5rem; padding: 2.25rem; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
 <div>
 <div style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #DBA85A; margin-bottom: 0.75rem;">
-WHY SYVORA?
+WHY NYAYANTRA?
 </div>
 <h2 style="font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #FFFFFF; line-height: 1.2; margin: 0 0 1.25rem 0; letter-spacing: -0.02em;">
 Payment disputes are not simply yes-or-no decisions.
@@ -1100,11 +1100,11 @@ Payment disputes are not simply yes-or-no decisions.
 Traditional dispute management forces merchants into a costly dilemma—either blindly contesting every claim (risking heavy non-refundable bank arbitration fees) or passively surrendering valid revenue.
 </p>
 <p style="font-size: 0.95rem; color: #9CA3AF; line-height: 1.6; margin: 0 0 1.5rem 0;">
-SYVORA introduces autonomous decision intelligence combining calibrated probabilities, Bayesian Expected Value, input security firewalls, and strict policy safety gates to optimize net financial P&L deterministically.
+NYAYANTRA introduces autonomous decision intelligence combining calibrated probabilities, Bayesian Expected Value, input security firewalls, and strict policy safety gates to optimize net financial P&L deterministically.
 </p>
 </div>
 </div>""", unsafe_allow_html=True)
-        st.button("EXPLORE PRODUCT STORY & ARCHITECTURE ➔", use_container_width=True, on_click=set_nav, args=("❓ Why SYVORA? (Product Story)",))
+        st.button("EXPLORE PRODUCT STORY & ARCHITECTURE ➔", use_container_width=True, on_click=set_nav, args=("❓ Why NYAYANTRA? (Product Story)",))
 
     # -----------------------------------------------------------------------
     # 4. DECISION PIPELINE (Services Grid - 3 Columns in #0A0A0A)
@@ -1255,7 +1255,7 @@ Legally structured defense packet ready for bank arbitration submission:
 <div class="brand-bar" style="height: 16px; width: 3px;"></div>
 </div>
 </div>
-<span style="font-size: 1.2rem; font-weight: 900; letter-spacing: -0.03em; color: #FFFFFF;">SYVORA</span>
+<span style="font-size: 1.2rem; font-weight: 900; letter-spacing: -0.03em; color: #FFFFFF;">NYAYANTRA</span>
 </div>
 <p style="font-size: 0.82rem; color: #9CA3AF; line-height: 1.6; margin: 0;">
 Autonomous payment dispute intelligence for enterprise fintech. Deciding chargebacks with mathematical certainty.
@@ -1300,17 +1300,17 @@ System Status
 </div>
 
 <div style="border-top: 1px solid #1F2937; padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.75rem; color: #6B7280;">
-<div>&copy; 2026 SYVORA. Payment Dispute Decision Intelligence.</div>
+<div>&copy; 2026 NYAYANTRA. Payment Dispute Decision Intelligence.</div>
 <div>Razorpay Buildathon Edition &bull; Deterministic Enterprise Grade</div>
 </div>
 </div>""", unsafe_allow_html=True)
 
 
 # ===========================================================================
-# VIEW 1: WHY SYVORA? (PRODUCT STORY & ARCHITECTURAL COMPARISON)
+# VIEW 1: WHY NYAYANTRA? (PRODUCT STORY & ARCHITECTURAL COMPARISON)
 # ===========================================================================
 
-elif st.session_state["app_mode"] == "❓ Why SYVORA? (Product Story)":
+elif st.session_state["app_mode"] == "❓ Why NYAYANTRA? (Product Story)":
 
     # -----------------------------------------------------------------------
     # 1. HEADER & RAZORPAY-GRADE NARRATIVE HERO
@@ -1330,7 +1330,7 @@ Why Autonomous Decision Intelligence Replaces Binary Risk Scoring
 <!-- Razorpay Brand Positioning -->
 <div style="background: linear-gradient(90deg, rgba(219, 168, 90, 0.1) 0%, rgba(2, 132, 199, 0.08) 100%); border-left: 4px solid #DBA85A; border-radius: 0 12px 12px 0; padding: 14px 18px; margin-bottom: 18px;">
 <p style="font-size: 1rem; font-weight: 700; color: #FFFFFF; line-height: 1.5; margin: 0;">
-&ldquo;Razorpay helps businesses move money. SYVORA helps businesses decide what to do when that money is disputed.&rdquo;
+&ldquo;Razorpay helps businesses move money. NYAYANTRA helps businesses decide what to do when that money is disputed.&rdquo;
 </p>
 </div>
 
@@ -1528,7 +1528,7 @@ Live Probability vs. Profitability Curve
 MATHEMATICAL SPECIFICATION
 </div>
 <h2 style="font-size: 1.8rem; font-weight: 800; color: #FFFFFF; margin: 0 0 0.5rem 0;">
-Formulas Used by the SYVORA Decision Engine
+Formulas Used by the NYAYANTRA Decision Engine
 </h2>
 <p style="font-size: 0.9rem; color: #9CA3AF; margin: 0 0 1.25rem 0;">
 The exact economic equations, optimization bounds, and game-theoretic models running inside the autonomous engine:
@@ -1607,7 +1607,7 @@ Brier Score = (1/N) &sum; (P&#770;&#7522; - y&#7522;)&sup2;
 <strong style="color: #FFFFFF;">Why Probability Calibration Matters:</strong><br/>
 Standard ML risk models output uncalibrated scores that suffer from extreme overconfidence. If an uncalibrated model outputs 0.85 but only 55% of such cases win, the merchant suffers catastrophic arbitration losses.<br/>
 <strong style="color: #FFFFFF;">Isotonic Regression (PAV Algorithm):</strong><br/>
-SYVORA applies non-parametric monotonic regression <code>g(f(x))</code> on held-out validation disputes, achieving a <strong style="color: #34D399;">-24.1% Brier Score reduction</strong> to ensure every percentage point reflects real-world win probability.
+NYAYANTRA applies non-parametric monotonic regression <code>g(f(x))</code> on held-out validation disputes, achieving a <strong style="color: #34D399;">-24.1% Brier Score reduction</strong> to ensure every percentage point reflects real-world win probability.
 </div>
 </div>""", unsafe_allow_html=True)
 
@@ -1682,12 +1682,12 @@ Machine learning predictions are never allowed to make autonomous financial deci
 </div>""", unsafe_allow_html=True)
 
     # -----------------------------------------------------------------------
-    # 6. ENTERPRISE HEURISTICS VS SYVORA INTELLIGENCE COMPARISON TABLE
+    # 6. ENTERPRISE HEURISTICS VS NYAYANTRA INTELLIGENCE COMPARISON TABLE
     # -----------------------------------------------------------------------
     st.markdown("""<div class="glass-card" style="margin-top: 2rem; margin-bottom: 2rem;">
 <div class="badge-gold" style="display: inline-block; margin-bottom: 10px;">BENCHMARK COMPARISON</div>
 <h3 style="font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin: 0 0 16px 0;">
-Legacy Manual Handling vs. SYVORA Autonomous Intelligence
+Legacy Manual Handling vs. NYAYANTRA Autonomous Intelligence
 </h3>
 
 <div style="overflow-x: auto;">
@@ -1696,7 +1696,7 @@ Legacy Manual Handling vs. SYVORA Autonomous Intelligence
 <tr style="border-bottom: 2px solid #1F2937; color: #9CA3AF; text-transform: uppercase; font-size: 0.74rem; letter-spacing: 0.08em;">
 <th style="padding: 12px 14px;">Capability</th>
 <th style="padding: 12px 14px;">Legacy Merchant Triage</th>
-<th style="padding: 12px 14px; color: #DBA85A;">SYVORA Autonomous Intelligence</th>
+<th style="padding: 12px 14px; color: #DBA85A;">NYAYANTRA Autonomous Intelligence</th>
 </tr>
 </thead>
 <tbody>
@@ -2083,17 +2083,17 @@ Autonomous Verdict Proportions (N=180)
         with c_ch2:
             st.markdown("""<div class="glass-card" style="height: 100%;">
 <div style="font-size: 0.95rem; font-weight: 700; color: #FFFFFF; margin-bottom: 12px;">
-Cumulative Net P&amp;L: SYVORA vs Always Contest
+Cumulative Net P&amp;L: NYAYANTRA vs Always Contest
 </div>""", unsafe_allow_html=True)
 
             n_pts = 20
             x_pts = [f"Batch {i+1}" for i in range(n_pts)]
-            syvora_pnl = np.cumsum(np.random.normal(7000, 1500, n_pts))
+            nyayantra_pnl = np.cumsum(np.random.normal(7000, 1500, n_pts))
             blind_pnl = np.cumsum(np.random.normal(2000, 2500, n_pts))
 
             if go is not None:
                 fig_line = go.Figure()
-                fig_line.add_trace(go.Scatter(x=x_pts, y=syvora_pnl, mode='lines+markers', name='SYVORA Expected Value', line=dict(color='#06B6D4', width=3)))
+                fig_line.add_trace(go.Scatter(x=x_pts, y=nyayantra_pnl, mode='lines+markers', name='NYAYANTRA Expected Value', line=dict(color='#06B6D4', width=3)))
                 fig_line.add_trace(go.Scatter(x=x_pts, y=blind_pnl, mode='lines', name='Always Contest Baseline', line=dict(color='#64748B', width=2, dash='dash')))
 
                 fig_line.update_layout(

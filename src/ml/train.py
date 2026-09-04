@@ -1,5 +1,5 @@
 """
-SYVORA — Machine Learning Model Training & Probability Calibration
+NYAYANTRA — Machine Learning Model Training & Probability Calibration
 ==================================================================
 Trains and calibrates tabular ML models for post-payment dispute win prediction.
 
@@ -358,12 +358,12 @@ class SentinelRiskScorer:
 
 
 # Canonical branding alias
-SyvoraScorer = SentinelRiskScorer
+NyayantraScorer = SentinelRiskScorer
 
 
 def run_training_pipeline():
     print("=" * 65)
-    print("  SYVORA -- ML Model Training & Probability Calibration")
+    print("  NYAYANTRA -- ML Model Training & Probability Calibration")
     print("=" * 65)
 
     trainer = DisputeModelTrainer()

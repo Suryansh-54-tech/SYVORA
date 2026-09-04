@@ -1,5 +1,5 @@
 """
-SYVORA — Synthetic Dispute Dataset Generator
+NYAYANTRA — Synthetic Dispute Dataset Generator
 ============================================
 Generates realistic post-payment chargeback/dispute records with:
 - Real Visa/Mastercard reason codes
@@ -328,7 +328,7 @@ def validate_dataset(df: pd.DataFrame) -> dict:
 
 def main():
     print("=" * 65)
-    print("  SYVORA -- Synthetic Dispute Dataset Generator")
+    print("  NYAYANTRA -- Synthetic Dispute Dataset Generator")
     print("=" * 65)
 
     # Ensure data directory exists

@@ -1,5 +1,5 @@
 """
-SYVORA — Feature Engineering Pipeline
+NYAYANTRA — Feature Engineering Pipeline
 =====================================
 Deterministic feature transformation for post-payment dispute triage.
 Enforces strict point-in-time semantics and guards against target leakage.
@@ -255,7 +255,7 @@ class FeaturePipeline:
 
 def run_pipeline_check():
     print("=" * 65)
-    print("  SYVORA -- Feature Pipeline Verification")
+    print("  NYAYANTRA -- Feature Pipeline Verification")
     print("=" * 65)
 
     pipeline = FeaturePipeline()

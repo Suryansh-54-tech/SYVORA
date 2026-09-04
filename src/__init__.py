@@ -1,1 +1,1 @@
-# SYVORA — Payment Dispute Intelligence
+# NYAYANTRA — Payment Dispute Intelligence

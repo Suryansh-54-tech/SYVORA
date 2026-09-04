@@ -1,5 +1,5 @@
 """
-SYVORA — Standalone Defense Packet HTML Formatter (Stage 4)
+NYAYANTRA — Standalone Defense Packet HTML Formatter (Stage 4)
 ============================================================
 Generates self-contained, publication-grade, print-optimized HTML defense packets.
 
@@ -336,7 +336,7 @@ class BankPacketFormatter:
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>SYVORA Simulated Defense Packet — {e(dossier.dispute_id)}</title>
+            <title>NYAYANTRA Simulated Defense Packet — {e(dossier.dispute_id)}</title>
             {css}
         </head>
         <body>
@@ -348,7 +348,7 @@ class BankPacketFormatter:
                 <table class="header-table">
                     <tr>
                         <td>
-                            <div class="brand-title">SYVORA</div>
+                            <div class="brand-title">NYAYANTRA</div>
                             <div class="brand-sub">Payment Dispute Intelligence &bull; Demonstration Rebuttal Packet</div>
                         </td>
                         <td class="packet-meta">
@@ -530,7 +530,7 @@ class BankPacketFormatter:
 
                 <div class="footer-box">
                     <div>{e(packet.disclaimer)}</div>
-                    <div style="margin-top: 4px;">Compiled deterministically by SYVORA Evidence Engine. Simulated provenance trace. Zero live bank network calls executed.</div>
+                    <div style="margin-top: 4px;">Compiled deterministically by NYAYANTRA Evidence Engine. Simulated provenance trace. Zero live bank network calls executed.</div>
                 </div>
             </div>
         </body>
